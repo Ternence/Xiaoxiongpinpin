@@ -1,0 +1,38 @@
+/* pages/shoppingCart/shoppingCart.wxss */
+.footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 85rpx;
+  background:lightcyan;
+}
+
+.left{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right{
+  width: 40%;
+  background: red;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.chose{
+  border-radius: 50%;
+}
+
+.noGoods{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

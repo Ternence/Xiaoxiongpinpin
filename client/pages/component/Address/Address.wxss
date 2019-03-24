@@ -1,0 +1,20 @@
+/* pages/component/Address/Address.wxss */
+.address{
+  display: flex;
+  flex-direction: column;
+  border-radius: 20rpx;
+}
+
+.loc{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.addressdetail{
+  font-size: 20rpx;
+}
+
+.personinfo{
+  font-size: 20rpx;
+  color: rgb(209,179,179);
+}

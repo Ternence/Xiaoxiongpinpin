@@ -1,0 +1,21 @@
+/* pages/search/search.wxss */
+
+.size {
+  font-size: 60rpx;
+  background: transparent;
+  margin: 2rpx 10rpx;
+  color: rgb(209, 179, 179);
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2rpx 20rpx;
+}
+
+.search{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

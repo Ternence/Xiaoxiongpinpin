@@ -1,0 +1,65 @@
+/* pages/personInfo/personInfo.wxss */
+.userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+    background: red;
+}
+
+.userinfo-name{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx;
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.ordertext{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 10rpx;
+}
+
+.box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big{
+  font-size: 60rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.allordertext{
+  font-size: 20rpx;
+  color: gray;
+  margin: 10rpx;
+}
+
+.order{
+  margin: 20rpx;
+  border: 5rpx solid lightgray;
+  border-radius: 15rpx;
+}

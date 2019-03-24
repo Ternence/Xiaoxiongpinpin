@@ -1,0 +1,18 @@
+<!--pages/address/address.wxml-->
+<view class='head'>
+  <view class='search'>
+    <icon class='iconfont iconsearch size'></icon>
+    <input type='text' placeholder='输入地址'></input>
+  </view>
+  <view bindtap='search'>搜索</view>
+</view>
+<view class='current'>
+  <view>
+    <icon class='iconfont icondingwei size'></icon>
+    <text>{{city}}</text>
+  </view>
+  <text style='font-size:30rpx;color:blue;' bindtap='locate'>重新定位</text>
+</view>
+<view class='content'>
+
+</view>

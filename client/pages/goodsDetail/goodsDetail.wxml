@@ -1,0 +1,35 @@
+<!--pages/goodsDetail/goodsDetail.wxml-->
+<view>
+  <swiper autoplay='true'>
+    <swiper-item>
+      <image></image>
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class='goodsInfo'>
+  <view class='head'>
+    <text>¥{{goods.price}}</text>
+  </view>
+  <view class='content'>
+    <text>{{goods.name}}</text>
+  </view>
+  <view class='footer'>
+    <text>销量</text>
+    <text>已售{{goods.sold}}件，剩余</text>
+    <text>{{goods.stock}}</text>
+    <text>件</text>
+  </view>
+</view>
+
+<view class='comment'>
+  <view></view>
+  <view>{{comment}}</view>
+  <view>
+    <text>查看全部评论</text>
+  </view>
+</view>
+
+<view class='GoodsDetail'>
+
+</view>

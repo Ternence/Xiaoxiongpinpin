@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/personInfo/personInfo",
+    "pages/shoppingCart/shoppingCart",
+    "pages/orderList/orderList",
+    "pages/goodsDetail/goodsDetail",
+    "pages/search/search",
+    "pages/address/address"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于确定配送位置"
+    }
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "Wafer Quick Start",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#272636",
+    "selectedColor": "#FFD161",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "pages/icons/home.png",
+        "selectedIconPath": "pages/icons/homeactive.png"
+      },
+      {
+        "pagePath": "pages/shoppingCart/shoppingCart",
+        "text": "购物车",
+        "iconPath": "pages/icons/shopping.png",
+        "selectedIconPath": "pages/icons/shoppingactive.png"
+      },
+      {
+        "pagePath": "pages/personInfo/personInfo",
+        "text": "我的",
+        "iconPath": "pages/icons/user.png",
+        "selectedIconPath": "pages/icons/useractive.png"
+      }
+    ]
+  }
+}

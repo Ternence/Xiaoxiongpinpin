@@ -1,0 +1,12 @@
+<!--pages/component/Address/Address.wxml-->
+<view class='address'>
+  <view class='loc'>
+    <text>{{address.home}}</text>
+  </view>
+  <view class='addressdetail'>
+    <text>{{address.detail}}</text>
+  </view>
+  <view class='personinfo'>
+    <text>{{address.name}}</text><text>{{address.phonenum}}</text>
+  </view>
+</view>

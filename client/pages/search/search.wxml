@@ -1,0 +1,15 @@
+<!--pages/search/search.wxml-->
+<view class='head'>
+  <view class='search'>
+    <icon class='iconfont iconsearch size'></icon>
+    <input type='text' placeholder='输入商品'></input>
+  </view>
+  <view bindtap='search'>搜索</view>
+</view>
+<view style='backgroud:red;'>
+  <icon class='iconfont icondaipeisong size'></icon>
+  <text>aaa</text>
+</view>
+<view class='content'>
+
+</view>

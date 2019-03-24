@@ -1,0 +1,17 @@
+/* pages/goodsDetail/goodsDetail.wxss */
+
+.goodsInfo{
+  border: 5rpx solid lightgray;
+  border-radius: 10rpx;
+  margin: 15rpx;
+}
+
+.head{
+
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

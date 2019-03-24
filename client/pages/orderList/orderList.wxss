@@ -1,0 +1,54 @@
+/* pages/orderList/orderList.wxss */
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.head-item{
+  font-size: 30rpx;
+}
+
+.head-active{
+  color: red;
+  border-bottom: 5rpx solid red;
+}
+
+
+/* copy css */
+.top_bottomView {
+  display: flex;
+}
+
+
+.view-item {
+  width: 12%;
+  /* height: 62rpx; */
+  display: inline-block;
+  text-align: center;
+  font-size: 25rpx;
+  color: #fff;
+  opacity: 0.6;
+}
+.item-active {
+  color: #fff;
+  opacity: 1;
+  font-size: 32rpx;
+}
+
+.top_rightView {
+  position: relative;
+  background: #ec4c3d;
+  width: 10%;
+  height: 62rpx;
+  right: 0;
+}
+
+.top_rightImage {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  height: 32rpx;
+  width: 32rpx;
+}

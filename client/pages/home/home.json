@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "Goods": "../component/Goods/Goods"
+  },
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小熊拼拼",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+}

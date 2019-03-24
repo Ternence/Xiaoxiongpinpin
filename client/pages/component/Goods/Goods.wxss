@@ -1,0 +1,78 @@
+/* pages/component/Goods/Goods.wxss */
+.food{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 170rpx;
+  border: 1rpx solid #ECECEC; 
+  background: white;
+  margin: 15rpx ;
+  border-radius: 15px;
+}
+.food::before{
+  content: "";
+  width: 15rpx;
+  height: 100%;
+  left: -15rpx;
+  top: 0;
+  border: 1px solid white;
+}
+.food .img{
+  width: 120rpx;
+  height: 120rpx;
+}
+.food-info{
+  padding-left: 15rpx;
+  line-height: 48rpx;
+  flex: 1;
+}
+.food .name{
+  font-size: 30rpx;
+}
+.food .sales{
+  font-size: 25rpx;
+  color: #ACACAC;
+}
+.food .price{
+  font-size: 30rpx;
+  color: red;
+}
+.food-numb{
+  height: 40rpx;
+  width: 130rpx;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 95rpx;
+  margin-right: 30rpx;
+  line-height: 40rpx;
+  font-size: 25rpx;
+}
+.food-numb .add,.food-numb .remove{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 30rpx;
+  text-align: center; 
+}
+.food-numb .add{
+  font-size: 35rpx;
+  line-height: 37rpx;
+  font-weight: 700;
+  background: yellow;
+  margin-left: 15rpx;
+}
+.food-numb .remove{
+  margin-right: 15rpx;
+  line-height: 28rpx;
+  font-size: 60rpx;
+  font-weight: 500;
+  box-sizing: border-box;
+  border: 2rpx;
+  border-style: solid; 
+  border-color: #B0B0B0;
+  color: #B0B0B0;
+}
+
+icon{
+  font-size: 20rpx;
+  background: rebeccapurple;
+}

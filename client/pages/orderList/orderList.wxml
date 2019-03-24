@@ -1,0 +1,12 @@
+<!--pages/orderList/orderList.wxml-->
+<view class='head'>
+  <view wx:for="{{title}}" wx:key="{{index}}" bindtap='centerTap'>
+    <text class="head-item {{clickNumber==index?'head-active':''}}">{{item}}</text>
+  </view>
+</view>
+
+<swiper style="height:1100rpx" bindchange='changeSwipe' current='{{clickNumber}}'>
+  <swiper-item wx:for="{{list}}" wx:key="index">
+    <view class='test-class'>{{list[index]}}</view>
+  </swiper-item>
+</swiper>
