@@ -9,7 +9,7 @@ Page({
     clickNumber:0
 
   },
-
+  // 页面切换
   centerTap: function(event) {
     //点击的偏移量
     console.log(event);
@@ -30,7 +30,11 @@ Page({
       clickNumber: type
     });
   },
+  // 获取订单
+  getOrder:function(options){
 
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

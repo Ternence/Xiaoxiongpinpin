@@ -38,6 +38,12 @@ Page({
       url: '../address/address',
     })
   }, 
+  // 跳转商品详情页
+  linkToDetail:function(options){
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -15,13 +15,22 @@ Page({
     price:21,
     num:0
  },
-
+  // 跳转主界面
   LinktoCart:function(options){
     console.log('test');
     wx.switchTab({
       url: '../home/home',
     })
   },
+  // 结算商品
+  purchase:function(){
+
+  },
+  // 更新商品数量
+  updateGoodsNum:function(){
+
+  },
+
 
 
 

@@ -5,9 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods:{},
+    goods:{
+      price:25,
+      name:'香蕉',
+      sold:25,
+      stock:30
+    },
     comment:'',
   },
+
+  // 获取用户评价
+  getComment:function(options){
+
+  },
+  // 获取展示图片
+  getImage:function(){
+
+  },
+  // 获取商品信息
+  getGoodsInfo:function(){
+
+  },
+
+
+
 
   /**
    * 生命周期函数--监听页面加载

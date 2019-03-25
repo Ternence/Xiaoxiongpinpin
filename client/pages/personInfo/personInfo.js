@@ -17,7 +17,10 @@ Page({
       url: '../orderList/orderList?show='+id,
     })
   },
+  // 获取用户ID和头像
+  getUserInfo:function(){
 
+  },
 
   /**
    * 生命周期函数--监听页面加载

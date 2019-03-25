@@ -46,7 +46,19 @@ Page({
       }
     })
   },
+  searchAddress:function(options){
 
+  },
+  
+  // 获取用户收货地址
+  getAddress:function(options){
+
+  },
+
+  // 新增收货地址
+  addAddress:function(options){
+
+  },
 
   /**
    * 生命周期函数--监听页面加载

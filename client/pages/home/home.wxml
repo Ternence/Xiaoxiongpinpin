@@ -31,7 +31,7 @@
 
 
 <view class='Food'>
-  <Goods goods='{{goods}}'></Goods>
+  <Goods goods='{{goods}}' bindtap="linkToDetail"></Goods>
   <Goods goods='{{goods}}'></Goods>
   <Goods goods='{{goods}}'></Goods>
   <Goods goods='{{goods}}'></Goods>
