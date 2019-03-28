@@ -5,26 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods:{
-      price:25,
-      name:'香蕉',
-      sold:25,
-      stock:30
-    },
-    comment:'',
+    goods: {},
+    comment: '',
   },
 
   // 获取用户评价
-  getComment:function(options){
+  getComment: function(options) {
 
   },
   // 获取展示图片
-  getImage:function(){
+  getImage: function() {
 
   },
   // 获取商品信息
-  getGoodsInfo:function(){
+  getGoodsInfo: function() {
 
+  },
+  // 导航至主页
+  linkToHome: function() {
+    wx.switchTab({
+      url: '../home/home',
+    })
+  },
+  // 导航至购物车
+  linkToCart: function() {
+    wx.switchTab({
+      url: '../shoppingCart/shoppingCart',
+    })
+  },
+  // 加入购物车
+  addToCart: function(options) {
+
+  },
+  // 立即购买
+  buyNow: function() {
+      wx.navigateTo({
+        url: '../readyToPay/readyToPay',
+      })
   },
 
 
@@ -33,56 +50,60 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.setData({
+      temp: JSON.parse(options.goods)
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
+  onReady: function() {
+    this.setData({
+      goods:this.data.temp
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

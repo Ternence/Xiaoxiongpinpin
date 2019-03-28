@@ -1,35 +1,58 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
-<view>
-  <swiper autoplay='true'>
-    <swiper-item>
-      <image></image>
-    </swiper-item>
-  </swiper>
-</view>
-
-<view class='goodsInfo'>
-  <view class='head'>
-    <text>¥{{goods.price}}</text>
-  </view>
-  <view class='content'>
-    <text>{{goods.name}}</text>
-  </view>
-  <view class='footer'>
-    <text style='font-weight:bold'>销量</text>
-    <text>   已售{{goods.sold}}件，剩余</text>
-    <text style='color:red;'>{{goods.stock}}</text>
-    <text>件</text>
-  </view>
-</view>
-
-<view class='comment'>
-  <view></view>
-  <view>{{comment}}</view>
+<scroll-view>
   <view>
-    <text>查看全部评论</text>
+    <swiper autoplay='true'>
+      <swiper-item>
+        <image></image>
+      </swiper-item>
+    </swiper>
   </view>
-</view>
 
-<view class='GoodsDetail'>
+  <view class='goodsInfo' >
+    <view class='head'>
+      <text>¥{{goods.price}}</text>
+    </view>
+    <view class='content'>
+      <text>{{goods.name}}</text>
+    </view>
+    <view class='footer'>
+      <text style='font-weight:bold'>销量</text>
+      <text>   已售{{goods.sales}}件，剩余</text>
+      <text style='color:red;'>{{goods.stock}}</text>
+      <text>件</text>
+    </view>
+  </view>
 
+  <view class='comment'>
+    <view></view>
+    <view>{{comment}}</view>
+    <view>
+      <text>查看全部评论</text>
+    </view>
+  </view>
+
+  <view class='GoodsDetail'></view>
+</scroll-view>
+
+
+<view class="tabbar">
+  <view class='left'>
+    <view class='iconarea' bindtap='linkToHome'>
+      <icon class='iconfont iconhome size'></icon>
+      <text class='fontsize'>回首页</text>
+    </view>
+    <view class='iconarea' bindtap='linkToCart'>
+      <icon class='iconfont iconshopping size'></icon>
+      <text class='fontsize'>购物车</text>
+    </view>
+  </view>
+
+  <view class='right'>
+    <view class='addtocart' bindtap='addToCart'>
+      <text>加入购物车</text>
+    </view>
+    <view class='buynow' bindtap='buyNow'>
+      立即购买
+    </view>
+  </view>
 </view>
