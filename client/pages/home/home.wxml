@@ -1,14 +1,12 @@
 <!--pages/home/home.wxml-->
-
-
 <view class='head'>
   <view class='location' bindtap='linkToAddress'>
     <icon class='iconfont iconlocation size'></icon>
     <text>江苏大学</text>
   </view>
   <view class='search' bindtap='linkToSearch'>
-   <icon class='iconfont iconsearch size'></icon>
-   <text style='font-size:30rpx;color:rgb(209, 179, 179);'>搜索商品</text>
+    <icon class='iconfont iconsearch size'></icon>
+    <text style='font-size:30rpx;color:rgb(209, 179, 179);'>搜索商品</text>
   </view>
 </view>
 <view>
@@ -19,22 +17,33 @@
   </swiper>
 </view>
 <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
-  <text id='a' class='{{textclass}}' bindtap='Click'>aaaaaa</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
-  <text class='catagory'>bbbbbb</text>
+  <text wx:for="{{catagory}}" data-gid="{{index}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='Click'>{{item.name}}</text>
 </scroll-view>
-
-
 <view class='Food'>
-  <Goods goods='{{goods}}' bindtap="linkToDetail"></Goods>
-  <Goods goods='{{goods}}'></Goods>
-  <Goods goods='{{goods}}'></Goods>
-  <Goods goods='{{goods}}'></Goods>
-  <Goods goods='{{goods}}'></Goods>
-  <Goods goods='{{goods}}'></Goods>
+  <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="readyforadd" bindremoveEvent="removefromCart"></Goods>
+</view>
+
+
+<view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
+<view class='optionselect' hidden='{{groundhidden}}'>
+  <view class='top'>
+    <view class='image'>
+      <image></image>
+    </view>
+    <view class='description'>
+      <text class='title'>{{selectname}}</text>
+      <view class='type'>
+        <text wx:for="{{selected}}" wx:key="index"> {{item.title}}</text>
+      </view>
+      <view class='price'>
+        <text style="color:red">¥{{price}}</text>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y='true' class='scroll'>
+    <option wx:for="{{options}}" option="{{item}}" data-op="{{index}}" wx:key="index" bindselectevent="setSelect"></option>
+  </scroll-view>
+  <view class='footer' catchtap='addtoCart'>
+    <text>选好了</text>
+  </view>
 </view>

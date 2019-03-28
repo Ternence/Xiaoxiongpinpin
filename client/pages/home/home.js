@@ -1,4 +1,5 @@
 // pages/home/home.js
+var API = require('../../utils/api.js')
 Page({
 
   /**
@@ -6,25 +7,42 @@ Page({
    */
   data: {
     textclass: 'catagory',
-    goods: {
-      stock: 1,
-      scr: '',
-      sales: 12,
-      name: '香蕉',
-      price: 21,
-    }
+    goods: [],
+    catagory: [],
+    clicknumber: 0,
+    options: [],
+    selected: [],
+    groundhidden: true,
+    price: 12,
+    selectname: 'Test',
+    index: 0
   },
 
-
+  //获取商品类别
+  getCatagorys: function(options) {
+    var that = this;
+    API.ajax('/catagory', function(res) {
+      that.setData({
+        catagory: res.catagorys
+      })
+    });
+  },
   //获取商品
   getGoods: function(options) {
-    // TODO
+    var that = this;
+    API.ajax('/fruit', function(res) {
+      that.setData({
+        goods: res.goods
+      })
+    });
   },
   // 动态样式
-  Click: function(options) {
+  Click: function(event) {
     this.setData({
-      textclass: 'catagory-active'
+      clicknumber: event.currentTarget.dataset.gid
     })
+    this.getGoods();
+
   },
   // 跳转搜索
   linkToSearch: function(options) {
@@ -33,23 +51,118 @@ Page({
     })
   },
   //跳转地址定位
-  linkToAddress:function(options){
+  linkToAddress: function(options) {
     wx.navigateTo({
       url: '../address/address',
     })
-  }, 
+  },
   // 跳转商品详情页
-  linkToDetail:function(options){
+  linkToDetail: function(event) {
+    var index = event.currentTarget.dataset.goodid;
+    var goods=this.data.goods[index];
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail',
+      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
     })
   },
+  // 展开选项卡
+  openOption: function() {
+    this.setData({
+      groundhidden: false,
+    })
+    this.getOptions();
+  },
+  // 获取选项
+  getOptions: function() {
+    var that = this;
+    API.ajax('/option', function (res) {
+      that.setData({
+        options: res.options
+      })
+    });
+    var temp=[];
+    var options=this.data.options;
+    var len=options.length;
+    for(let i=0;i<len;i++)
+      {
+      temp[i] = { title: options[i].options[0].name};
+      }
+    this.setData({
+      selected:temp
+    })
+  },
+  // 设置已选项
+  setSelect:function(event){
+    var index = event.currentTarget.dataset.op;
+    var selectindex = event.detail.selectindex;
+    var param = {};
+    // console.log(index)
+    // console.log(this.data.options[index].options[selectindex])
+    var string = "selected[" + index + "].title";
+    param[string] = this.data.options[index].options[selectindex].name;
+    this.setData(param);
+    param={};
+    var string = "options[" + index + "].selectindex";
+    param[string] = selectindex;
+    this.setData(param);
+    console.log(this.data.options)
+  },
+  // 准备添加
+  readyforadd: function(event) {
+    this.openOption()
+    var index = event.currentTarget.dataset.goodid;
+    this.setData({
+      index: index
+    })
+  },
+  // 隐藏选项卡
+  cancelOption: function() {
+    this.setData({
+      groundhidden: true,
+    })
+  },
+  // 提交购物车
+  addtoCart: function(event) {
+    var num = this.data.goods[this.data.index].number;
+    var param = {};
+    num = num + 1;
+    var string = "goods[" + this.data.index + "].number";
+    param[string] = num;
+    this.setData(param);
+    this.cancelOption();
+    // TODO 更新购物车
+  },
+  //  
+  removefromCart: function(event) {
+    var index = event.currentTarget.dataset.goodid;
+    var num = this.data.goods[index].number;
+    var param = {};
+    num = num - 1;
+    var string = "goods[" + index + "].number";
+    param[string] = num;
+    this.setData(param);
+    // TODO 更新购物车
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getCatagorys();
+    this.getGoods();
+    // this.setHeight();
   },
 
   /**

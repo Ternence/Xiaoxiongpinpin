@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "Goods": "../component/Goods/Goods"
+    "Goods": "../component/Goods/Goods",
+    "option":"../component/option/option"
   },
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
