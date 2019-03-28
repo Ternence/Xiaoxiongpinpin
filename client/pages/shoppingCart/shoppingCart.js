@@ -1,23 +1,18 @@
 // pages/shoppingCart/shoppingCart.js
+var API = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: {
-      stock: 1,
-      scr: '',
-      sales: 12,
-      name: '香蕉',
-      price: 21
-    },
-    price:21,
-    num:0
+    fruits:[],
+    price:0,
+    num:0,
+    checkcss:'iconcheckall'
  },
   // 跳转主界面
   LinktoCart:function(options){
-    console.log('test');
     wx.switchTab({
       url: '../home/home',
     })
@@ -26,9 +21,43 @@ Page({
   purchase:function(){
 
   },
+  // 获取商品数量
+  getCartNum:function(){
+    var that = this;
+    API.ajax('/cart/num', function (res) {
+      that.setData({
+        num: res.num
+      })
+    });
+  },
   // 更新商品数量
   updateGoodsNum:function(){
 
+  },
+  // 计算商品价格
+  getTotalPrice:function(){
+    var that = this;
+    API.ajax('/cart/total', function (res) {
+      that.setData({
+        price: res.total
+      })
+    });
+  },
+  // 获取购物车
+  getCart:function(){
+    var that = this;
+    API.ajax('/cart', function (res) {
+      that.setData({
+        fruits: res.fruits
+      })
+    });
+  },
+  // 全选商品
+  checkall:function(){
+    var check=this.data.checkcss==='iconcheckall'?'iconquanxuan':'iconcheckall';
+    this.setData({
+      checkcss:check
+    })
   },
 
 
@@ -38,7 +67,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getCart();
+    this.getTotalPrice();
+    this.getCartNum();
   },
 
   /**

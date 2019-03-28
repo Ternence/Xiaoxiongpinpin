@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "Goods": "../component/Goods/Goods"
+    "Shoppingitem": "../component/Shoppingitem/Shoppingitem"
   },
       "navigationBarBackgroundColor": "#ffffff",
       "navigationBarTextStyle": "black",

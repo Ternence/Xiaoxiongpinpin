@@ -1,15 +1,19 @@
 /* pages/shoppingCart/shoppingCart.wxss */
-.footer{
+
+
+.footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
   display: flex;
   flex-direction: row;
   height: 85rpx;
-  background:lightcyan;
+  background: #FFF;
 }
 
-.left{
+
+
+.left {
   width: 60%;
   display: flex;
   flex-direction: row;
@@ -17,7 +21,13 @@
   align-items: center;
 }
 
-.right{
+.left .sizeandcolor{
+  font-size: 50rpx;
+  background: transparent;
+  margin-left: 10rpx;
+}
+
+.right {
   width: 40%;
   background: red;
   color: white;
@@ -27,12 +37,22 @@
   justify-content: center;
 }
 
-.chose{
+.chose {
   border-radius: 50%;
 }
 
-.noGoods{
+.noGoods {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.tips {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*垂直居中*/
+  justify-content: center; /*水平居中*/
 }
