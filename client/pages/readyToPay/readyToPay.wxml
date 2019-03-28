@@ -1,0 +1,25 @@
+<!--pages/readyToPay/readyToPay.wxml-->
+<scroll-view>
+  <view class='head'>
+    <view class='address'>
+      <text>{{address}}</text>
+      <icon></icon>
+    </view>
+    <view class='user'>
+      <text>{{user}}</text>
+      <text>{{phonenumber}}</text>
+    </view>
+  </view>
+  <view class='content'>
+    <view>{{time}}</view>
+    <view class='item'>
+      <Orderitem item="{{item}}"></Orderitem>
+    </view>
+  </view>
+</scroll-view>
+<view class='footer'>
+  <view class='left'>
+    <text>{{price}}</text>
+  </view>
+  <view class='right'>去支付</view>
+</view>
