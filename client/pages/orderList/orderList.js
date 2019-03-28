@@ -12,12 +12,9 @@ Page({
   // 页面切换
   centerTap: function(event) {
     //点击的偏移量
-    console.log(event);
     var cur = event.detail.x;
-    console.log(cur);
     //每个tab选项宽度占15%
     var singleNavWidth = wx.getSystemInfoSync().windowWidth *20 / 100;
-    console.log(singleNavWidth);
     this.setData({
       clickNumber: parseInt(cur / singleNavWidth)
     })
