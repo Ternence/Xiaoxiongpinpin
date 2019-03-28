@@ -1,0 +1,14 @@
+<!--pages/component/Goods/Goods.wxml-->
+<view class="fruit">
+  <image class="img" src="{{fruit.src}}"></image>
+  <view class="fruit-info">
+    <view class="name">{{fruit.name}}</view>
+    <view class='dscr'>{{fruit.dscr}}</view>
+    <view class="price">￥ {{fruit.price}}</view>
+  </view>
+  <view class="fruit-numb">
+    <view class="remove" catchtap="removeFromTrolley" hidden="{{num==0}}" data-index="{{index}}">-</view>
+    <text class="text" hidden="{{num==0}}">{{num}}</text>
+    <view class="add" catchtap="addToTrolley" data-index="{{index}}">+</view>
+  </view>
+</view>

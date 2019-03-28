@@ -1,0 +1,91 @@
+/* pages/component/Goods/Goods.wxss */
+@import "../../../app.wxss";
+
+
+.fruit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 170rpx;
+  border: 1rpx solid #ececec;
+  background: white;
+  margin: 15rpx;
+  border-radius: 15px;
+}
+
+.fruit::before {
+  content: "";
+  width: 15rpx;
+  height: 100%;
+  left: -15rpx;
+  top: 0;
+  border: 1px solid white;
+}
+
+.fruit .img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.fruit-info {
+  padding-left: 15rpx;
+  line-height: 48rpx;
+  flex: 1;
+}
+
+.fruit .name {
+  font-size: 30rpx;
+}
+
+.fruit .dscr {
+  font-size: 25rpx;
+  color: #acacac;
+}
+
+.fruit .price {
+  font-size: 30rpx;
+  color: red;
+}
+
+.fruit-numb {
+  display: flex;
+  flex-direction: row;
+}
+
+.remove {
+  height: 45rpx;
+  width: 45rpx;
+  border-radius: 50%;
+  background: lightgray;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 20rpx;
+}
+
+.add {
+  height: 45rpx;
+  width: 45rpx;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 20rpx;
+}
+
+.size{
+  font-size: 40rpx;
+}
+
+/* pages/component/Shoppingitem/Shoppingitem.wxss */
