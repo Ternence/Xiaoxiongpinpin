@@ -1,0 +1,33 @@
+/* pages/component/option/option.wxss */
+
+.title {
+  text-align: left;
+  margin: 30rpx;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  margin: 0 20rpx;
+}
+
+.option {
+  background: rgb(235, 227, 227);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 30rpx;
+  width: 200rpx;
+  height: 60rpx;
+}
+
+.option-active {
+  background: rgb(182, 177, 241);
+  color: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 30rpx;
+}

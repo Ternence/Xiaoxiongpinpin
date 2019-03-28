@@ -1,0 +1,10 @@
+<!--pages/component/option/option.wxml-->
+<view>
+  <view class='title'>
+    <text>{{option.title}}</text>
+  </view>
+  <view class='content'>
+    <view class="option {{option.selectindex==index?'option-active':''}}" data-oid='{{index}}' wx:for="{{option.options}}" wx:key="index" catchtap='changeClick'>{{item.name}}</view>
+  </view>
+  
+</view>
