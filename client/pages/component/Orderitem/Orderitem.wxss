@@ -1,0 +1,15 @@
+/* pages/component/Orderitem/Orderitem.wxss */
+.name{
+  font-size: 25rpx;
+}
+
+.num{
+  font-size: 20rpx;
+}
+
+.price{
+  font-size: 30rpx;
+  font-weight:bold;
+}
+
+

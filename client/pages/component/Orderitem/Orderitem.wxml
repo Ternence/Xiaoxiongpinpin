@@ -1,0 +1,7 @@
+<!--pages/component/Orderitem/Orderitem.wxml-->
+<view>
+  <image></image>
+  <text class='name'>{{item.name}}</text>
+  <text class='num'>{{item.num}}</text>
+  <text class='price'>{{item.price}}</text>
+</view>
