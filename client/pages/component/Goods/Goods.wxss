@@ -1,15 +1,17 @@
 /* pages/component/Goods/Goods.wxss */
-.food{
-  position: relative;
+@import "../../../app.wxss";
+.food {
   display: flex;
+  flex-direction: row;
   align-items: center;
   height: 170rpx;
-  border: 1rpx solid #ECECEC; 
+  border: 1rpx solid #ececec;
   background: white;
-  margin: 15rpx ;
+  margin: 15rpx;
   border-radius: 15px;
 }
-.food::before{
+
+.food::before {
   content: "";
   width: 15rpx;
   height: 100%;
@@ -17,62 +19,70 @@
   top: 0;
   border: 1px solid white;
 }
-.food .img{
+
+.food .img {
   width: 120rpx;
   height: 120rpx;
 }
-.food-info{
+
+.food-info {
   padding-left: 15rpx;
   line-height: 48rpx;
   flex: 1;
 }
-.food .name{
+
+.food .name {
   font-size: 30rpx;
 }
-.food .sales{
+
+.food .sales {
   font-size: 25rpx;
-  color: #ACACAC;
+  color: #acacac;
 }
-.food .price{
+
+.food .price {
   font-size: 30rpx;
   color: red;
 }
-.food-numb{
-  height: 40rpx;
-  width: 130rpx;
+
+.food-numb {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 95rpx;
-  margin-right: 30rpx;
-  line-height: 40rpx;
-  font-size: 25rpx;
-}
-.food-numb .add,.food-numb .remove{
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 30rpx;
-  text-align: center; 
-}
-.food-numb .add{
-  font-size: 35rpx;
-  line-height: 37rpx;
-  font-weight: 700;
-  background: yellow;
-  margin-left: 15rpx;
-}
-.food-numb .remove{
-  margin-right: 15rpx;
-  line-height: 28rpx;
-  font-size: 60rpx;
-  font-weight: 500;
-  box-sizing: border-box;
-  border: 2rpx;
-  border-style: solid; 
-  border-color: #B0B0B0;
-  color: #B0B0B0;
+  flex-direction: row;
 }
 
-icon{
-  font-size: 20rpx;
-  background: rebeccapurple;
+.remove {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+  background: lightgray;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 20rpx;
+}
+
+.add {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 20rpx;
+}
+
+
+.size{
+  font-size: 40rpx;
 }
