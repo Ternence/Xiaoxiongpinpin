@@ -1,9 +1,8 @@
 <!--pages/personInfo/personInfo.wxml-->
 <view class='header'>
-  <image class='userinfo-avatar'></image>
+  <image class='userinfo-avatar' src="{{imagesrc}}"></image>
   <view class='userinfo-name'>
     <text>{{username}}</text>
-    <text>{{userid}}</text>
   </view>
 </view>
 <scroll-view>

@@ -1,4 +1,11 @@
 // pages/personInfo/personInfo.js
+var API = require('../../utils/api.js')
+var app = getApp();
+import { $init, $digest } from '../../lib/page.data'
+import { $login, $request, Session } from '../../lib/page.auth'
+import config from '../../config'
+
+const { regeneratorRuntime } = global
 var app=getApp();
 Page({
 
@@ -6,9 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username:'test',
-    userid:13456465456,
-
+    username:'',
+    imagesrc:'',
   },
 
   // 跳转订单页面
@@ -23,8 +29,10 @@ Page({
     const session = Session.get()
 
     if (session) {
-      app.globalData.islogin = true;
-      app.globalData.userInfo = session.userInfo;
+      this.setData({
+        username: app.globalData.userInfo.nickName,
+        imagesrc: app.globalData.userInfo.avatarUrl
+      })
     }
   },
 
