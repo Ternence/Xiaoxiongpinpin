@@ -46,7 +46,7 @@
   </view>
 </view>
 
-<modal hidden="{{hidden}}" title="小熊拼拼"  confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
+<modal hidden="{{islogin}}" title="小熊拼拼"  confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
   请求获取您的微信头像及昵称
-  <button wx:if="{{!islogin}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 </modal>

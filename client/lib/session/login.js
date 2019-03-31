@@ -81,7 +81,6 @@ const loginWithCode = options => {
     return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '登录失败，可能是网络错误或者服务器发生异常'))
   }).then(result => {
     const data = result.data
-
     if (!data || data.code !== 0 || !data.data || !data.data.skey) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '用户还未进行过授权登录，请先使用 login() 登录'))
     }
@@ -119,7 +118,6 @@ const login = options => {
 
   return getWxLoginResult().then(loginResult => {
     console.log(loginResult);
-    console.log('hi');
     return wxRequest({
       method: options.method,
       url: options.loginUrl,
@@ -135,13 +133,11 @@ const login = options => {
     return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '登录失败，可能是网络错误或者服务器发生异常'))
   }).then(result => {
     const data = result.data
-
-    if (!data || data.code !== 0 || !data.data || !data.data.skey) {
+    if (!data || data.code !== 20000 || !data.data || !data.data.skey) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, `响应错误，${JSON.stringify(data)}`))
     }
-
     const res = data.data
-
+    console.log(res);
     if (!res || !res.userInfo) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_SESSION_NOT_RECEIVED, `登录失败[${data.error}] ${data.message}`))
     }

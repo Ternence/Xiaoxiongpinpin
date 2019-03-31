@@ -24,7 +24,7 @@ Page({
     selectname: 'Test',
     index: 0,
     hidden: false,
-    islogin: app.globalData.islogin
+    islogin: getApp().globalData.islogin
   },
 
   //获取商品类别
@@ -163,6 +163,7 @@ Page({
     });
   },
   async bindGetUserInfo(e){
+    
     if (app.globalData.islogin == true) {
       return;
     }
@@ -170,12 +171,12 @@ Page({
       const userInfo=await $login();
       app.globalData.islogin = true;
       app.globalData.userInfo=userInfo;
-
-      // const res=await $request({url:config.url.profile})
+      this.setData({
+        islogin: app.globalData.islogin
+      })
     } catch (err) {
       console.log("+++1+++ error:", err)
     }
-    // console.log(e.detail.userInfo);
   }
 
   ,
@@ -192,6 +193,16 @@ Page({
     if (session) {
       app.globalData.islogin = true;
       app.globalData.userInfo = session.userInfo;
+      this.setData({
+        islogin: app.globalData.islogin
+      })
+    }
+    else
+    {
+      app.globalData.islogin=false;
+      this.setData({
+        islogin: app.globalData.islogin
+      })
     }
   },
 
