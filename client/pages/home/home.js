@@ -1,5 +1,12 @@
 // pages/home/home.js
 var API = require('../../utils/api.js')
+var app = getApp();
+import { $init, $digest } from '../../lib/page.data'
+import { $login, $request, Session } from '../../lib/page.auth'
+import config from '../../config'
+
+const { regeneratorRuntime } = global
+
 Page({
 
   /**
@@ -15,7 +22,9 @@ Page({
     groundhidden: true,
     price: 12,
     selectname: 'Test',
-    index: 0
+    index: 0,
+    hidden: false,
+    islogin: app.globalData.islogin
   },
 
   //获取商品类别
@@ -59,7 +68,7 @@ Page({
   // 跳转商品详情页
   linkToDetail: function(event) {
     var index = event.currentTarget.dataset.goodid;
-    var goods=this.data.goods[index];
+    var goods = this.data.goods[index];
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
     })
@@ -74,24 +83,25 @@ Page({
   // 获取选项
   getOptions: function() {
     var that = this;
-    API.ajax('/option', function (res) {
+    API.ajax('/option', function(res) {
       that.setData({
         options: res.options
       })
     });
-    var temp=[];
-    var options=this.data.options;
-    var len=options.length;
-    for(let i=0;i<len;i++)
-      {
-      temp[i] = { title: options[i].options[0].name};
-      }
+    var temp = [];
+    var options = this.data.options;
+    var len = options.length;
+    for (let i = 0; i < len; i++) {
+      temp[i] = {
+        title: options[i].options[0].name
+      };
+    }
     this.setData({
-      selected:temp
+      selected: temp
     })
   },
   // 设置已选项
-  setSelect:function(event){
+  setSelect: function(event) {
     var index = event.currentTarget.dataset.op;
     var selectindex = event.detail.selectindex;
     var param = {};
@@ -100,7 +110,7 @@ Page({
     var string = "selected[" + index + "].title";
     param[string] = this.data.options[index].options[selectindex].name;
     this.setData(param);
-    param={};
+    param = {};
     var string = "options[" + index + "].selectindex";
     param[string] = selectindex;
     this.setData(param);
@@ -142,17 +152,33 @@ Page({
     this.setData(param);
     // TODO 更新购物车
   },
+  cancel: function() {
+    this.setData({
+      hidden: true
+    });
+  },
+  confirm: function() {
+    this.setData({
+      hidden: true
+    });
+  },
+  async bindGetUserInfo(e){
+    if (app.globalData.islogin == true) {
+      return;
+    }
+    try {
+      const userInfo=await $login();
+      app.globalData.islogin = true;
+      app.globalData.userInfo=userInfo;
 
+      // const res=await $request({url:config.url.profile})
+    } catch (err) {
+      console.log("+++1+++ error:", err)
+    }
+    // console.log(e.detail.userInfo);
+  }
 
-
-
-
-
-
-
-
-
-
+  ,
 
 
 
@@ -162,7 +188,11 @@ Page({
   onLoad: function(options) {
     this.getCatagorys();
     this.getGoods();
-    // this.setHeight();
+    const session = Session.get()
+    if (session) {
+      app.globalData.islogin = true;
+      app.globalData.userInfo = session.userInfo;
+    }
   },
 
   /**

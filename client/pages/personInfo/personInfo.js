@@ -1,4 +1,5 @@
 // pages/personInfo/personInfo.js
+var app=getApp();
 Page({
 
   /**
@@ -19,14 +20,19 @@ Page({
   },
   // 获取用户ID和头像
   getUserInfo:function(){
+    const session = Session.get()
 
+    if (session) {
+      app.globalData.islogin = true;
+      app.globalData.userInfo = session.userInfo;
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getUserInfo();
   },
 
   /**

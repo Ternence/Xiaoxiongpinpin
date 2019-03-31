@@ -22,8 +22,6 @@
 <view class='Food'>
   <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="readyforadd" bindremoveEvent="removefromCart"></Goods>
 </view>
-
-
 <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
 <view class='optionselect' hidden='{{groundhidden}}'>
   <view class='top'>
@@ -47,3 +45,8 @@
     <text>选好了</text>
   </view>
 </view>
+
+<modal hidden="{{hidden}}" title="小熊拼拼"  confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
+  请求获取您的微信头像及昵称
+  <button wx:if="{{!islogin}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+</modal>
