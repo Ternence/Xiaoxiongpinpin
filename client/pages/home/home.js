@@ -1,11 +1,20 @@
 // pages/home/home.js
 var API = require('../../utils/api.js')
 var app = getApp();
-import { $init, $digest } from '../../lib/page.data'
-import { $login, $request, Session } from '../../lib/page.auth'
+import {
+  $init,
+  $digest
+} from '../../lib/page.data'
+import {
+  $login,
+  $request,
+  Session
+} from '../../lib/page.auth'
 import config from '../../config'
 
-const { regeneratorRuntime } = global
+const {
+  regeneratorRuntime
+} = global
 
 Page({
 
@@ -24,26 +33,27 @@ Page({
     selectname: 'Test',
     index: 0,
     hidden: false,
-    islogin: getApp().globalData.islogin
+    islogin: getApp().globalData.islogin,
+    currentad: '',
+    height: 555,
   },
 
   //获取商品类别
-  getCatagorys: function(options) {
-    var that = this;
-    API.ajax('/catagory', function(res) {
-      that.setData({
-        catagory: res.catagorys
-      })
-    });
+  getCatagorys: async function(options) {
+    var res=await $request({url:config.url.catagory});
+    this.setData({
+      catagory:res.data.catagories
+    })
   },
   //获取商品
-  getGoods: function(options) {
-    var that = this;
-    API.ajax('/fruit', function(res) {
-      that.setData({
-        goods: res.goods
-      })
-    });
+  getGoods: async function(options) {
+    var res = await $request({ url: config.url.allgoods});
+    console.log(res);
+    // API.ajax('/fruit', function(res) {
+    //   that.setData({
+    //     goods: res.goods
+    //   })
+    // });
   },
   // 动态样式
   Click: function(event) {
@@ -162,24 +172,25 @@ Page({
       hidden: true
     });
   },
-  async bindGetUserInfo(e){
-    
+  async bindGetUserInfo(e) {
+
     if (app.globalData.islogin == true) {
       return;
     }
     try {
-      const userInfo=await $login();
+      const userInfo = await $login();
       app.globalData.islogin = true;
-      app.globalData.userInfo=userInfo;
+      app.globalData.userInfo = userInfo;
       this.setData({
         islogin: app.globalData.islogin
       })
     } catch (err) {
       console.log("+++1+++ error:", err)
     }
-  }
-
-  ,
+  },
+  lower: function(event) {
+    console.log('到底了')
+  },
 
 
 
@@ -187,8 +198,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getCatagorys();
-    this.getGoods();
+    this.setData({
+      height: wx.getSystemInfoSync().windowHeight
+    })
     const session = Session.get()
     if (session) {
       app.globalData.islogin = true;
@@ -196,10 +208,8 @@ Page({
       this.setData({
         islogin: app.globalData.islogin
       })
-    }
-    else
-    {
-      app.globalData.islogin=false;
+    } else {
+      app.globalData.islogin = false;
       this.setData({
         islogin: app.globalData.islogin
       })
@@ -217,7 +227,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      currentad: app.globalData.currentaddress
+    })
+    this.getCatagorys();
+    this.getGoods();
   },
 
   /**

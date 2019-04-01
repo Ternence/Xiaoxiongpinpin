@@ -1,8 +1,9 @@
 <!--pages/home/home.wxml-->
+<scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
 <view class='head'>
   <view class='location' bindtap='linkToAddress'>
     <icon class='iconfont iconlocation size'></icon>
-    <text>江苏大学</text>
+    <text>{{currentad}}</text>
   </view>
   <view class='search' bindtap='linkToSearch'>
     <icon class='iconfont iconsearch size'></icon>
@@ -18,7 +19,7 @@
 </view>
 <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
   <text wx:for="{{catagory}}" data-gid="{{index}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='Click'>{{item.name}}</text>
-</scroll-view>
+</scroll-view >
 <view class='Food'>
   <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="readyforadd" bindremoveEvent="removefromCart"></Goods>
 </view>
@@ -50,3 +51,7 @@
   请求获取您的微信头像及昵称
   <button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 </modal>
+</scroll-view>
+
+
+
