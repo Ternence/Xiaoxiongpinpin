@@ -1,6 +1,6 @@
 /* pages/address/address.wxss */
 
-.size {
+/* .size {
   font-size: 30rpx;
   background: transparent;
   margin: 2rpx 10rpx;
@@ -11,14 +11,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2rpx 20rpx;
+  margin: 2rpx 0;
+  width: 100%;
 }
 
 .search{
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: 
+  width: 100%;
 }
 
 .current{
@@ -26,4 +27,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+} */
+
+.new{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+
+.newtext{
+  color:blue;
+  margin: 0rpx 10rpx;
+}
+
