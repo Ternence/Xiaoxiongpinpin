@@ -30,7 +30,7 @@ function request(options) {
       authHeader = {
         'Accept': 'application/json',
         [consts.WX_HEADER_FLAG]: 1,
-        [consts.WX_HEADER_SKEY]: session.skey
+        [consts.WX_HEADER_SKEY]: 'Bearer '+session.skey.token
       }
     }
 
@@ -42,8 +42,7 @@ function request(options) {
       }
     }).then(response => {
       const data = response.data
-
-      if ((data && data.code === -1) || response.statusCode === 401) {
+      if ((data && data.code === 50014) || response.statusCode === 401) {
         Session.clear()
 
         if (!hasRetried) {

@@ -81,7 +81,7 @@ const loginWithCode = options => {
     return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '登录失败，可能是网络错误或者服务器发生异常'))
   }).then(result => {
     const data = result.data
-    if (!data || data.code !== 0 || !data.data || !data.data.skey) {
+    if (!data || data.code !== 20000 || !data.data || !data.data.skey) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '用户还未进行过授权登录，请先使用 login() 登录'))
     }
 
