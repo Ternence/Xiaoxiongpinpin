@@ -1,20 +1,43 @@
 /* pages/component/Address/Address.wxss */
+@import "../../../app.wxss";
 .address{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 20rpx;
+  border: 5rpx solid rgb(240, 226, 226);
+  margin:10rpx 5rpx;
+  justify-content: space-between;
 }
 
 .loc{
   font-size: 30rpx;
   font-weight: bold;
+  margin: 5rpx 15rpx;
 }
 
 .addressdetail{
   font-size: 20rpx;
+  margin: 5rpx 15rpx;
 }
 
 .personinfo{
   font-size: 20rpx;
   color: rgb(209,179,179);
+  margin: 5rpx 15rpx;
 }
+
+.left{
+  margin-left: 20rpx;
+}
+
+.right{
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.size{
+  font-size: 50rpx;
+}
+

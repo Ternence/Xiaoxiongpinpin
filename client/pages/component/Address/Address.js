@@ -18,6 +18,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    chose:function(event){
+      var detail=this.properties.address;
+      this.triggerEvent('choseEvent',detail,{})
+    },
+    edit:function(event){
+      var detail=this.properties.address;
+      this.triggerEvent('editEvent',detail,{});
+    }
   }
 })
