@@ -6,7 +6,8 @@ var config = require('./config')
 App({
   globalData:{
     islogin:false,
-    userInfo:{}
+    userInfo:{},
+    currentaddress:''
   },
   onLaunch: function() {
     // qcloud.setLoginUrl(config.service.loginUrl)

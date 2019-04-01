@@ -7,7 +7,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/search/search",
     "pages/address/address",
-    "pages/readyToPay/readyToPay"
+    "pages/readyToPay/readyToPay",
+    "pages/newAddress/newAddress"
   ],
   "permission": {
     "scope.userLocation": {

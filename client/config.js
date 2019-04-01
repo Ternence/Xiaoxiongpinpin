@@ -3,6 +3,10 @@ const host = 'http://127.0.0.1:3000'
 module.exports = {
   url: {
     login: `${host}/userlogin`,
-    profile: `${host}/u/cart`
+    address:`${host}/api/address`,
+    updatead:`${host}/api/updateaddress`,
+    catagory:`${host}/api/catagory`,
+    allgoods:`${host}/api/allgoods`,
+    goodsbycatagory:`${host}/api/goodsbycatagory`
   }
 }
