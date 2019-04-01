@@ -1,0 +1,36 @@
+<!--pages/newAddress/newAddress.wxml-->
+<view class='container'>
+  <view class='inputbox'>
+    <text>联系人</text>
+    <input value='{{concat}}' bindinput='bindKeyInput' id='concat'></input>
+  </view>
+
+  <view class='inputbox'>
+    <text>电话</text>
+    <input type='number' value='{{phone}}' id='phone' bindinput='bindKeyInput'></input>
+  </view>
+
+
+  <view class='inputbox'>
+    <text>省份</text>
+    <input value='{{province}}' id='province' bindinput='bindKeyInput'></input>
+  </view>
+
+  <view class='inputbox'>
+    <text>城市</text>
+    <input value='{{city}}' id='city' bindinput='bindKeyInput'></input>
+  </view>
+
+  <view class='inputbox'>
+    <text>街道</text>
+    <input value='{{district}}' id='district' bindinput='bindKeyInput'></input>
+  </view>
+
+
+  <view class='inputbox'>
+    <text>详细地址</text>
+    <input id='detail' value='{{detail}}' bindinput='bindKeyInput'></input>
+  </view>
+
+  <button bindtap='Addaddress'>确认</button>
+</view>

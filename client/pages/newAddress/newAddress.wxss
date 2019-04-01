@@ -1,0 +1,27 @@
+/* pages/newAddress/newAddress.wxss */
+.inputbox{
+  display: flex;
+  flex-direction: row;
+  margin: 5rpx;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(240, 234, 234);
+  width: 100%;
+}
+
+
+.container{
+  background: #fff;
+  border: 2rpx solid rgb(248, 244, 244);
+  margin: 10rpx;
+  border-radius: 10rpx;
+}
+
+text{
+  font-weight: bold;
+  margin: 0 20rpx;
+}
+
+button{
+  width: 100%;
+}
