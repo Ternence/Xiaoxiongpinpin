@@ -7,7 +7,7 @@
 </view>
 <view wx:if="{{num>0}}">
   <scroll-view scroll-y='true'>
-    <Shoppingitem wx:for="{{fruits}}" fruit='{{item}}' wx:key="title"></Shoppingitem>
+    <Shoppingitem wx:for="{{goods}}" good='{{item}}' data-goodid="{{index}}" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
   </scroll-view>
   <view class='footer'>
     <view class='left'>
@@ -16,7 +16,7 @@
         <text style='color:red;'>{{price}}</text>
       </view>
     </view>
-    <view class='right'>
+    <view class='right' bindtap='purchase'>
       <text>去结算</text>
     </view>
   </view>

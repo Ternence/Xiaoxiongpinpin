@@ -1,75 +1,111 @@
 // pages/shoppingCart/shoppingCart.js
+import {
+  $login,
+  $request,
+  Session
+} from '../../lib/page.auth'
+import config from '../../config'
+
+const {
+  regeneratorRuntime
+} = global
 var API = require('../../utils/api.js')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    fruits:[],
-    price:0,
-    num:0,
-    checkcss:'iconcheckall'
- },
+    goods: [],
+    price: 0,
+    num: 0,
+    checkcss: 'iconcheckall'
+  },
   // 跳转主界面
-  LinktoCart:function(options){
+  LinktoCart: function(options) {
     wx.switchTab({
       url: '../home/home',
     })
   },
   // 结算商品
-  purchase:function(){
-
-  },
-  // 获取商品数量
-  getCartNum:function(){
-    var that = this;
-    API.ajax('/cart/num', function (res) {
-      that.setData({
-        num: res.num
-      })
-    });
-  },
-  // 更新商品数量
-  updateGoodsNum:function(){
-
-  },
-  // 计算商品价格
-  getTotalPrice:function(){
-    var that = this;
-    API.ajax('/cart/total', function (res) {
-      that.setData({
-        price: res.total
-      })
-    });
-  },
-  // 获取购物车
-  getCart:function(){
-    var that = this;
-    API.ajax('/cart', function (res) {
-      that.setData({
-        fruits: res.fruits
-      })
-    });
-  },
-  // 全选商品
-  checkall:function(){
-    var check=this.data.checkcss==='iconcheckall'?'iconquanxuan':'iconcheckall';
-    this.setData({
-      checkcss:check
+  purchase: function() {
+    var goods=this.data.goods;
+    goods=goods.map(value=>({
+      id:value.id,
+      num:value.num,
+      name:value.name,
+      price:value.price,
+      total:value.num*value.price
+    }))
+    wx.navigateTo({
+      url: '../readyToPay/readyToPay?cart=' + JSON.stringify(goods),
     })
   },
-
-
-
+  // 计算商品价格
+  getTotalPrice: function() {
+    var goods = this.data.goods;
+    var total = 0;
+    for (let i = 0; i < goods.length; i++) {
+      total = total + goods[i].num * goods[i].price
+    }
+    this.setData({
+      price: total
+    })
+  },
+  // 获取购物车
+  getCart: async function() {
+    var res = await $request({
+      url: config.url.getcart
+    });
+    this.setData({
+      goods: res.data,
+      num: res.data.length
+    })
+    this.getTotalPrice();
+  },
+  addtocart: async function(event) {
+    var index = event.currentTarget.dataset.goodid;
+    var goods = this.data.goods;
+    goods[index].num = goods[index].num + 1;
+    this.setData({
+      goods: goods
+    })
+    var res = await $request({
+      url: config.url.updatecart,
+      method: 'POST',
+      data: {
+        goods: this.data.goods
+      }
+    });
+    this.getTotalPrice();
+  },
+  removefromcart:async function(event){
+    var index = event.currentTarget.dataset.goodid;
+    var goods = this.data.goods;
+    goods[index].num = goods[index].num -1;
+    var ans=[];
+    for(let i=0;i<goods.length;i++)
+    {
+      if(goods[i].num!=0)
+        ans.push(goods[i])
+    }
+    this.setData({
+      goods: ans
+    })
+    var res = await $request({
+      url: config.url.updatecart,
+      method: 'POST',
+      data: {
+        goods: this.data.goods
+      }
+    });
+    this.getTotalPrice();
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getCart();
-    this.getTotalPrice();
-    this.getCartNum();
+
   },
 
   /**
@@ -83,7 +119,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getCart();
   },
 
   /**
