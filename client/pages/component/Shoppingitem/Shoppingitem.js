@@ -4,21 +4,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    fruit:Object
+    good:Object
   },
 
   attached: function () {
-    var that=this;
-    this.setData({
-      num:that.properties.fruit.number
-    })
+
   },
   /**
    * 组件的初始数据
    */
   data: {
-    num:'',
-    css:'icondagou'
   },
   
   /**
@@ -26,24 +21,10 @@ Component({
    */
   methods: {
     removeFromTrolley: function () {
-      var num = this.data.num;
-      num = num - 1;
-      this.setData({
-        num: num
-      })
+      this.triggerEvent('removeEvent', {}) 
     },
     addToTrolley: function () {
-      var num = this.data.num;
-      num = num + 1;
-      this.setData({
-        num: num
-      })
+      this.triggerEvent('addEvent', {}) 
     },
-    dagou:function(){
-      var check = this.data.css === 'icondagou' ? 'iconok' : 'icondagou';
-      this.setData({
-        css: check
-      })
-    }
   }
 })
