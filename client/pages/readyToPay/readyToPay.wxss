@@ -1,14 +1,46 @@
 /* pages/readyToPay/readyToPay.wxss */
 
+@import "../../app.wxss";
+
+page{
+  background: rgb(59, 159, 241);
+}
+
 .head{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  color: white;
 }
+
+.adtext{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+icon{
+  font-size: 20rpx;
+}
+
+.address{
+  margin: 4rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user{
+  margin: 4rpx 20rpx;
+  font-size: 28rpx;
+}
+
+
 
 .content{
   border:5rpx solid #FFf;
   border-radius: 15rpx;
   margin: 15rpx;
+  background: white;
 }
 
 .footer{
@@ -29,6 +61,7 @@
   flex-direction: row;
   align-items: center;
   height: 100%;
+  margin: 2rpx 20rpx;
 }
 
 .right{

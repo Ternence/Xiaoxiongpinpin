@@ -1,25 +1,28 @@
 <!--pages/readyToPay/readyToPay.wxml-->
 <scroll-view>
-  <view class='head'>
-    <view class='address'>
-      <text>{{address}}</text>
-      <icon></icon>
+  <view class='head' bindtap='choseaddress'>
+    <view class='address' >
+      <text class='adtext'>{{address}}</text>
+      <icon class='iconfont iconright-circle'></icon>
     </view>
     <view class='user'>
-      <text>{{user}}</text>
+      <text>{{user}}   </text>
       <text>{{phonenumber}}</text>
     </view>
   </view>
   <view class='content'>
-    <view>{{time}}</view>
+    <view style='margin:5rpx 10rpx;'>预计送达 {{time}}</view>
+    <view class='divLine'></view>
+    <view class=''></view>
     <view class='item'>
-      <Orderitem item="{{item}}"></Orderitem>
+      <Orderitem wx:for="{{cart}}" wx:key="{{index}}" carts="{{item}}"></Orderitem>
     </view>
   </view>
 </scroll-view>
 <view class='footer'>
   <view class='left'>
-    <text>{{price}}</text>
+    <text>合计:¥</text>
+    <text style='color:red;'>{{price}}</text>
   </view>
   <view class='right'>去支付</view>
 </view>
