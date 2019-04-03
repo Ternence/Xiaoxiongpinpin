@@ -1,7 +1,17 @@
 <!--pages/component/Orderitem/Orderitem.wxml-->
-<view>
-  <image></image>
-  <text class='name'>{{item.name}}</text>
-  <text class='num'>{{item.num}}</text>
-  <text class='price'>{{item.price}}</text>
+<view class='box'>
+  <view class='left'>
+    <image style="height:100%"></image>
+  </view>
+  <view class='right'>
+    <text class='name'>{{carts.name}}</text>
+    <view class='number'>
+      <text class='price'>单价:¥{{carts.price}}</text>
+      <text class='num'>数量:{{carts.num}}</text>
+    </view>
+    <view class="pay">
+      <text>实付金额:¥</text>
+      <text style='color:red'>{{carts.total}}</text>
+    </view>
+  </view>
 </view>
