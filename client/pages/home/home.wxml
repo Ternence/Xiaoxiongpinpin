@@ -18,12 +18,12 @@
   </swiper>
 </view>
 <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
-  <text wx:for="{{catagory}}" data-gid="{{index}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='Click'>{{item.name}}</text>
+  <text wx:for="{{catagory}}" data-gid="{{index}}"  data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>{{item.name}}</text>
 </scroll-view >
 <view class='Food'>
-  <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="readyforadd" bindremoveEvent="removefromCart"></Goods>
+  <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>
 </view>
-<view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
+<!-- <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
 <view class='optionselect' hidden='{{groundhidden}}'>
   <view class='top'>
     <view class='image'>
@@ -45,7 +45,7 @@
   <view class='footer' catchtap='addtoCart'>
     <text>选好了</text>
   </view>
-</view>
+</view> -->
 
 <modal hidden="{{islogin}}" title="小熊拼拼"  confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
   请求获取您的微信头像及昵称
