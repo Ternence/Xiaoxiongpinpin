@@ -1,16 +1,40 @@
 // pages/goodsDetail/goodsDetail.js
+const {
+  regeneratorRuntime
+} = global
+import {
+  $login,
+  $request,
+  Session
+} from '../../lib/page.auth'
+import config from '../../config'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: {},
-    comment: '',
+    goods: {
+      id: 1
+    },
+    comment: '暂无评论',
   },
 
   // 获取用户评价
-  getComment: function(options) {
+  getComment: async function(options) {
+    var res = await $request({
+      url: config.url.getonecomment,
+      data: {
+        id: this.data.goods.id,
+        start: 0,
+        offset: 1
+      }
+    });
+    if (res.data.reviews.length != 0) {
+      this.setData({
+        comment: res.data.reviews[0]
+      })
+    }
 
   },
   // 获取展示图片
@@ -39,9 +63,9 @@ Page({
   },
   // 立即购买
   buyNow: function() {
-      wx.navigateTo({
-        url: '../readyToPay/readyToPay',
-      })
+    wx.navigateTo({
+      url: '../readyToPay/readyToPay',
+    })
   },
 
 
@@ -51,19 +75,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
+    var goods = JSON.parse(options.goods);
+    console.log(goods);
     this.setData({
-      temp: JSON.parse(options.goods)
+      goods: JSON.parse(options.goods)
     })
+    this.getComment();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    this.setData({
-      goods:this.data.temp
-    })
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示

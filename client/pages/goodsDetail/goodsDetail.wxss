@@ -1,5 +1,9 @@
 /* pages/goodsDetail/goodsDetail.wxss */
 
+@import "../../app.wxss";
+
+
+
 .goodsInfo {
   border: 5rpx solid lightgray;
   border-radius: 10rpx;
@@ -92,3 +96,25 @@
   justify-content: center;
 }
 
+
+
+/* 评论 */
+
+.commenthead{
+  font-weight: bold;
+  margin: 10rpx;
+}
+
+.commentbody{
+  font-size: 30rpx;
+  color: rgb(212, 209, 209);
+  margin: 10rpx;
+}
+
+.commentfooter{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 25rpx;
+}
