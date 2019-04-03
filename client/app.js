@@ -7,7 +7,7 @@ App({
   globalData:{
     islogin:false,
     userInfo:{},
-    currentaddress:''
+    currentaddress: { district:'请选择收获地址',detail:''},
   },
   onLaunch: function() {
     // qcloud.setLoginUrl(config.service.loginUrl)

@@ -7,6 +7,9 @@ module.exports = {
     updatead:`${host}/api/updateaddress`,
     catagory:`${host}/api/catagory`,
     allgoods:`${host}/api/allgoods`,
-    goodsbycatagory:`${host}/api/goodsbycatagory`
+    goodsbycatagory:`${host}/goods/category`,
+    getonecomment: `${host}/reviews/good`,
+    getcart:`${host}/api/cart`,
+    updatecart:`${host}/api/updatecart`
   }
 }

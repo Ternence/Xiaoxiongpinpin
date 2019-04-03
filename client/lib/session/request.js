@@ -42,7 +42,7 @@ function request(options) {
       }
     }).then(response => {
       const data = response.data
-      if ((data && data.code === 50014) || response.statusCode === 401) {
+      if ((data && data.code === 50014) || response.status === 401) {
         Session.clear()
 
         if (!hasRetried) {
