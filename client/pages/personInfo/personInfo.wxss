@@ -64,3 +64,10 @@
   border: 5rpx solid lightgray;
   border-radius: 15rpx;
 }
+
+.more{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right:10rpx;
+}
