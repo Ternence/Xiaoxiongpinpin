@@ -71,7 +71,9 @@ Page({
       }
       var res = await $request({ url: config.url.updatead,method:'POST',data:address});
       console.log(res);
-      wx.navigateBack({});
+      wx.navigateBack({
+        delta:1
+      })
     }
   },
 
