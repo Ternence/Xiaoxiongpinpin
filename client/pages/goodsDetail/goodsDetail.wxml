@@ -1,9 +1,9 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
 <scroll-view>
   <view>
-    <swiper autoplay='true'>
-      <swiper-item>
-        <image></image>
+    <swiper autoplay="{{true}}" interval="{{2500}}">
+      <swiper-item autoplay='true' wx:for="{{goods.pictures}}">
+        <image  src="{{item.url}}" style='height:100%;width:100%'></image>
       </swiper-item>
     </swiper>
   </view>
@@ -29,7 +29,7 @@
     </view>
     <view class="divLine"></view>
     <view class='commentbody'>{{comment}}</view>
-    <view class='commentfooter'>
+    <view class='commentfooter' bindtap='linkToAllComment'>
       <text>查看全部评论</text>
     </view>
   </view>
