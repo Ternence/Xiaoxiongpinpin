@@ -1,0 +1,10 @@
+<view class='box'>
+  <view class='textbox'>
+    <text class='time' >{{time}}</text>
+    <text class='status' >{{order.status}}</text>
+  </view>
+  <view class='textbox'>
+    <text class='goods' >{{goods}}等</text>
+    <text class='price' >¥{{price}}</text>
+  </view>
+</view>
