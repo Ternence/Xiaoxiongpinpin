@@ -1,0 +1,22 @@
+/* pages/component/Comment/Comment.wxss */
+
+.comment{
+  margin: 5rpx 20rpx;
+  font-size: 28rpx;
+}
+
+.date{
+  float: right;
+  color: rgb(214, 197, 197);
+  font-size: 20rpx;
+}
+
+.clear{
+  clear: both;
+}
+
+.box{
+  border-radius: 15rpx;
+  margin: 10rpx;
+  background: white;
+}

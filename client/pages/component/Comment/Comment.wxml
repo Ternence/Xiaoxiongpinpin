@@ -1,0 +1,10 @@
+<!--pages/component/Comment/Comment.wxml-->
+<view class='box'>
+  <view >
+    <text class='comment'>{{comment.content}}</text>
+  </view>
+  <view>
+    <text class='date'>{{comment.createdAt}}</text>
+    <view class='clear'></view>
+  </view>
+</view>
