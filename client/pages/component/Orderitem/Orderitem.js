@@ -1,17 +1,16 @@
-// pages/component/Orderitem/Orderitem.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    carts:Object
+    carts: Object
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    
+
   },
 
   /**
