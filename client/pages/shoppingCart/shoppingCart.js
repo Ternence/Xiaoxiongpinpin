@@ -58,7 +58,7 @@ Page({
     });
     this.setData({
       goods: res.data,
-      num: res.data.length
+      num: res.data.length|0
     })
     this.getTotalPrice();
   },
