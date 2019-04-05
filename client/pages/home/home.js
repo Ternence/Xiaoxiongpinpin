@@ -71,7 +71,9 @@ Page({
       status: value.status,
       number: 0,
       options: value.options,
-      description: value.description
+      description: value.description,
+      src:value.previewPic,
+      pictures:value.pictures
     }));
     return goods;
   },
@@ -82,7 +84,9 @@ Page({
       clicknumber: event.currentTarget.dataset.gid
     })
     if (event.currentTarget.dataset.gid == 0) {
-      this.getGoods();
+      await this.getGoods();
+      // console.log('test');
+      // console.log(this.data.goods);
     } else {
       var res = await $request({
         url: config.url.goodsbycatagory,
@@ -143,6 +147,7 @@ Page({
   changethecart: function() {
     var goods = this.data.goods[this.data.index];
     var cart = this.data.cart;
+    // console.log(cart);
     var flag = 0;
     var that = this;
     var num = goods.number;
@@ -224,14 +229,22 @@ Page({
     this.setData({
       hidden: true
     });
+    wx.navigateBack({
+      delta:0
+    })
   },
   confirm: function() {
     this.setData({
       hidden: true
     });
+    wx.showToast({
+      title: '使用小程序必须获得您的授权',
+      icon: 'none',
+      duration: 1000,
+      mask: true
+    })
   },
   async bindGetUserInfo(e) {
-
     if (app.globalData.islogin == true) {
       return;
     }
@@ -242,6 +255,9 @@ Page({
       this.setData({
         islogin: app.globalData.islogin
       })
+      this.getCatagorys();
+      this.getGoods();
+      this.getcart();
     } catch (err) {
       console.log("+++1+++ error:", err)
     }
@@ -259,19 +275,6 @@ Page({
     this.setData({
       height: wx.getSystemInfoSync().windowHeight,
     })
-    const session = Session.get()
-    if (session) {
-      app.globalData.islogin = true;
-      app.globalData.userInfo = session.userInfo;
-      this.setData({
-        islogin: app.globalData.islogin
-      })
-    } else {
-      app.globalData.islogin = false;
-      this.setData({
-        islogin: app.globalData.islogin
-      })
-    }
   },
 
   /**
@@ -285,14 +288,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+    console.log('onshow');
+    const session = Session.get()
+    if (session) {
+      app.globalData.islogin = true;
+      app.globalData.userInfo = session.userInfo;
+      this.setData({
+        islogin: app.globalData.islogin
+      })
+    } else {
+      app.globalData.islogin = false;
+      this.setData({
+        islogin: app.globalData.islogin
+      })
+    }
     this.setData({
       currentad: app.globalData.currentaddress.detail,
       clicknumber:0
     })
-    this.getCatagorys();
-    this.getGoods();
-    this.getcart();
+    if(session)
+    {
+      this.getCatagorys();
+      this.getGoods();
+      this.getcart();
+    }
+
   },
 
   /**
