@@ -45,8 +45,10 @@ Page({
     const res = await $request({ url: config.url.address });
     console.log(res);
     this.setData({
-      address:res.data.address
-    })
+      address:res.data.address||[]
+    });
+    console.log(this.data.address);
+    
   },
   //定位
   // locate: function(options) {
