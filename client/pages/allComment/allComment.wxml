@@ -1,0 +1,6 @@
+<scroll-view scroll-y='true'>
+  <Comment wx:for="{{comments}}" wx:key="{{index}}" comment="{{item}}"></Comment>
+  <view wx:if="{{comments.length==0}}" class='nocomment'>
+    <text>暂时没有评论欧</text>
+  </view>
+</scroll-view>

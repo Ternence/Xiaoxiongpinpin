@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "Comment": "../component/Comment/Comment"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "商品评价",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}
