@@ -1,4 +1,5 @@
-const host = 'http://127.0.0.1:3000'
+// const host = 'http://127.0.0.1:3000'
+const host = 'http://47.102.144.176:3000'
 
 module.exports = {
   url: {
@@ -10,6 +11,10 @@ module.exports = {
     goodsbycatagory:`${host}/goods/category`,
     getonecomment: `${host}/reviews/good`,
     getcart:`${host}/api/cart`,
-    updatecart:`${host}/api/updatecart`
+    updatecart:`${host}/api/updatecart`,
+    clearcart:`${host}/api/clearcart`,
+    addorder:`${host}/api/order`,
+    getorder: `${host}/api/order/user`,
+    editorder:`${host}/api/editorder`
   }
 }

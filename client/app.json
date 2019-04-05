@@ -9,7 +9,8 @@
     "pages/address/address",
     "pages/readyToPay/readyToPay",
     "pages/newAddress/newAddress",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/allComment/allComment"
   ],
   "permission": {
     "scope.userLocation": {

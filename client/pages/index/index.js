@@ -209,5 +209,10 @@ Page({
         }
         util.showBusy('信道连接中...')
         this.setData({ tunnelStatus: 'closed' })
+    },
+    onLoad:function(options){
+      wx.navigateBack({
+        delta:0
+      })
     }
 })
