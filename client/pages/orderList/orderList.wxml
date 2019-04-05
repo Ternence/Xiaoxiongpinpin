@@ -6,7 +6,10 @@
 </view>
 
 <swiper style="height:1100rpx" bindchange='changeSwipe' current='{{clickNumber}}'>
-  <swiper-item wx:for="{{title}}" wx:key="index">
-    
+  <swiper-item wx:for="{{title}}" wx:key="{{index}}">
+    <Ordershow wx:for="{{orders}}" wx:key="{{index}}" order="{{item}}" data-oid="{{index}}" bindtap="linkToOrderDetail"></Ordershow>
+    <view wx:if="{{orders.length==0}}" class='message'>
+      <text style='font-size:30rpx;margin:0 auto'>您还没有此类订单</text>
+    </view>
   </swiper-item>
 </swiper>

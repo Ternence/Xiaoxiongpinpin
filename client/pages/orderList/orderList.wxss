@@ -1,26 +1,29 @@
 /* pages/orderList/orderList.wxss */
 
-.head{
+page {
+  background: rgb(233, 226, 226);
+}
+
+.head {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.head-item{
+.head-item {
   font-size: 30rpx;
 }
 
-.head-active{
+.head-active {
   color: red;
   border-bottom: 5rpx solid red;
 }
 
-
 /* copy css */
+
 .top_bottomView {
   display: flex;
 }
-
 
 .view-item {
   width: 12%;
@@ -31,6 +34,7 @@
   color: #fff;
   opacity: 0.6;
 }
+
 .item-active {
   color: #fff;
   opacity: 1;
@@ -51,4 +55,11 @@
   top: 20rpx;
   height: 32rpx;
   width: 32rpx;
+}
+
+
+.message{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
