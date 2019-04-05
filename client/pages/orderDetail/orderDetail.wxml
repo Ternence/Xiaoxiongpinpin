@@ -1,28 +1,53 @@
-<!--pages/orderDetail/orderDetail.wxml-->
-<view class='goodsinfo'>
+<!--pages/readyToPay/readyToPay.wxml-->
+<scroll-view>
+  <view class='head'>
+    <view class='status'>
+      <text class='statustext'>当前状态:</text>
+      <text class='statustext'>{{order.status}}</text>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='item'>
+      <Orderitem wx:for="{{cart}}" wx:key="{{index}}" carts="{{item}}"></Orderitem>
+    </view>
+  </view>
+  <view class='orderinfo'>
+    <view>
+      <text style='font-weight:bold'>订单信息</text>
+    </view>
+    <view class='divLine'></view>
+    <view>
+      <text class='ltitle'>订单号</text>
+      <text class='textc'>{{order.id}}</text>
+    </view>
+    <view>
+      <text class='ltitle'>下单时间</text>
+      <text class='textc'>{{order.createTime}}</text>
+    </view>
+  </view>
+  <view class='button'wx:if="{{!flag}}">
+    <button bindtap='refund' style='float:right;margin:5rpx 20rpx'>申请退款</button>
+  </view>
+</scroll-view>
 
-</view>
-
-<view class='sendinfo'>
-  <text>配送信息</text>
-  <view class='context'>
-    <text>收货地址</text>
-    <text>{{address}}</text>
-  </view>
-</view>
-
-<view class='oderinfo'>
-  <text>订单信息</text>
-  <view class='context'>
-    <text>订单号</text>
-    <text>{{orderid}}</text>
-  </view>
-  <view class='context'>
-    <text>下单时间</text>
-    <text>{{ordertime}}</text>
-  </view>
-  <view class='context'>
-    <text>订单状态</text>
-    <text>{{orderstatus}}</text>
-  </view>
-</view>
+<view class='toast-box' hidden='{{!ifName}}'>
+        <view class='toastbg'></view>
+        <view class='showToast'>
+            <view class='toast-title'>
+                <text>申请退款</text>
+            </view>
+            <view class='toast-main'>
+                <view class='toast-input'>
+                    <input placeholder='请输入理由' bindinput='setValue' data-name='stuEidtName'></input>
+                </view>
+            </view>
+            <view class='toast-button'>
+                <view class='button1'>
+                    <button catchtap='cancel'>取消</button>
+                </view>
+                <view class='button2'>
+                    <button catchtap='confirm'>确定</button>
+                </view>
+            </view>
+        </view>
+    </view>
