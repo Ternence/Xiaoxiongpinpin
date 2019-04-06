@@ -38,13 +38,13 @@ Page({
     if (address.detail != "") {
       this.setData({
         address: ad,
-        user: app.globalData.userInfo.nickName,
+        user: address.name,
         phonenumber: address.phone
       })
     } else {
       this.setData({
         address: ad,
-        user: app.globalData.userInfo.nickName,
+        user: address.name,
       })
     }
 

@@ -67,12 +67,19 @@ Page({
         district: this.data.district,
         detail: this.data.detail,
         concat:this.data.concat,
-        phone:this.data.phone
+        phone:this.data.phone,
+        name:this.data.concat
       }
       var res = await $request({ url: config.url.updatead,method:'POST',data:address});
       console.log(res);
       wx.navigateBack({
         delta:1
+      })
+    }
+    else{
+      wx.showToast({
+        title: '内容不能为空',
+        icon:'none'
       })
     }
   },
