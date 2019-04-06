@@ -1,29 +1,32 @@
 <!--pages/home/home.wxml-->
 <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
-<view class='head'>
-  <view class='location' bindtap='linkToAddress'>
-    <icon class='iconfont iconlocation size'></icon>
-    <text>{{currentad}}</text>
+  <view class='head'>
+    <view class='location' bindtap='linkToAddress'>
+      <icon class='iconfont iconlocation size'></icon>
+      <text>{{currentad}}</text>
+    </view>
+    <view class='search' bindtap='linkToSearch'>
+      <icon class='iconfont iconsearch size'></icon>
+      <text style='font-size:30rpx;color:rgb(209, 179, 179);'>搜索商品</text>
+    </view>
   </view>
-  <view class='search' bindtap='linkToSearch'>
-    <icon class='iconfont iconsearch size'></icon>
-    <text style='font-size:30rpx;color:rgb(209, 179, 179);'>搜索商品</text>
+  <view style='border-radius:15rpx;'>
+    <swiper autoplay='true'>
+      <swiper-item wx:for="{{items}}" wx:key="{{index}}" data-pid="{{index}}" bindtap="linktogoodsby">
+        <image src="{{item.previewPic}}" style='height:100%;width:100%'></image>
+      </swiper-item>
+    </swiper>
   </view>
-</view>
-<view>
-  <swiper autoplay='true'>
-    <swiper-item>
-      <image wx-for></image>
-    </swiper-item>
-  </swiper>
-</view>
-<scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
-  <text wx:for="{{catagory}}" data-gid="{{index}}"  data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>{{item.name}}</text>
-</scroll-view >
-<view class='Food'>
-  <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>
-</view>
-<!-- <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
+  <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
+    <view wx:for="{{catagory}}" data-gid="{{index}}" data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>
+      <text style='margin:5rpx;'>{{item.name}}</text>
+    </view>
+
+  </scroll-view>
+  <view class='Food'>
+    <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>
+  </view>
+  <!-- <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
 <view class='optionselect' hidden='{{groundhidden}}'>
   <view class='top'>
     <view class='image'>
@@ -47,11 +50,8 @@
   </view>
 </view> -->
 
-<modal hidden="{{islogin}}" title="小熊拼拼"  confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
-  请求获取您的微信头像及昵称
-  <button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-</modal>
+  <modal hidden="{{islogin}}" title="小熊拼拼" confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
+    请求获取您的微信头像及昵称
+    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </modal>
 </scroll-view>
-
-
-

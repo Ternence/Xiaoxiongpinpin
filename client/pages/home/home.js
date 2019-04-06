@@ -32,7 +32,8 @@ Page({
     islogin: getApp().globalData.islogin,
     currentad: '',
     height: 555,
-    cart: []
+    cart: [],
+    items:[]
   },
 
   //获取商品类别
@@ -72,7 +73,7 @@ Page({
       number: 0,
       options: value.options,
       description: value.description,
-      src:value.previewPic,
+      previewPic:value.previewPic,
       pictures:value.pictures
     }));
     return goods;
@@ -164,6 +165,7 @@ Page({
         name:goods.name,
         description: goods.description,
         options: [],
+        previewPic: goods.previewPic,
         price:goods.price
       };
       cart.push(goods);
@@ -191,7 +193,7 @@ Page({
     this.setData(param);
     this.changethecart();
     // console.log(this.data.cart);
-    var req = await $request({
+    var res = await $request({
       url: config.url.updatecart,
       method: 'POST',
       data: {
@@ -265,6 +267,26 @@ Page({
   lower: function(event) {
     // console.log('到底了')
   },
+  // 获取首页图片
+  getpictures:async function(){
+    var res = await $request({ url: config.url.getpictures})
+    if(res.code==20000)
+    {
+      this.setData({
+        items:res.data.items
+      })
+    }
+    else
+    {
+      console.log('获取错误');
+    }
+  },
+  linktogoodsby:function(event){
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail?goods='+JSON.stringify(this.data.items[event.currentTarget.dataset.pid]),
+    })
+  },
+
 
 
 
@@ -272,6 +294,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getpictures();
     this.setData({
       height: wx.getSystemInfoSync().windowHeight,
     })

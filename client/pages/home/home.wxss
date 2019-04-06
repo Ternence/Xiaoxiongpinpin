@@ -1,13 +1,13 @@
 /* pages/home/home.wxss */
 
 swiper {
-  border: 3rpx solid black;
   border-radius: 15rpx;
   margin: 10rpx;
+
 }
 
 .head {
-  border: 3rpx solid black;
+  background: white;
   border-radius: 15rpx;
   margin: 10rpx;
   display: flex;
@@ -30,7 +30,6 @@ swiper {
   width: 300rpx;
   margin: 2rpx 10rpx;
   border-radius: 30rpx;
-  background: rgb(240, 234, 234);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,16 +37,16 @@ swiper {
 
 .catagory {
   margin: 15rpx 20rpx;
-  background: violet;
-  border-radius: 10rpx;
+  color: white;
+  display: inline-block;
 }
 
 .catagory-active {
   margin: 15rpx 20rpx;
-  background: orange;
-  border-radius: 10rpx;
-  font-size: 28px;
-  font-weight: 3px;
+  font-weight: bold;
+  color: white;
+  border-bottom: 3rpx solid red;
+  display: inline-block;
 }
 
 ::-webkit-scrollbar {
@@ -55,6 +54,8 @@ swiper {
   height: 0;
   color: transparent;
 }
+
+
 
 
 /* option select */
