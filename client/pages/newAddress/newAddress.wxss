@@ -2,17 +2,15 @@
 .inputbox{
   display: flex;
   flex-direction: row;
-  margin: 5rpx;
+  margin: 15rpx;
   justify-content: space-around;
   align-items: center;
-  background: rgb(240, 234, 234);
   width: 100%;
 }
 
 
 .container{
   background: #fff;
-  border: 2rpx solid rgb(248, 244, 244);
   margin: 10rpx;
   border-radius: 10rpx;
 }
@@ -24,4 +22,18 @@ text{
 
 button{
   width: 100%;
+}
+
+input{
+  border: 2rpx solid rgb(238, 224, 224);
+  margin: 0 10rpx;
+  border-radius: 15rpx;
+}
+
+.left{
+  width: 30%;
+}
+
+.right{
+  width: 70%;
 }

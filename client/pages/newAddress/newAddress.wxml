@@ -1,35 +1,59 @@
 <!--pages/newAddress/newAddress.wxml-->
 <view class='container'>
   <view class='inputbox'>
-    <text>联系人</text>
-    <input value='{{concat}}' bindinput='bindKeyInput' id='concat'></input>
+    <view class='left'>
+      <text>联系人</text>
+    </view>
+    <view class='right'>
+      <input value='{{concat}}' bindinput='bindKeyInput' id='concat'></input>
+    </view>
   </view>
 
   <view class='inputbox'>
-    <text>电话</text>
-    <input type='number' value='{{phone}}' id='phone' bindinput='bindKeyInput'></input>
-  </view>
-
-
-  <view class='inputbox'>
-    <text>省份</text>
-    <input value='{{province}}' id='province' bindinput='bindKeyInput'></input>
-  </view>
-
-  <view class='inputbox'>
-    <text>城市</text>
-    <input value='{{city}}' id='city' bindinput='bindKeyInput'></input>
-  </view>
-
-  <view class='inputbox'>
-    <text>街道</text>
-    <input value='{{district}}' id='district' bindinput='bindKeyInput'></input>
+    <view class='left'>
+      <text>电话</text>
+    </view>
+    <view class='right'>
+      <input type='number' value='{{phone}}' id='phone' bindinput='bindKeyInput'></input>
+    </view>
   </view>
 
 
   <view class='inputbox'>
-    <text>详细地址</text>
-    <input id='detail' value='{{detail}}' bindinput='bindKeyInput'></input>
+    <view class='left'>
+      <text>省份</text>
+    </view>
+    <view class='right'>
+      <input value='{{province}}' id='province' bindinput='bindKeyInput'></input>
+    </view>
+  </view>
+
+  <view class='inputbox'>
+    <view class='left'>
+      <text>城市</text>
+    </view>
+    <view class='right'>
+      <input value='{{city}}' id='city' bindinput='bindKeyInput'></input>
+    </view>
+  </view>
+
+  <view class='inputbox'>
+    <view class='left'>
+      <text>街道</text>
+    </view>
+    <view class='right'>
+      <input value='{{district}}' id='district' bindinput='bindKeyInput'></input>
+    </view>
+  </view>
+
+
+  <view class='inputbox'>
+    <view class='left'>
+      <text>详细地址</text>
+    </view>
+    <view class='right'>
+      <input id='detail' value='{{detail}}' bindinput='bindKeyInput'></input>
+    </view>
   </view>
 
   <button bindtap='Addaddress'>确认</button>
