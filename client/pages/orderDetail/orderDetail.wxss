@@ -17,6 +17,12 @@ page{
   margin: 5rpx 20rpx;
 }
 
+.price{
+  border-radius: 15rpx;
+  margin: 5rpx 20rpx;
+  background: white;
+}
+
 .statustext{
   color: white;
     font-size: 40rpx;

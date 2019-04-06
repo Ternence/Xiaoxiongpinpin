@@ -16,13 +16,94 @@ Page({
    * 页面的初始数据
    */
   data: {
-    price: '',
+    price: 0,
     order: {},
     cart:[],
     ifName:false,
     reason:'',
-    flag:true
+    flag:true,
+    commentflag:true,
+    commenttoast:false,
+    comment:''
   },
+  // 显示退款对话框
+  refund: function () {
+    this.setData({
+      ifName: true
+    })
+  },
+  // 绑定退款理由
+  setValue: function (event) {
+    this.setData({
+      reason: event.detail
+    })
+  },
+  // 关闭退款对话框
+  cancel: function () {
+    this.setData({
+      ifName: false
+    })
+  },
+  // 提交退款申请
+  confirm: async function () {
+    if (this.data.reason != '') {
+      var order = this.data.order;
+      var items = order.items;
+      items = items.map(value => ({
+        amount: value.num,
+        id: value.id,
+        name: value.name,
+        options: [],
+        price: value.price
+      }));
+      order.items = items;
+      order.status = '申请退款中';
+      order.note = this.data.reason.value;
+      var res = await $request({ url: config.url.editorder, data: { order: order }, method: 'POST' })
+      console.log(res)
+      if (res.code == 20000) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+      else {
+        wx.showToast({
+          title: '更新异常',
+          icon: 'none'
+        })
+      }
+    }
+    else {
+      wx.showToast({
+        title: '理由不能为空',
+        icon: 'none'
+      })
+    }
+  },
+  // 打开评价对话框
+  opencomment:function(){
+    this.setData({
+      commenttoast:true
+    })
+  },
+  // 关闭评价对话框
+  cancelcomment:function(){
+    this.setData({
+      commenttoast:false
+    })
+  },
+  // 绑定评价
+  setComment:function(event){
+    this.setData({
+      comment:event.detail.value
+    })
+  },
+  // 提交评价
+  confirmcomment:function(){
+    console.log(this.data.comment);
+  },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -36,7 +117,8 @@ Page({
       name:value.name,
       options:value.options,
       price:value.price,
-      total:value.amount*value.price
+      total:value.amount*value.price,
+      previewPic: value.previewPic
     }))
     console.log(cart);
     order.items=cart;
@@ -50,62 +132,6 @@ Page({
       cart:cart,
     })
   },
-  refund:function(){
-    this.setData({
-      ifName:true
-    })
-  },
-  setValue:function(event){
-    console.log(event.detail.value);
-    this.setData({
-      reason:event.detail
-    })
-  },
-  cancel:function(){
-    this.setData({
-      ifName:false
-    })
-  },
-  confirm:async function(){
-    if(this.data.reason!='')
-    {
-      var order=this.data.order;
-      var items=order.items;
-      items=items.map(value=>({
-        amount:value.num,
-        id:value.id,
-        name:value.name,
-        options:[],
-        price:value.price
-      }));
-      order.items=items;
-      order.status='申请退款中';
-      order.note=this.data.reason.value;
-      var res = await $request({ url: config.url.editorder,data:{order:order},method:'POST'})
-      console.log(res)
-      if(res.code==20000)
-      {
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-      else
-      {
-        wx.showToast({
-          title: '更新异常',
-          icon: 'none'
-        })
-      }
-    }
-    else
-    {
-      wx.showToast({
-        title: '理由不能为空',
-        icon:'none'
-      })
-    }
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -126,6 +152,19 @@ Page({
     {
       this.setData({
         flag:false
+      })
+    }
+
+    if(this.data.order.status=='已送达')
+    {
+      this.setData({
+        commentflag:false
+      })
+    }
+    else
+    {
+      this.setData({
+        commentflag:true
       })
     }
   },
