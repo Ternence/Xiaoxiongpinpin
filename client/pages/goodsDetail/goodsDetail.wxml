@@ -1,6 +1,6 @@
 <!--pages/goodsDetail/goodsDetail.wxml-->
 <scroll-view>
-  <view>
+  <view style='margin:15rpx;'>
     <swiper autoplay="{{true}}" interval="{{2500}}">
       <swiper-item autoplay='true' wx:for="{{goods.pictures}}">
         <image  src="{{item.url}}" style='height:100%;width:100%'></image>

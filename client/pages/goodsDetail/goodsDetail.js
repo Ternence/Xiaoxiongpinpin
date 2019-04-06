@@ -32,10 +32,11 @@ Page({
         offset: 1
       }
     });
-    if (res.data.reviews.length != 0) {
+    var reviews = res.data.reviews||[];
+    if (reviews.length != 0) {
       this.setData({
-        comment: res.data.reviews[0].content,
-        comments: res.data.reviews
+        comment: reviews[0].content,
+        comments: reviews
       })
     }
 
@@ -45,8 +46,9 @@ Page({
     var res = await $request({
       url: config.url.getcart
     });
+    console.log(res.data);
     this.setData({
-      cart: res.data
+      cart: res.data||[]
     });
   },
   // 导航至主页
