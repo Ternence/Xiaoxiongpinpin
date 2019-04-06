@@ -1,7 +1,7 @@
 <!--pages/shoppingCart/shoppingCart.wxml-->
 <view wx:if="{{num==0}}" class='tips'>
   <view class='noGoods'>
-    <text style='color:white;'>购物车空空如也，赶紧去添加吧</text>
+    <text style='color:black;'>购物车空空如也，赶紧去添加吧</text>
     <button bindtap='LinktoCart'>去购物</button>
   </view>
 </view>

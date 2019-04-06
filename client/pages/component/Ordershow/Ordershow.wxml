@@ -1,6 +1,6 @@
 <view class='box'>
   <view class='textbox'>
-    <text class='time' >{{time}}</text>
+    <text class='time' >{{order.createTime}}</text>
     <text class='status' >{{order.status}}</text>
   </view>
   <view class='textbox'>

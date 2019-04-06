@@ -37,14 +37,14 @@ swiper {
 
 .catagory {
   margin: 15rpx 20rpx;
-  color: white;
+  color: black;
   display: inline-block;
 }
 
 .catagory-active {
   margin: 15rpx 20rpx;
   font-weight: bold;
-  color: white;
+  color: red;
   border-bottom: 3rpx solid red;
   display: inline-block;
 }

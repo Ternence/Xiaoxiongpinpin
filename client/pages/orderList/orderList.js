@@ -99,6 +99,7 @@ Page({
       for (let i = 0; i < orders.length;i++)
       {
         orders[i].createTime = new Date(orders[i].createTime).format("yyyy-MM-dd hh:mm:ss");
+        console.log(orders[i].createTime);
       }
       this.setData({
         orders: orders
@@ -118,7 +119,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    this.getOrder();
     this.setData({
       clickNumber:options.show,
     })

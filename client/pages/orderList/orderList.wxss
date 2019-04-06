@@ -1,8 +1,8 @@
 /* pages/orderList/orderList.wxss */
 
-page {
+/* page {
     background: rgb(59, 159, 241);
-}
+} */
 
 .head {
   display: flex;
@@ -12,7 +12,7 @@ page {
 
 .head-item {
   font-size: 30rpx;
-  color: white;
+  color: black;
 }
 
 .head-active {
