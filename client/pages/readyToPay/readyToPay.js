@@ -20,7 +20,7 @@ Page({
     price: '',
     user: '',
     phonenumber: '',
-    time: '20:53',
+    time: '下单后半小时内',
     cart: [],
   },
 
@@ -62,7 +62,8 @@ Page({
         name: value.name,
         amount: value.num,
         price: value.price,
-        options: []
+        options: [],
+        previewPic:value.previewPic
       }));
       var res = await $request({
         url: config.url.addorder,
