@@ -15,6 +15,8 @@ module.exports = {
     clearcart:`${host}/api/clearcart`,
     addorder:`${host}/api/order`,
     getorder: `${host}/api/order/user`,
-    editorder:`${host}/api/editorder`
+    editorder:`${host}/api/editorder`,
+    getpictures:`${host}/setting/items`,
+    search:`${host}/search`
   }
 }
