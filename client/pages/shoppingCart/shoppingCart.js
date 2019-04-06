@@ -34,7 +34,8 @@ Page({
       num:value.num,
       name:value.name,
       price:value.price,
-      total:value.num*value.price
+      total:value.num*value.price,
+      previewPic: value.previewPic
     }))
     wx.navigateTo({
       url: '../readyToPay/readyToPay?cart=' + JSON.stringify(goods),
