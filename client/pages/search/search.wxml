@@ -1,15 +1,15 @@
 <!--pages/search/search.wxml-->
+
+
+<scroll-view scroll-y='true'  style="height:{{height}}px">
 <view class='head'>
   <view class='search'>
     <icon class='iconfont iconsearch size'></icon>
-    <input type='text' placeholder='输入商品'></input>
+    <input type='text' placeholder='输入商品' bindinput='setKeyword'></input>
   </view>
-  <view bindtap='search'>搜索</view>
-</view>
-<view style='backgroud:red;'>
-  <icon class='iconfont icondaipeisong size'></icon>
-  <text>aaa</text>
+  <view bindtap='search' style='color:blue;margin:8rpx;'>搜索</view>
 </view>
 <view class='content'>
-
+  <SearchResult wx:for="{{searchresult}}" wx:key="{{index}}" result="{{item}}" data-gid="{{index}}" bindtap="linkToDetail"></SearchResult>
 </view>
+</scroll-view>

@@ -1,25 +1,84 @@
 // pages/search/search.js
+var app = getApp();
+import {
+  $login,
+  $request,
+  Session
+} from '../../lib/page.auth'
+import config from '../../config'
+
+const {
+  regeneratorRuntime
+} = global
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    searchresult:[]
+    keyword:'',
+    searchresult:[],
+    height: 555,
+    goods:[]
+  },
+
+  // 设置关键字
+  setKeyword:function(event){
+    this.setData({
+      keyword:event.detail.value
+    })
   },
 
   // 搜索
-  search:function(options){
-    // TODO
+  search:async function(options){
+    var res = await $request({ url: config.url.search,data:{name:this.data.keyword}});
+    var good=res.data.good;
+    good = this.nomarlizegoods(good);
+    this.setData({
+      goods:good
+    });
+    good=good.map(value=>({
+      id:value.id,
+      src: value.previewPic,
+      name:value.name,
+      price:value.price
+    }));
+    this.setData({
+      searchresult:good
+    })
   },
-
-
+  nomarlizegoods: function (goods) {
+    goods = goods.map(value => ({
+      id: value.id,
+      name: value.name,
+      catagory: value.category,
+      stock: value.stock,
+      price: value.price,
+      status: value.status,
+      number: 0,
+      options: value.options,
+      description: value.description,
+      src: value.previewPic,
+      pictures: value.pictures
+    }));
+    return goods;
+  },
+  linkToDetail: function (event) {
+    var index = event.currentTarget.dataset.gid;
+    console.log(index);
+    var goods = this.data.goods[index];
+    wx.navigateTo({
+      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      height: wx.getSystemInfoSync().windowHeight,
+    })
   },
 
   /**
