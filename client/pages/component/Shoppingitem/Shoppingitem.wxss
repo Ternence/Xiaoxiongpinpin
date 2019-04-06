@@ -19,7 +19,6 @@
   height: 100%;
   left: -15rpx;
   top: 0;
-  border: 1px solid white;
 }
 
 .fruit .img {
@@ -87,5 +86,3 @@
 .size{
   font-size: 40rpx;
 }
-
-/* pages/component/Shoppingitem/Shoppingitem.wxss */

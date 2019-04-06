@@ -1,6 +1,5 @@
-<!--pages/component/Goods/Goods.wxml-->
 <view class="fruit">
-  <image class="img" src="{{good.src}}"></image>
+  <image class="img" src="{{good.previewPic}}"></image>
   <view class="fruit-info">
     <view class="name">{{good.name}}</view>
     <view class='dscr'>{{good.description}}</view>
