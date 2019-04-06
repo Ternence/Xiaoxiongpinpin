@@ -1,0 +1,39 @@
+/* pages/component/SearchResult/SearchResult.wxss */
+.box{
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 20rpx;
+  border-radius: 15rpx;
+  background: rgb(226, 209, 209);
+}
+
+.left{
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.right{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.price{
+  font-size: 25rpx;
+  color: red;
+}
+
+.img{
+  height: 80%;
+  width: 80%;
+}

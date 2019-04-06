@@ -1,0 +1,13 @@
+<!--pages/component/SearchResult/SearchResult.wxml-->
+<view class='box'>
+  <view class='left'>
+    <image class='img' src='{{result.previewPic}}'></image>
+  </view>
+  <view class='right'>
+    <text class='name'>{{result.name}}</text>
+    <view>
+        <text style='font-size:25rpx'>价格:¥</text>
+        <text class='price'>{{result.price}}</text>
+    </view>
+  </view>
+</view>
