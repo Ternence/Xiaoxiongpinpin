@@ -1,7 +1,7 @@
 <!--pages/component/Orderitem/Orderitem.wxml-->
 <view class='box'>
   <view class='left'>
-    <image style="height:100%"></image>
+    <image class='img' src='{{carts.previewPic}}'></image>
   </view>
   <view class='right'>
     <text class='name'>{{carts.name}}</text>
