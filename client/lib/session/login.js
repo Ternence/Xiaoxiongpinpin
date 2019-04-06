@@ -42,7 +42,10 @@ const getWxLoginResult = () => {
     } else {
       error = new LoginError(consts.ERR_WX_GET_USER_INFO, '获取微信用户信息失败，请检查网络状态')
     }
-
+    wx.showToast({
+      title: '登陆失败，检查网络状态',
+      icon: 'none'
+    });
     error.detail = err
 
     return Promise.reject(error)
@@ -82,12 +85,20 @@ const loginWithCode = options => {
   }).then(result => {
     const data = result.data
     if (!data || data.code !== 20000 || !data.data || !data.data.skey) {
+      wx.showToast({
+        title: '用户还未进行过授权登录',
+        icon:'none'
+      })
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, '用户还未进行过授权登录，请先使用 login() 登录'))
     }
 
     const res = data.data
 
     if (!res || !res.userInfo) {
+      wx.showToast({
+        title: '登陆失败',
+        icon: 'none'
+      });
       return Promise.reject(new LoginError(consts.ERR_LOGIN_SESSION_NOT_RECEIVED, `登录失败(${data.error})：${data.message}`))
     }
 
@@ -134,11 +145,19 @@ const login = options => {
   }).then(result => {
     const data = result.data
     if (!data || data.code !== 20000 || !data.data || !data.data.skey) {
+      wx.showToast({
+        title: '响应错误',
+        icon: 'none'
+      });
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, `响应错误，${JSON.stringify(data)}`))
     }
     const res = data.data
     console.log(res);
     if (!res || !res.userInfo) {
+      wx.showToast({
+        title: '登陆失败',
+        icon: 'none'
+      });
       return Promise.reject(new LoginError(consts.ERR_LOGIN_SESSION_NOT_RECEIVED, `登录失败[${data.error}] ${data.message}`))
     }
 
