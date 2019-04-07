@@ -19,7 +19,8 @@ Page({
     keyword:'',
     searchresult:[],
     height: 555,
-    goods:[]
+    goods:[],
+    haveresult:true
   },
 
   // 设置关键字
@@ -43,8 +44,10 @@ Page({
       name:value.name,
       price:value.price
     }));
+    var hasresult=good.length>0?true:false;
     this.setData({
-      searchresult:good
+      searchresult:good,
+      haveresult:hasresult
     })
   },
   nomarlizegoods: function (goods) {

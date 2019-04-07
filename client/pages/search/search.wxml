@@ -12,4 +12,7 @@
 <view class='content'>
   <SearchResult wx:for="{{searchresult}}" wx:key="{{index}}" result="{{item}}" data-gid="{{index}}" bindtap="linkToDetail"></SearchResult>
 </view>
+<view wx:if="{{!haveresult}}" class='noresult'>
+  <text>暂时没有这种商品</text>
+</view>
 </scroll-view>
