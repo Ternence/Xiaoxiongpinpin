@@ -48,11 +48,16 @@ function request(options) {
           hasRetried = true;
           return doRequestWithLogin()
         }
-
         return Promise.reject(new RequestError(data.error, '登录态已过期'))
       }
 
       return data
+    }).catch(err=>{
+      console.log(err)
+      wx.showToast({
+        title: '网络错误，请检查网络',
+        icon:'none'
+      })
     })
   }
 
