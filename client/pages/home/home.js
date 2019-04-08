@@ -74,7 +74,8 @@ Page({
       options: value.options,
       description: value.description,
       previewPic:value.previewPic,
-      pictures:value.pictures
+      pictures:value.pictures,
+      sale:value.sale
     }));
     return goods;
   },

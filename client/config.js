@@ -1,5 +1,6 @@
 // const host = 'http://127.0.0.1:3000'
 const host = 'http://47.102.144.176:3000'
+// const host = 'http://www.leobob.cn:3000'
 
 module.exports = {
   url: {
