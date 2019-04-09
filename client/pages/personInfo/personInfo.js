@@ -35,6 +35,11 @@ Page({
       })
     }
   },
+  callcustomerservice:function(){
+    wx.makePhoneCall({
+      phoneNumber: '17625113975'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

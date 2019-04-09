@@ -9,7 +9,7 @@
   <view class='order'>
     <view class='head'>
       <text class='ordertext'>我的订单</text>
-      <view class='more'  bindtap='LinktoOrder' id='0'>
+      <view class='more' bindtap='LinktoOrder' id='0'>
         <text class='allordertext'>查看全部订单</text>
         <icon class='iconfont iconright-circle' style='font-size:30rpx;'></icon>
       </view>
@@ -20,7 +20,7 @@
         <icon class='iconfont icondaifukuan big'></icon>
         <text style='font-size:20rpx;margin-bottom:10rpx;' >待付款</text>
       </view> -->
-      <view class='box'bindtap='LinktoOrder' id='1'>
+      <view class='box' bindtap='LinktoOrder' id='1'>
         <icon class='iconfont icondaipeisong big'></icon>
         <text style='font-size:20rpx;margin-bottom:10rpx;'>配送中</text>
       </view>
@@ -28,11 +28,13 @@
         <icon class='iconfont iconcarryout big'></icon>
         <text style='font-size:20rpx;margin-bottom:10rpx;'>已完成</text>
       </view>
-      <view class='box'bindtap='LinktoOrder' id='3'>
+      <view class='box' bindtap='LinktoOrder' id='3'>
         <icon class='iconfont icontransaction big'></icon>
         <text style='font-size:20rpx;margin-bottom:10rpx;'>售后退款</text>
       </view>
     </view>
   </view>
-  <view class='option'></view>
+  <view class='option' bindtap='callcustomerservice'>
+    <text style='margin:15rpx;font-size:28rpx;'>联系客服</text>
+  </view>
 </scroll-view>
