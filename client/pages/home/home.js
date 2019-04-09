@@ -75,13 +75,17 @@ Page({
       description: value.description,
       previewPic:value.previewPic,
       pictures:value.pictures,
-      sale:value.sale
+      sale:value.sale,
+      toView:''
     }));
     return goods;
   },
   // 选择商品种类
   getGoodsByCategory: async function(event) {
     console.log(event);
+    this.setData({
+      toView:event.currentTarget.id
+    })
     var that = this;
     this.setData({
       clicknumber: event.currentTarget.dataset.gid

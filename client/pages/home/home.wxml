@@ -17,8 +17,8 @@
       </swiper-item>
     </swiper>
   </view>
-  <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
-    <view wx:for="{{catagory}}" data-gid="{{index}}" data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>
+  <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;' scroll-into-view="{{toView}}">
+    <view wx:for="{{catagory}}" id='g_{{index}}' data-gid="{{index}}" data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>
       <text style='margin:5rpx;'>{{item.name}}</text>
       <view wx:if="{{clicknumber==index}}" class="line {{clicknumber==index?'line-active':''}}"></view>
     </view>
