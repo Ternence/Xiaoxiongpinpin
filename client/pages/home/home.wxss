@@ -3,7 +3,6 @@
 swiper {
   border-radius: 15rpx;
   margin: 10rpx;
-
 }
 
 .head {
@@ -19,7 +18,7 @@ swiper {
   margin: 2rpx 10rpx;
 }
 
-.size{
+.size {
   font-size: 60rpx;
   background: transparent;
   margin: 2rpx 10rpx;
@@ -35,6 +34,36 @@ swiper {
   align-items: center;
 }
 
+@keyframes fadein {
+  0% {
+    opacity: 0
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.line {
+  width: 40%;
+ height: 7rpx;
+ margin: 0 auto;
+ background: red;
+ border-radius: 35%;
+ animation-name: fadein;
+ animation-duration: 0.5s;
+ animation-iteration-count: 1;
+ animation-delay: 0;
+ animation-timing-function: linear;
+
+}
+
+
+
 .catagory {
   margin: 15rpx 20rpx;
   color: black;
@@ -45,7 +74,6 @@ swiper {
   margin: 15rpx 20rpx;
   font-weight: bold;
   color: red;
-  border-bottom: 3rpx solid red;
   display: inline-block;
 }
 
@@ -55,12 +83,9 @@ swiper {
   color: transparent;
 }
 
-
-
-
 /* option select */
 
-.groundfloor{
+.groundfloor {
   background: rgba(170, 162, 162, 0.432);
   height: 100%;
   width: 100%;
@@ -70,8 +95,7 @@ swiper {
   left: 0;
 }
 
-
-.optionselect{
+.optionselect {
   position: fixed;
   width: 100%;
   height: 80%;
@@ -83,7 +107,7 @@ swiper {
   justify-content: space-between;
 }
 
-.footer{
+.footer {
   display: flex;
   flex-direction: row;
   height: 10%;
@@ -96,44 +120,44 @@ swiper {
   font-size: 30rpx;
 }
 
-.optionselect .top{
+.optionselect .top {
   display: flex;
   flex-direction: row;
   height: 25%;
   margin: 20rpx;
 }
 
-.optionselect .top .image{
+.optionselect .top .image {
   width: 30%;
   margin: 5rpx;
 }
 
-image{
+image {
   height: 100%;
   width: 100%;
 }
 
-.optionselect .top .description{
+.optionselect .top .description {
   width: 70%;
   margin: 5rpx;
   display: flex;
   flex-direction: column;
 }
 
-.optionselect .top .description .type{
+.optionselect .top .description .type {
   font-size: 25rpx;
   color: rgb(187, 145, 145);
   font-weight: bold;
 }
 
-.optionselect .top .description .price{
+.optionselect .top .description .price {
   font-size: 60rpx;
 }
 
-.title,.type,.price{
+.title, .type, .price {
   margin: 5rpx;
 }
 
-.scroll{
+.scroll {
   height: 65%;
 }

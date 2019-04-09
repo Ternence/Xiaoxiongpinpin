@@ -20,8 +20,8 @@
   <scroll-view scroll-x='true' scroll-with-animation='true' style='white-space:nowrap;'>
     <view wx:for="{{catagory}}" data-gid="{{index}}" data-category="{{item}}" wx:key="index" class="catagory {{clicknumber==index?'catagory-active':''}}" bindtap='getGoodsByCategory'>
       <text style='margin:5rpx;'>{{item.name}}</text>
+      <view wx:if="{{clicknumber==index}}" class="line {{clicknumber==index?'line-active':''}}"></view>
     </view>
-
   </scroll-view>
   <view class='Food'>
     <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>

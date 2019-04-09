@@ -81,6 +81,7 @@ Page({
   },
   // 选择商品种类
   getGoodsByCategory: async function(event) {
+    console.log(event);
     var that = this;
     this.setData({
       clicknumber: event.currentTarget.dataset.gid
