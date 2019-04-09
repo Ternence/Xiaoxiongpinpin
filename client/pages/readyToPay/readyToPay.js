@@ -52,8 +52,6 @@ Page({
   pay: async function() {
     var str = '请选择收获地址';
     if (this.data.address.trim() != str.trim()) {
-      // TODO 调用微信支付接口
-
       // TODO 添加订单
       var address = app.globalData.currentaddress;
       var items = this.data.cart;
@@ -76,26 +74,53 @@ Page({
             district: address.district,
             detail: address.detail,
             phone: address.phone,
-            status: '已下单',
+            status: '未支付',
             items: items
           }
         }
       });
       if (res.code == 20000) {
-        wx.showToast({
-          title: '',
-          icon: 'success',
-          success: function() {
-            wx.switchTab({
-              url: '../home/home',
-            })
-          }
-        });
+        // wx.showToast({
+        //   title: '',
+        //   icon: 'success',
+        //   success: function() {
+        //     wx.switchTab({
+        //       url: '../home/home',
+        //     })
+        //   }
+        // });
+        // let respre = $request({ url: config.url.wxpreorder});
+        // console.log(respre);
+        // if(respre.status==100)// 不一定是respre.status
+        // {
+          // TODO 
+          // wx.requestPayment({
+          //   'timeStamp': '',
+          //   'nonceStr': '',
+          //   'package': '',
+          //   'signType': 'MD5',
+          //   'paySign': '',
+          //   'success': function (res) {
+          //   },
+          //   'fail': function (res) {
+          //   }
+          // })
+        // }
+        // else
+        // {
+        //   // TODO 关闭订单
+        // }
+
       }
+
+
+
+
       // TODO 清除购物车
       var res = await $request({
         url: config.url.clearcart
       });
+
     }
     else
     {
