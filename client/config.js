@@ -18,6 +18,7 @@ module.exports = {
     getorder: `${host}/api/order/user`,
     editorder:`${host}/api/editorder`,
     getpictures:`${host}/setting/items`,
-    search:`${host}/search`
+    search:`${host}/search`,
+    wxpreorder: `${host}/api/wx/unifiedorder`,
   }
 }
