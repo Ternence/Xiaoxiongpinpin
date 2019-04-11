@@ -16,7 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:'请选择收获地址',
+    address: '请选择收获地址',
     price: '',
     user: '',
     phonenumber: '',
@@ -38,7 +38,7 @@ Page({
     if (address.detail != "") {
       this.setData({
         address: ad,
-        user: address.name,
+        user: address.name||'',
         phonenumber: address.phone
       })
     } else {
@@ -61,7 +61,7 @@ Page({
         amount: value.num,
         price: value.price,
         options: [],
-        previewPic:value.previewPic
+        previewPic: value.previewPic
       }));
       var res = await $request({
         url: config.url.addorder,
@@ -79,20 +79,26 @@ Page({
           }
         }
       });
-      
+      var id=res.data.order._id;
       if (res.code == 20000) {
-        let respre =await  $request({ url: config.url.wxpreorder, method: 'POST', data: { orderid:res.data.order._id,fee:this.data.price*100}});
+        let respre = await $request({
+          url: config.url.wxpreorder,
+          method: 'POST',
+          data: {
+            orderid: res.data.order._id,
+            fee: this.data.price * 100
+          }
+        });
         // console.log('unifiedorder');
         // console.log(respre);
-        if(respre.status==100)
-        {
+        if (respre.status == 100) {
           wx.requestPayment({
-           'timeStamp': respre.timestamp,
+            'timeStamp': respre.timestamp,
             'nonceStr': respre.nonceStr,
             'package': respre.package,
             'signType': 'MD5',
             'paySign': respre.paySign,
-            'success':async function (res) {
+            'success': async function(res) {
               var res = await $request({
                 url: config.url.clearcart
               });
@@ -100,49 +106,50 @@ Page({
               wx.switchTab({
                 url: '../home/home',
               })
-              },
-            'fail': async function (res) {
-              if (res.errMsg =='requestPayment:fail cancel')
+            },
+            'fail': async function(res) {
+              if (res.errMsg == 'requestPayment:fail cancel') {
                 wx.showToast({
                   title: '支付取消',
-                  icon:'none'
-                })
-              else
-              {
+                  icon: 'none'
+                });
+                var deleteres = await $request({ url: config.url.deleteorder,method:'DELETE',data:{id:id}})
+              } else {
                 wx.showToast({
                   title: '支付失败',
-                  icon:'fail'
+                  icon: 'fail'
                 })
                 // var chekcres = await $request({ url: config.url.checkorder})
-              }                
+              }
             }
           })
-        }
-        else
-        {
+        } else {
           wx.showToast({
             title: '系统繁忙,稍后再试',
-            icon:'fail'
+            icon: 'fail'
           })
         }
-        var checkorderres = await $request({ url: config.url.checkorder, data: { out_trade_no: res.data.order._id}});
-        setTimeout(function () {
+        var checkorderres = await $request({
+          url: config.url.checkorder,
+          data: {
+            out_trade_no: res.data.order._id
+          }
+        });
+        setTimeout(function() {
           wx.switchTab({
             url: '../home/home',
           })
         }, 2000)
 
       }
-0
+      0
 
 
-    }
-    else
-    {
+    } else {
       wx.showToast({
         title: '您还没有选择收获地址',
-        icon:'none',
-        mask:true
+        icon: 'none',
+        mask: true
       })
     }
 

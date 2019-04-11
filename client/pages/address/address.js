@@ -32,7 +32,6 @@ Page({
     })
   },
   chosecurrent: function (event) {
-    // console.log(event.detail);
     app.globalData.currentaddress = event.detail;
     wx.navigateBack({});
   },
