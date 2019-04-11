@@ -92,13 +92,19 @@ Page({
             'package': respre.package,
             'signType': 'MD5',
             'paySign': respre.paySign,
-            'success': function (res) {
+            'success':async function (res) {
               wx.showToast({
                 title: '支付成功',
                 icon: 'success',
                 duration: 2000
-              })
-            },
+              });
+              var res = await $request({
+                url: config.url.clearcart
+              });
+                wx.navigateTo({
+                  url: '../home/home',
+                })
+              },
             'fail': function (res) {
               console.log(res);
             }
@@ -112,12 +118,6 @@ Page({
       }
 
 
-
-
-      // TODO 清除购物车
-      var res = await $request({
-        url: config.url.clearcart
-      });
 
     }
     else
