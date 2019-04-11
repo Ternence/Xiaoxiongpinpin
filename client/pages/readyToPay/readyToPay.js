@@ -82,8 +82,6 @@ Page({
       
       if (res.code == 20000) {
         let respre =await  $request({ url: config.url.wxpreorder, method: 'POST', data: { orderid:res.data.order._id,fee:this.data.price*100}});
-        console.log('unifiedorder');
-        console.log(respre);
         if(respre.status==100)
         {
           wx.requestPayment({
@@ -93,11 +91,6 @@ Page({
             'signType': 'MD5',
             'paySign': respre.paySign,
             'success':async function (res) {
-              wx.showToast({
-                title: '支付成功',
-                icon: 'success',
-                duration: 2000
-              });
               var res = await $request({
                 url: config.url.clearcart
               });
@@ -105,15 +98,31 @@ Page({
                   url: '../home/home',
                 })
               },
-            'fail': function (res) {
-              console.log(res);
+            'fail': async function (res) {
+              if (res.errMsg =='requestPayment:fail cancel')
+                wx.showToast({
+                  title: '支付取消',
+                  icon:'none'
+                })
+              else
+              {
+                wx.showToast({
+                  title: '支付失败',
+                  icon:'fail'
+                })
+                // var chekcres = await $request({ url: config.url.checkorder})
+              }                
             }
           })
         }
         else
         {
-          // TODO 关闭订单
+          wx.showToast({
+            title: '系统繁忙,稍后再试',
+            icon:'fail'
+          })
         }
+        var checkorderres = await $request({ url: config.url.checkorder, data: { out_trade_no: res.data.order._id}});
 
       }
 

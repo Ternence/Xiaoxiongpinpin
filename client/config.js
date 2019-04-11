@@ -20,5 +20,6 @@ module.exports = {
     getpictures:`${host}/setting/items`,
     search:`${host}/search`,
     wxpreorder: `${host}/api/wx/unifiedorder`,
+    checkorder: `${host}/api/wx/checkorderstatus`
   }
 }
