@@ -126,9 +126,14 @@ Page({
           })
         }
         var checkorderres = await $request({ url: config.url.checkorder, data: { out_trade_no: res.data.order._id}});
+        setTimeout(function () {
+          wx.switchTab({
+            url: '../home/home',
+          })
+        }, 2000)
 
       }
-
+0
 
 
     }
