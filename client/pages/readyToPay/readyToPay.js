@@ -82,6 +82,8 @@ Page({
       
       if (res.code == 20000) {
         let respre =await  $request({ url: config.url.wxpreorder, method: 'POST', data: { orderid:res.data.order._id,fee:this.data.price*100}});
+        // console.log('unifiedorder');
+        // console.log(respre);
         if(respre.status==100)
         {
           wx.requestPayment({
@@ -94,9 +96,10 @@ Page({
               var res = await $request({
                 url: config.url.clearcart
               });
-                wx.navigateTo({
-                  url: '../home/home',
-                })
+              console.log(res)
+              wx.switchTab({
+                url: '../home/home',
+              })
               },
             'fail': async function (res) {
               if (res.errMsg =='requestPayment:fail cancel')
