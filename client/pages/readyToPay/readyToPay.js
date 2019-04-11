@@ -79,37 +79,35 @@ Page({
           }
         }
       });
+      
       if (res.code == 20000) {
-        // wx.showToast({
-        //   title: '',
-        //   icon: 'success',
-        //   success: function() {
-        //     wx.switchTab({
-        //       url: '../home/home',
-        //     })
-        //   }
-        // });
-        // let respre = $request({ url: config.url.wxpreorder});
-        // console.log(respre);
-        // if(respre.status==100)// 不一定是respre.status
-        // {
-          // TODO 
-          // wx.requestPayment({
-          //   'timeStamp': '',
-          //   'nonceStr': '',
-          //   'package': '',
-          //   'signType': 'MD5',
-          //   'paySign': '',
-          //   'success': function (res) {
-          //   },
-          //   'fail': function (res) {
-          //   }
-          // })
-        // }
-        // else
-        // {
-        //   // TODO 关闭订单
-        // }
+        let respre =await  $request({ url: config.url.wxpreorder, method: 'POST', data: { orderid:res.data.order._id,fee:this.data.price*100}});
+        console.log('unifiedorder');
+        console.log(respre);
+        if(respre.status==100)
+        {
+          wx.requestPayment({
+           'timeStamp': respre.timestamp,
+            'nonceStr': respre.nonceStr,
+            'package': respre.package,
+            'signType': 'MD5',
+            'paySign': respre.paySign,
+            'success': function (res) {
+              wx.showToast({
+                title: '支付成功',
+                icon: 'success',
+                duration: 2000
+              })
+            },
+            'fail': function (res) {
+              console.log(res);
+            }
+          })
+        }
+        else
+        {
+          // TODO 关闭订单
+        }
 
       }
 

@@ -32,7 +32,7 @@ Page({
     })
   },
   chosecurrent: function (event) {
-    console.log(event.detail);
+    // console.log(event.detail);
     app.globalData.currentaddress = event.detail;
     wx.navigateBack({});
   },
@@ -43,11 +43,11 @@ Page({
   },
   getUserAddress: async function (event) {
     const res = await $request({ url: config.url.address });
-    console.log(res);
+    // console.log(res);
     this.setData({
       address:res.data.address||[]
     });
-    console.log(this.data.address);
+    // console.log(this.data.address);
     
   },
   //定位
