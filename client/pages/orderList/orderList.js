@@ -53,17 +53,31 @@ Page({
         res = await $request({
           url: config.url.getorder,
           data: {
-            status: '已支付'
+            status: '已下单'
           }
         });
         break;
       case 2:
+        var temp=[];
         res = await $request({
           url: config.url.getorder,
           data: {
             status: '配送中'
           }
         });
+        temp=temp.concat(res.data.orders);
+        res=await $request({
+          url:config.url.getorder,
+          data:{
+            status:'已接单'
+          }
+        })
+        temp=temp.concat(res.data.orders);
+        res = {
+          data: {
+            orders: temp
+          }
+        };
         break;
       case 3:
         res = await $request({
