@@ -58,7 +58,7 @@ Page({
 
     var goods = this.nomarlizegoods(res.data.goods);
     this.setData({
-      goods: goods
+      goods: goods||[]
     })
   },
   // 格式化商品数据
