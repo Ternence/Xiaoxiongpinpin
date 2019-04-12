@@ -1,18 +1,17 @@
 <!--pages/search/search.wxml-->
 
 
-<scroll-view scroll-y='true'  style="height:{{height}}px">
-<view class='head'>
-  <view class='search'>
-    <icon class='iconfont iconsearch size'></icon>
-    <input type='text' placeholder='输入商品' bindinput='setKeyword'></input>
+<scroll-view scroll-y='true' style="height:{{height}}px">
+  <view class='head'>
+    <view class='search'>
+      <input type='text' placeholder='输入商品' bindinput='setKeyword'></input>
+      <icon class='iconfont iconsearch size' bindtap='search'></icon>
+    </view>
   </view>
-  <view bindtap='search' style='color:blue;margin:8rpx;'>搜索</view>
-</view>
-<view class='content'>
-  <SearchResult wx:for="{{searchresult}}" wx:key="{{index}}" result="{{item}}" data-gid="{{index}}" bindtap="linkToDetail"></SearchResult>
-</view>
-<view wx:if="{{!haveresult}}" class='noresult'>
-  <text>暂时没有这种商品</text>
-</view>
+  <view class='content'>
+    <SearchResult wx:for="{{searchresult}}" wx:key="{{index}}" result="{{item}}" data-gid="{{index}}" bindtap="linkToDetail"></SearchResult>
+  </view>
+  <view wx:if="{{!haveresult}}" class='noresult'>
+    <text>暂时没有这种商品</text>
+  </view>
 </scroll-view>

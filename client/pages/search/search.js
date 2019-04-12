@@ -32,23 +32,35 @@ Page({
 
   // 搜索
   search:async function(options){
-    var res = await $request({ url: config.url.search,data:{name:this.data.keyword}});
-    var good=res.data.good;
-    good = this.nomarlizegoods(good);
-    this.setData({
-      goods:good
-    });
-    good=good.map(value=>({
-      id:value.id,
-      src: value.previewPic,
-      name:value.name,
-      price:value.price
-    }));
-    var hasresult=good.length>0?true:false;
-    this.setData({
-      searchresult:good,
-      haveresult:hasresult
-    })
+    if(this.data.keyword!='')
+    {
+      var res = await $request({ url: config.url.search, data: { name: this.data.keyword } });
+      var good = res.data.good;
+      good = this.nomarlizegoods(good);
+      this.setData({
+        goods: good
+      });
+      good = good.map(value => ({
+        id: value.id,
+        src: value.previewPic,
+        name: value.name,
+        price: value.price,
+        previewPic: value.previewPic
+      }));
+      var hasresult = good.length > 0 ? true : false;
+      this.setData({
+        searchresult: good,
+        haveresult: hasresult
+      })
+    }
+    else
+    {
+      wx.showToast({
+        title: '输入为空',
+        icon:'none'
+      })
+    }
+
   },
   nomarlizegoods: function (goods) {
     goods = goods.map(value => ({
@@ -62,7 +74,8 @@ Page({
       options: value.options,
       description: value.description,
       src: value.previewPic,
-      pictures: value.pictures
+      pictures: value.pictures,
+      previewPic: value.previewPic
     }));
     return goods;
   },
