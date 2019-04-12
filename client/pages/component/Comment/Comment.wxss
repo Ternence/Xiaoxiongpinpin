@@ -6,17 +6,18 @@
 }
 
 .date{
-  float: right;
   color: rgb(214, 197, 197);
-  font-size: 20rpx;
+  font-size: 25rpx;
+  margin: 5rpx 20rpx;
 }
 
-.clear{
-  clear: both;
-}
 
 .box{
   border-radius: 15rpx;
-  margin: 10rpx;
+  margin: 20rpx;
   background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
 }

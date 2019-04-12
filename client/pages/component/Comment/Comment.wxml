@@ -1,10 +1,9 @@
 <!--pages/component/Comment/Comment.wxml-->
 <view class='box'>
-  <view >
-    <text class='comment'>{{comment.content}}</text>
+  <view style='overflow:hidden;width:60%'>
+    <text  class='comment'>{{comment.content}}</text>
   </view>
-  <view>
+  <view >
     <text class='date'>{{comment.createdAt}}</text>
-    <view class='clear'></view>
   </view>
 </view>
