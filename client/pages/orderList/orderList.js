@@ -38,6 +38,7 @@ Page({
     this.setData({
       clickNumber: type
     });
+    this.getOrder();
   },
   // 获取订单
   getOrder: async function(options) {
