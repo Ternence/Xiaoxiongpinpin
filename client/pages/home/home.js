@@ -33,7 +33,8 @@ Page({
     currentad: '',
     height: 555,
     cart: [],
-    items:[]
+    items:[],
+    close:true,
   },
 
   //获取商品类别
@@ -292,6 +293,12 @@ Page({
       url: '../goodsDetail/goodsDetail?goods='+JSON.stringify(this.data.items[event.currentTarget.dataset.pid]),
     })
   },
+  checkclose:async function(){
+    var res = await $request({ url: config.url.getphone});
+    this.setData({
+      close: res.data.settings.isOpen
+    })
+  },
 
 
 
@@ -340,6 +347,7 @@ Page({
       this.getCatagorys();
       this.getGoods();
       this.getcart();
+      this.checkclose();
     }
 
   },

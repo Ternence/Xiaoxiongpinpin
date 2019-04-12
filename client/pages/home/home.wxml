@@ -24,7 +24,10 @@
     </view>
   </scroll-view>
   <view class='Food'>
-    <Goods wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>
+    <Goods wx:if="{{close&&item.stock!=0}}" wx:for="{{goods}}" data-name="{{item.name}}" data-price="{{item.price}}" data-goodid="{{index}}" goods='{{item}}' wx:key="title" catchtap="linkToDetail" bindaddevent="addtoCart" bindremoveEvent="removefromCart"></Goods>
+    <view wx:if="{{!close}}" class='close'>
+      <text>本店已打烊</text>
+    </view>
   </view>
   <!-- <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
 <view class='optionselect' hidden='{{groundhidden}}'>

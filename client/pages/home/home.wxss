@@ -5,6 +5,12 @@ swiper {
   margin: 10rpx;
 }
 
+.close{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .head {
   background: white;
   border-radius: 15rpx;
