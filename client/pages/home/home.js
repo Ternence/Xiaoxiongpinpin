@@ -33,8 +33,8 @@ Page({
     currentad: '',
     height: 555,
     cart: [],
-    items:[],
-    close:true,
+    items: [],
+    close: true,
   },
 
   //获取商品类别
@@ -53,14 +53,18 @@ Page({
   },
   //获取商品
   getGoods: async function(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var res = await $request({
       url: config.url.allgoods
     });
 
     var goods = this.nomarlizegoods(res.data.goods);
     this.setData({
-      goods: goods||[]
+      goods: goods || []
     })
+    wx.hideLoading();
   },
   // 格式化商品数据
   nomarlizegoods: function(goods) {
@@ -74,18 +78,20 @@ Page({
       number: 0,
       options: value.options,
       description: value.description,
-      previewPic:value.previewPic,
-      pictures:value.pictures,
-      sale:value.sale,
-      toView:''
+      previewPic: value.previewPic,
+      pictures: value.pictures,
+      sale: value.sale,
+      toView: ''
     }));
     return goods;
   },
   // 选择商品种类
   getGoodsByCategory: async function(event) {
-    console.log(event);
+    wx.showLoading({
+      title: '加载中',
+    });
     this.setData({
-      toView:event.currentTarget.id
+      toView: event.currentTarget.id
     })
     var that = this;
     this.setData({
@@ -109,29 +115,45 @@ Page({
     }
     // console.log(this.data.goods);
     this.setcart();
+    wx.hideLoading();
   },
   // 跳转搜索
   linkToSearch: function(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.navigateTo({
       url: '../search/search',
     })
+    wx.hideLoading();
   },
   //跳转地址定位
   linkToAddress: function(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.navigateTo({
       url: '../address/address',
     })
+    wx.hideLoading();
   },
   // 跳转商品详情页
   linkToDetail: function(event) {
     var index = event.currentTarget.dataset.goodid;
     var goods = this.data.goods[index];
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
     })
+    wx.hideLoading();
   },
   // 提交购物车
   addtoCart: async function(event) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var index = event.currentTarget.dataset.goodid;
     this.setData({
       index: index
@@ -150,7 +172,7 @@ Page({
         goods: this.data.cart
       }
     });
-
+    wx.hideLoading();
   },
   changethecart: function() {
     var goods = this.data.goods[this.data.index];
@@ -169,11 +191,11 @@ Page({
       goods = {
         id: goods.id,
         num: goods.number,
-        name:goods.name,
+        name: goods.name,
         description: goods.description,
         options: [],
         previewPic: goods.previewPic,
-        price:goods.price
+        price: goods.price
       };
       cart.push(goods);
     }
@@ -188,27 +210,38 @@ Page({
   },
   //  
   removefromCart: async function(event) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     var index = event.currentTarget.dataset.goodid;
     this.setData({
       index: index
     })
-    var num = this.data.goods[index].number;
-    var param = {};
-    num = num - 1;
-    var string = "goods[" + index + "].number";
-    param[string] = num;
-    this.setData(param);
-    this.changethecart();
-    // console.log(this.data.cart);
-    var res = await $request({
-      url: config.url.updatecart,
-      method: 'POST',
-      data: {
-        goods: this.data.cart
-      }
-    });
+    if (this.data.goods[index].number > 0) {
+      var num = this.data.goods[index].number;
+      var param = {};
+      num = num - 1;
+      var string = "goods[" + index + "].number";
+      param[string] = num;
+      this.setData(param);
+      this.changethecart();
+      // console.log(this.data.cart);
+      var res = await $request({
+        url: config.url.updatecart,
+        method: 'POST',
+        data: {
+          goods: this.data.cart
+        }
+      });
+    }
+
+    wx.hideLoading();
   },
   getcart: async function() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var res = await $request({
       url: config.url.getcart
     });
@@ -218,6 +251,7 @@ Page({
     // console.log(this.data.cart);
 
     this.setcart();
+    wx.hideLoading();
   },
   setcart: function() {
     var goods = this.data.goods;
@@ -239,7 +273,7 @@ Page({
       hidden: true
     });
     wx.navigateBack({
-      delta:0
+      delta: 0
     })
   },
   confirm: function() {
@@ -275,26 +309,27 @@ Page({
     // console.log('到底了')
   },
   // 获取首页图片
-  getpictures:async function(){
-    var res = await $request({ url: config.url.getpictures})
-    if(res.code==20000)
-    {
+  getpictures: async function() {
+    var res = await $request({
+      url: config.url.getpictures
+    })
+    if (res.code == 20000) {
       this.setData({
-        items:res.data.items
+        items: res.data.items
       })
-    }
-    else
-    {
+    } else {
       console.log('获取错误');
     }
   },
-  linktogoodsby:function(event){
+  linktogoodsby: function(event) {
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goods='+JSON.stringify(this.data.items[event.currentTarget.dataset.pid]),
+      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(this.data.items[event.currentTarget.dataset.pid]),
     })
   },
-  checkclose:async function(){
-    var res = await $request({ url: config.url.getphone});
+  checkclose: async function() {
+    var res = await $request({
+      url: config.url.getphone
+    });
     this.setData({
       close: res.data.settings.isOpen
     })
@@ -340,10 +375,9 @@ Page({
     }
     this.setData({
       currentad: app.globalData.currentaddress.detail,
-      clicknumber:0
+      clicknumber: 0
     })
-    if(session)
-    {
+    if (session) {
       this.getCatagorys();
       this.getGoods();
       this.getcart();
