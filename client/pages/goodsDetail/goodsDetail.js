@@ -66,7 +66,7 @@ Page({
   // 导航至
   linkToAllComment: function() {
     wx.navigateTo({
-      url: '../allComment/allComment?comments=' + JSON.stringify(this.data.comments),
+      url: '../allComment/allComment?goodsid=' + JSON.stringify(this.data.goods.id),
     })
   },
   // 加入购物车

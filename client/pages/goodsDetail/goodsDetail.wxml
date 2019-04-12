@@ -17,7 +17,7 @@
     </view>
     <view class='footer'>
       <text style='font-weight:bold'>销量</text>
-      <text>   已售{{goods.sales}}件，剩余</text>
+      <text>   已售{{goods.sale}}件，剩余</text>
       <text style='color:red;'>{{goods.stock}}</text>
       <text>件</text>
     </view>
