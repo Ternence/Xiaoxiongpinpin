@@ -1,9 +1,12 @@
 <!--pages/readyToPay/readyToPay.wxml-->
 <scroll-view>
   <view class='head' bindtap='choseaddress'>
-    <view class='address' >
+    <view class='help'>
+      <text class='helptext'>订单配送至</text>
+    </view>
+    <view class='address'>
       <text class='adtext'>{{address}}</text>
-      <icon class='iconfont iconright-circle'></icon>
+      <icon class='iconfont iconright'></icon>
     </view>
     <view class='user'>
       <text>{{user}}   </text>
@@ -11,7 +14,9 @@
     </view>
   </view>
   <view class='content'>
-    <view style='margin:5rpx 10rpx;'>预计送达 {{time}}</view>
+    <view style='margin:5rpx 10rpx;'>预计送达
+      <text style='font-size:30rpx;'>{{time}}分钟内</text>
+    </view>
     <view class='divLine'></view>
     <view class=''></view>
     <view class='item'>

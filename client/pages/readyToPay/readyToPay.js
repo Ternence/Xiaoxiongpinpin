@@ -20,7 +20,7 @@ Page({
     price: '',
     user: '',
     phonenumber: '',
-    time: '下单后半小时内',
+    time: 30,
     cart: [],
   },
 
@@ -44,7 +44,7 @@ Page({
     } else {
       this.setData({
         address: ad,
-        user: address.name,
+        user: address.name||'',
       })
     }
 
@@ -102,18 +102,18 @@ Page({
               var res = await $request({
                 url: config.url.clearcart
               });
-              console.log(res)
               wx.switchTab({
                 url: '../home/home',
               })
             },
             'fail': async function(res) {
               if (res.errMsg == 'requestPayment:fail cancel') {
+                console.log(id);
                 wx.showToast({
                   title: '支付取消',
                   icon: 'none'
                 });
-                var deleteres = await $request({ url: config.url.deleteorder,method:'DELETE',data:{id:id}})
+                var deleteres = await $request({ url: config.url.deleteorder,data:{id:id}})
               } else {
                 wx.showToast({
                   title: '支付失败',
@@ -135,16 +135,7 @@ Page({
             out_trade_no: res.data.order._id
           }
         });
-        setTimeout(function() {
-          wx.switchTab({
-            url: '../home/home',
-          })
-        }, 2000)
-
       }
-      0
-
-
     } else {
       wx.showToast({
         title: '您还没有选择收获地址',
@@ -154,6 +145,12 @@ Page({
     }
 
 
+  },
+  getestimatetime: async function () {
+    var res = await $request({ url: config.url.getphone });
+    this.setData({
+      time: res.data.settings.estimateTime||'30'
+    })
   },
 
   /**
@@ -184,6 +181,7 @@ Page({
    */
   onShow: function() {
     this.setaddress();
+    this.getestimatetime();
   },
 
   /**

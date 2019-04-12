@@ -3,7 +3,7 @@
 @import "../../app.wxss";
 
 page{
-  background: rgb(59, 159, 241);
+  background: linear-gradient(to bottom,rgb(59, 159, 241),rgb(59, 159, 241), rgb(250, 250, 250) 30%);
 }
 
 .head{
@@ -18,6 +18,14 @@ page{
   font-weight: bold;
 }
 
+.help{
+  margin: 0rpx 20rpx;
+}
+
+.helptext{
+  font-size: 30rpx;
+}
+
 icon{
   font-size: 20rpx;
 }
@@ -26,7 +34,6 @@ icon{
   margin: 4rpx 20rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .user{
