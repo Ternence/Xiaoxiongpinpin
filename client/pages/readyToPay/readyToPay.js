@@ -52,6 +52,9 @@ Page({
   },
   pay: async function() {
     if (!this.data.first) {
+      wx.switchTab({
+        url: '../home/home',
+      })
       return;
     }
     var str = '请选择收货地址';
@@ -155,7 +158,12 @@ Page({
         wx.showToast({
           title: '库存不足',
           icon:'none'
-        })
+        });
+        setTimeout(function(){
+          wx.switchTab({
+            url: '../home/home',
+          })
+        },2000);
       }
     } else {
       wx.showToast({
