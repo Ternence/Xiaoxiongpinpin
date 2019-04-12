@@ -15,6 +15,7 @@ Page({
   data: {
     username:'',
     imagesrc:'',
+    phone:''
   },
 
   // 跳转订单页面
@@ -36,16 +37,30 @@ Page({
     }
   },
   callcustomerservice:function(){
-    wx.makePhoneCall({
-      phoneNumber: '17625113975'
-    })
+    if(this.data.phone=='')
+    {
+      wx.showToast({
+        title: '抱歉，暂无客服电话',
+        icon:'none'
+      })
+    }
+    else
+    {
+      wx.makePhoneCall({
+        phoneNumber: this.data.phone
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     this.getUserInfo();
+    var res = await $request({ url: config.url.getphone});
+    this.setData({
+      phone: res.data.settings.customerServicePhone||''
+    });
   },
 
   /**
