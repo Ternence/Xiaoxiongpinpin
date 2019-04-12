@@ -16,12 +16,12 @@
 }
 
 .addressdetail{
-  font-size: 20rpx;
+  font-size: 25rpx;
   margin: 5rpx 15rpx;
 }
 
 .personinfo{
-  font-size: 20rpx;
+  font-size: 25rpx;
   color: rgb(209,179,179);
   margin: 5rpx 15rpx;
 }

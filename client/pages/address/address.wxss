@@ -36,11 +36,13 @@
   margin: 10rpx 20rpx;
   background: white;
   border-radius: 15rpx;
+  align-items: center;
 }
 
 
 .newtext{
-  color:blue;
-  margin: 0rpx 10rpx;
+  color:rgb(123, 123, 209);
+  margin: 0rpx 20rpx;
+  font-size: 33rpx;
 }
 
