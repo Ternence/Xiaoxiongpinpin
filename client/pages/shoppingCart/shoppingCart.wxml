@@ -1,5 +1,5 @@
 <!--pages/shoppingCart/shoppingCart.wxml-->
-<view wx:if="{{num==0}}" class='tips'>
+<view wx:if="{{num==0||goods.length==0}}" class='tips'>
   <view class='noGoods'>
     <text style='color:black;'>购物车空空如也，赶紧去添加吧</text>
     <button bindtap='LinktoCart'>去购物</button>
@@ -9,14 +9,14 @@
   <scroll-view scroll-y='true'>
     <Shoppingitem wx:for="{{goods}}" good='{{item}}' data-goodid="{{index}}" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
   </scroll-view>
-  <view class='footer'>
+  <view class='footer' wx:if="{{goods.length!=0}}">
     <view class='left'>
       <view>
         <text>合计¥</text>
         <text style='color:red;'>{{price}}</text>
       </view>
     </view>
-    <view class='right' bindtap='purchase'>
+    <view class='right' bindtap='purchase' >
       <text>去结算</text>
     </view>
   </view>

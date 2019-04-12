@@ -28,18 +28,26 @@ Page({
   },
   // 结算商品
   purchase: function() {
-    var goods=this.data.goods;
-    goods=goods.map(value=>({
-      id:value.id,
-      num:value.num,
-      name:value.name,
-      price:value.price,
-      total:value.num*value.price,
-      previewPic: value.previewPic
-    }))
-    wx.navigateTo({
-      url: '../readyToPay/readyToPay?cart=' + JSON.stringify(goods),
-    })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
+    var goods = this.data.goods;
+    if (goods.length != 0) {
+      goods = goods.map(value => ({
+        id: value.id,
+        num: value.num,
+        name: value.name,
+        price: value.price,
+        total: value.num * value.price,
+        previewPic: value.previewPic
+      }))
+      wx.navigateTo({
+        url: '../readyToPay/readyToPay?cart=' + JSON.stringify(goods),
+      });
+    }
+
+    wx.hideLoading();
   },
   // 计算商品价格
   getTotalPrice: function() {
@@ -48,10 +56,10 @@ Page({
     for (let i = 0; i < goods.length; i++) {
       total = total + goods[i].num * goods[i].price
     }
-    total=total*100;
+    total = total * 100;
 
-    total=Math.round(total);
-    total=total/100;
+    total = Math.round(total);
+    total = total / 100;
     this.setData({
       price: total
     })
@@ -63,11 +71,15 @@ Page({
     });
     this.setData({
       goods: res.data,
-      num: res.data.length|0
+      num: res.data.length | 0
     })
     this.getTotalPrice();
   },
   addtocart: async function(event) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
     var index = event.currentTarget.dataset.goodid;
     var goods = this.data.goods;
     goods[index].num = goods[index].num + 1;
@@ -82,15 +94,19 @@ Page({
       }
     });
     this.getTotalPrice();
+    wx.hideLoading();
   },
-  removefromcart:async function(event){
+  removefromcart: async function(event) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var index = event.currentTarget.dataset.goodid;
     var goods = this.data.goods;
-    goods[index].num = goods[index].num -1;
-    var ans=[];
-    for(let i=0;i<goods.length;i++)
-    {
-      if(goods[i].num!=0)
+    goods[index].num = goods[index].num - 1;
+    var ans = [];
+    for (let i = 0; i < goods.length; i++) {
+      if (goods[i].num != 0)
         ans.push(goods[i])
     }
     this.setData({
@@ -104,6 +120,7 @@ Page({
       }
     });
     this.getTotalPrice();
+    wx.hideLoading();
   },
 
   /**
