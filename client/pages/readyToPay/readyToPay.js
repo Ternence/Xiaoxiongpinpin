@@ -22,6 +22,7 @@ Page({
     phonenumber: '',
     time: 30,
     cart: [],
+    first: true,
   },
 
   choseaddress: function() {
@@ -38,21 +39,27 @@ Page({
     if (address.detail != "") {
       this.setData({
         address: ad,
-        user: address.name||'',
+        user: address.name || '',
         phonenumber: address.phone
       })
     } else {
       this.setData({
         address: ad,
-        user: address.name||'',
+        user: address.name || '',
       })
     }
 
   },
   pay: async function() {
-    var str = '请选择收获地址';
+    if (!this.data.first) {
+      return;
+    }
+    var str = '请选择收货地址';
     if (this.data.address.trim() != str.trim()) {
       // TODO 添加订单
+      this.setData({
+        first: false
+      });
       var address = app.globalData.currentaddress;
       var items = this.data.cart;
       items = items.map(value => ({
@@ -79,8 +86,9 @@ Page({
           }
         }
       });
-      var id=res.data.order._id;
       if (res.code == 20000) {
+        var id = res.data.order._id;
+
         let respre = await $request({
           url: config.url.wxpreorder,
           method: 'POST',
@@ -113,7 +121,12 @@ Page({
                   title: '支付取消',
                   icon: 'none'
                 });
-                var deleteres = await $request({ url: config.url.deleteorder,data:{id:id}})
+                var deleteres = await $request({
+                  url: config.url.deleteorder,
+                  data: {
+                    id: id
+                  }
+                })
               } else {
                 wx.showToast({
                   title: '支付失败',
@@ -135,10 +148,18 @@ Page({
             out_trade_no: res.data.order._id
           }
         });
+
+      }
+      else
+      {
+        wx.showToast({
+          title: '库存不足',
+          icon:'none'
+        })
       }
     } else {
       wx.showToast({
-        title: '您还没有选择收获地址',
+        title: '您还没有选择收货地址',
         icon: 'none',
         mask: true
       })
@@ -146,10 +167,12 @@ Page({
 
 
   },
-  getestimatetime: async function () {
-    var res = await $request({ url: config.url.getphone });
+  getestimatetime: async function() {
+    var res = await $request({
+      url: config.url.getphone
+    });
     this.setData({
-      time: res.data.settings.estimateTime||'30'
+      time: res.data.settings.estimateTime || '30'
     })
   },
 
