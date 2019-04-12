@@ -24,7 +24,8 @@ Page({
     flag:true,
     commentflag:true,
     commenttoast:false,
-    comment:''
+    comment:'',
+    currentgid:''
   },
   // 显示退款对话框
   refund: function () {
@@ -81,9 +82,10 @@ Page({
     }
   },
   // 打开评价对话框
-  opencomment:function(){
+  opencomment:function(event){
     this.setData({
-      commenttoast:true
+      commenttoast:true,
+      currentgid: event.target.dataset.gid
     })
   },
   // 关闭评价对话框
@@ -99,8 +101,34 @@ Page({
     })
   },
   // 提交评价
-  confirmcomment:function(){
-    console.log(this.data.comment);
+  confirmcomment:async function(){
+    if(this.data.comment!='')
+    {
+      var res = await $request({ url: config.url.addcomment, method: 'POST', data: { id: this.data.currentgid, content: this.data.comment } });
+      if(res.code==20000)
+      {
+        wx.showToast({
+          title: '评价成功',
+          icon:'success'
+        });
+        this.cancelcomment()
+      }
+      else
+      {
+        wx.showToast({
+          title: '评价失败',
+          icon:'fail'
+        })
+      }
+    }
+    else
+    {
+      wx.showToast({
+        title: '输入不能为空',
+        icon:'none'
+      })
+    }
+
   },
 
 

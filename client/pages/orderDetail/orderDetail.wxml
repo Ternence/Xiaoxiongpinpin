@@ -7,8 +7,15 @@
     </view>
   </view>
   <view class='content'>
-    <view class='item'>
-      <Orderitem wx:for="{{cart}}" wx:key="{{index}}" carts="{{item}}"></Orderitem>
+    <view class='items'>
+      <view wx:for="{{cart}}" wx:key="{{index}}" class='goodarea' >
+        <view style='width:80%;'>
+          <Orderitem  carts="{{item}}"></Orderitem>
+        </view>
+        <view class='commentbutton' wx:if="{{!commentflag}}">
+          <text bindtap='opencomment' data-gid="{{item.id}}">评价商品</text>
+        </view>
+      </view>
     </view>
     <view class='price'>
       <text style='float:right;color:red;'>{{price}}</text>
@@ -32,9 +39,6 @@
   </view>
   <view class='button' wx:if="{{!flag}}">
     <button bindtap='refund' style='float:right;margin:5rpx 20rpx'>申请退款</button>
-  </view>
-  <view class='button' wx:if="{{!commentflag}}">
-    <button bindtap='opencomment' style='float:right;margin:5rpx 20rpx'>评价商品</button>
   </view>
 </scroll-view>
 

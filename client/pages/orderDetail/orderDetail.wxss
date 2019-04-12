@@ -1,6 +1,29 @@
 /* pages/orderDetail/orderDetail.wxss */
 page{
-  background: rgb(59, 159, 241);
+  background: linear-gradient(to bottom,rgb(59, 159, 241),rgb(59, 159, 241), rgb(250, 250, 250) 30%);
+}
+
+
+.items{
+  width: 100%;
+}
+
+.commentbutton{
+  font-size: 30rpx;
+  height: 80rpx;
+  background: white;
+  border: 1rpx solid rgb(235, 229, 229);
+  color: rgb(53, 158, 228);
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+}
+
+.goodarea{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .context{
