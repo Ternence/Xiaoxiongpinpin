@@ -21,6 +21,8 @@ module.exports = {
     search:`${host}/search`,
     wxpreorder: `${host}/api/wx/unifiedorder`,
     checkorder: `${host}/api/wx/checkorderstatus`,
-    deleteorder: `${host}/api/deleteorder`
+    deleteorder: `${host}/api/deleteorder`,
+    getphone: `${host}/api/customerServicePhone`,
+    addcomment:`${host}/api/review/good`
   }
 }
