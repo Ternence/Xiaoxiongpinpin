@@ -48,6 +48,10 @@ Page({
     for (let i = 0; i < goods.length; i++) {
       total = total + goods[i].num * goods[i].price
     }
+    total=total*100;
+
+    total=Math.round(total);
+    total=total/100;
     this.setData({
       price: total
     })
