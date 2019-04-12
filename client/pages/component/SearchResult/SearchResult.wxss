@@ -4,7 +4,8 @@
   flex-direction: row;
   margin: 10rpx 20rpx;
   border-radius: 15rpx;
-  background: rgb(226, 209, 209);
+  background: white;
+  height: 170rpx;
 }
 
 .left{
@@ -36,4 +37,5 @@
 .img{
   height: 80%;
   width: 80%;
+  margin: 10rpx;
 }
