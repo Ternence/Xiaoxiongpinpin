@@ -37,7 +37,7 @@ Component({
     // var time = new Date(this.properties.order.createTime);
     // var ftime = time.format("yyyy-MM-dd hh:mm:ss");
     this.setData({
-      goods: items[0].name,
+      goods: items[0].name||'',
       price: total,
       order:order
     })
