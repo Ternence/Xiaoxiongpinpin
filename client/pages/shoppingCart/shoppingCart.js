@@ -18,7 +18,9 @@ Page({
     goods: [],
     price: 0,
     num: 0,
-    checkcss: 'iconcheckall'
+    checkcss: 'iconcheckall',
+    height:'',
+    close:true
   },
   // 跳转主界面
   LinktoCart: function(options) {
@@ -122,12 +124,25 @@ Page({
     this.getTotalPrice();
     wx.hideLoading();
   },
+  checkclose: async function () {
+    var res = await $request({
+      url: config.url.getphone
+    });
+    this.setData({
+      close: res.data.settings.isOpen
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var height = wx.getSystemInfoSync().windowHeight;
+    height = height * 750 / wx.getSystemInfoSync().windowWidth;
 
+    this.setData({
+      height: height - 100,
+    })
   },
 
   /**
@@ -142,6 +157,7 @@ Page({
    */
   onShow: function() {
     this.getCart();
+    this.checkclose();
   },
 
   /**
