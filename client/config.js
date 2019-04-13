@@ -23,6 +23,7 @@ module.exports = {
     checkorder: `${host}/api/wx/checkorderstatus`,
     deleteorder: `${host}/api/deleteorder`,
     getphone: `${host}/api/customerServicePhone`,
-    addcomment:`${host}/api/review/good`
+    addcomment:`${host}/api/review/good`,
+    getgood:`${host}/api/onegood`
   }
 }

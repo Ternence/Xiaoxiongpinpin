@@ -8,6 +8,7 @@ App({
     islogin:false,
     userInfo:{},
     currentaddress: { district:'请选择收货地址',detail:''},
+    buynow:{}
   },
   onLaunch: function() {
     // qcloud.setLoginUrl(config.service.loginUrl)
