@@ -25,7 +25,8 @@ Page({
     commentflag:true,
     commenttoast:false,
     comment:'',
-    currentgid:''
+    currentgid:'',
+    height:''
   },
   // 显示退款对话框
   refund: function () {
@@ -137,6 +138,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var height = wx.getSystemInfoSync().windowHeight;
+    height = height * 750 / wx.getSystemInfoSync().windowWidth;
+
+    this.setData({
+      height: height,
+    })
     var order = JSON.parse(options.order);
     var cart=order.items;
     cart=cart.map(value=>({
