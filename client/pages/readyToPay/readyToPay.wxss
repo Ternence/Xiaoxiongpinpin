@@ -6,6 +6,11 @@ page{
   background: linear-gradient(to bottom,rgb(59, 159, 241),rgb(59, 159, 241), rgb(250, 250, 250) 30%);
 }
 
+.main{
+  position: fixed;
+  bottom: 100rpx;
+}
+
 .head{
   display: flex;
   flex-direction: column;
@@ -51,7 +56,7 @@ icon{
 }
 
 .footer{
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 100rpx;

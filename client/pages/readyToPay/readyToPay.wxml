@@ -1,5 +1,5 @@
 <!--pages/readyToPay/readyToPay.wxml-->
-<scroll-view>
+<scroll-view scroll-y='true' style="height:{{height}}rpx" class='main'>
   <view class='head' bindtap='choseaddress'>
     <view class='help'>
       <text class='helptext'>订单配送至</text>
@@ -24,6 +24,7 @@
     </view>
   </view>
 </scroll-view>
+
 <view class='footer'>
   <view class='left'>
     <text>合计:¥</text>
@@ -31,3 +32,4 @@
   </view>
   <view class='right' bindtap='pay'>去支付</view>
 </view>
+

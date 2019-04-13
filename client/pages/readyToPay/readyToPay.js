@@ -23,6 +23,7 @@ Page({
     time: 30,
     cart: [],
     first: true,
+    height:''
   },
 
   choseaddress: function() {
@@ -110,9 +111,17 @@ Page({
             'signType': 'MD5',
             'paySign': respre.paySign,
             'success': async function(res) {
-              var res = await $request({
-                url: config.url.clearcart
-              });
+              if (app.globalData.buynow.id == undefined)
+              {
+                var res = await $request({
+                  url: config.url.clearcart
+                });
+              }
+              else
+              {
+                app.globalData.buynow={};
+              }
+
               wx.switchTab({
                 url: '../home/home',
               })
@@ -152,18 +161,16 @@ Page({
           }
         });
 
-      }
-      else
-      {
+      } else {
         wx.showToast({
           title: '库存不足',
-          icon:'none'
+          icon: 'none'
         });
-        setTimeout(function(){
+        setTimeout(function() {
           wx.switchTab({
             url: '../home/home',
           })
-        },2000);
+        }, 2000);
       }
     } else {
       wx.showToast({
@@ -188,16 +195,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var cart = JSON.parse(options.cart);
+    var height = wx.getSystemInfoSync().windowHeight;
+    height=height*750/wx.getSystemInfoSync().windowWidth;
 
-    var total = 0;
-    for (let i = 0; i < cart.length; i++) {
-      total = total + cart[i].total
-    }
     this.setData({
-      cart: cart,
-      price: total
+      height: height-100,
     })
+    if (app.globalData.buynow.id == undefined) {
+      var cart = JSON.parse(options.cart);
+
+      var total = 0;
+      for (let i = 0; i < cart.length; i++) {
+        total = total + cart[i].total
+      }
+      this.setData({
+        cart: cart,
+        price: total
+      })
+    } else {
+      this.setData({
+        cart:[app.globalData.buynow],
+        price:app.globalData.buynow.total
+      })
+    }
+
   },
 
   /**
