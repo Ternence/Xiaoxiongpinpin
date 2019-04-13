@@ -19,8 +19,8 @@ Page({
   data: {
     title: ['全部', '已支付', '配送中', '已送达', '售后退款'],
     clickNumber: 0,
-    orders: []
-
+    orders: [],
+    height:''
   },
   // 页面切换
   centerTap: function(event) {
@@ -166,6 +166,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var height = wx.getSystemInfoSync().windowHeight;
+    height = height * 750 / wx.getSystemInfoSync().windowWidth;
+
+    this.setData({
+      height: height - 100,
+    })
     this.getOrder();
     this.setData({
       clickNumber: options.show,
