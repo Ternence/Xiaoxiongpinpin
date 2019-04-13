@@ -8,31 +8,31 @@ import {
   Session
 } from '../../lib/page.auth'
 import config from '../../config'
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: {
-      id: 1
-    },
+    goods: {},
     comment: '暂无评论',
     comments: [],
     cart: []
   },
 
   // 获取用户评价
-  getComment: async function(options) {
+  getComment: async function(gid) {
     var res = await $request({
       url: config.url.getonecomment,
       data: {
-        id: this.data.goods.id,
+        id: gid,
         start: 0,
         offset: 1
       }
     });
-    var reviews = res.data.reviews||[];
+    // console.log(res);
+    var reviews = res.data.reviews || [];
     if (reviews.length != 0) {
       this.setData({
         comment: reviews[0].content,
@@ -41,14 +41,28 @@ Page({
     }
 
   },
+  // 获取商品
+  getGood: async function(id) {
+    var res = await $request({
+      url: config.url.getgood,
+      data: {
+        id: id
+      }
+    });
+    // console.log(res);
+    this.setData({
+      goods: res.data.good
+    })
+
+  },
   // 获取购物车
   getcart: async function() {
     var res = await $request({
       url: config.url.getcart
     });
-    console.log(res.data);
+    // console.log(res.data);
     this.setData({
-      cart: res.data||[]
+      cart: res.data || []
     });
   },
   // 导航至主页
@@ -72,10 +86,10 @@ Page({
   // 加入购物车
   addToCart: async function(options) {
     var flag = 0;
-    var goods=this.data.goods;
-    var cart=this.data.cart;
-    console.log(goods);
-    console.log(cart);
+    var goods = this.data.goods;
+    var cart = this.data.cart;
+    // console.log(goods);
+    // console.log(cart);
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].id == goods.id) {
         cart[i].num = cart[i].num + 1;
@@ -93,7 +107,7 @@ Page({
       });
     }
     this.setData({
-      cart:cart
+      cart: cart
     })
     var res = await $request({
       url: config.url.updatecart,
@@ -102,8 +116,7 @@ Page({
         goods: cart
       }
     });
-    if(res.code==20000)
-    {
+    if (res.code == 20000) {
       wx.showToast({
         title: '添加成功',
         icon: 'success',
@@ -115,7 +128,16 @@ Page({
   },
   // 立即购买
   buyNow: function() {
-    // TODO
+    var good = {
+      id: this.data.goods.id,
+      num: 1,
+      price: this.data.goods.price,
+      name: this.data.goods.name,
+      total: this.data.goods.price,
+      previewPic: this.data.goods.previewPic
+    };
+    app.globalData.buynow=good;
+    console.log(app.globalData);
     wx.navigateTo({
       url: '../readyToPay/readyToPay',
     })
@@ -130,13 +152,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(options)
-    var goods = JSON.parse(options.goods);
-    // console.log(goods);
-    this.setData({
-      goods: JSON.parse(options.goods)
-    })
-    this.getComment();
+    var gid = JSON.parse(options.gid);
+    this.getGood(gid);
+    this.getComment(gid);
   },
 
   /**
