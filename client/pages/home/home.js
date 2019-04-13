@@ -140,14 +140,12 @@ Page({
   // 跳转商品详情页
   linkToDetail: function(event) {
     var index = event.currentTarget.dataset.goodid;
-    var goods = this.data.goods[index];
-    wx.showLoading({
-      title: '加载中',
-    })
+    // console.log(index);
+    var id = this.data.goods[index].id;
+    // console.log(goods);
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
+      url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(id),
     })
-    wx.hideLoading();
   },
   // 提交购物车
   addtoCart: async function(event) {
@@ -322,9 +320,17 @@ Page({
     }
   },
   linktogoodsby: function(event) {
+    if(this.data.close)
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(this.data.items[event.currentTarget.dataset.pid]),
+      url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(this.data.items[event.currentTarget.dataset.pid].id),
     })
+    else
+    {
+      wx.showToast({
+        title: '本店暂时休息了',
+        icon:'none'
+      })
+    }
   },
   checkclose: async function() {
     var res = await $request({
@@ -359,7 +365,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('onshow');
+    // console.log('onshow');
+    app.globalData.buynow={};
     const session = Session.get()
     if (session) {
       app.globalData.islogin = true;
