@@ -1,6 +1,6 @@
 <!--pages/component/Comment/Comment.wxml-->
 <view class='box'>
-  <view style='overflow:hidden;width:60%'>
+  <view style='width:50%;margin:10rpx;'>
     <text  class='comment'>{{comment.content}}</text>
   </view>
   <view >

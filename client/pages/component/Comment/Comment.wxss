@@ -1,23 +1,24 @@
 /* pages/component/Comment/Comment.wxss */
 
-.comment{
-  margin: 5rpx 20rpx;
+.comment {
   font-size: 28rpx;
+  width: 100%;
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 
-.date{
+.date {
   color: rgb(214, 197, 197);
   font-size: 25rpx;
   margin: 5rpx 20rpx;
 }
 
-
-.box{
+.box {
   border-radius: 15rpx;
   margin: 20rpx;
   background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80rpx;
 }
