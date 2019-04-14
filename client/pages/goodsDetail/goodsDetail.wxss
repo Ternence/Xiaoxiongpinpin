@@ -19,6 +19,12 @@
   font-weight: bold;
 }
 
+.descrption {
+  border-radius: 15rpx;
+  background: white;
+  margin: 15rpx;
+}
+
 .comment {
   border-radius: 15rpx;
   background: white;
@@ -103,7 +109,8 @@
 .commentbody {
   font-size: 30rpx;
   color: rgb(212, 209, 209);
-  margin: 10rpx;
+  margin: 20rpx;
+  overflow: hidden;
 }
 
 .commentfooter {
@@ -112,4 +119,14 @@
   justify-content: center;
   align-items: center;
   font-size: 25rpx;
+}
+
+/* 描述 */
+
+.descriptiontext {
+  width: 100%;
+  word-break: keep-all;
+  word-wrap: break-word;
+  /* margin: 20rpx; */
+  font-size: 30rpx;
 }
