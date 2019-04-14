@@ -53,8 +53,7 @@
   height: 60rpx;
   width: 60rpx;
   border-radius: 50%;
-  background: lightgray;
-  color: white;
+  color: lightgray;
   display: flex;
   flex-direction: row;
   align-items: center;

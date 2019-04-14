@@ -8,7 +8,9 @@
     <view class="price">￥ {{goods.price}}</view>
   </view>
   <view class="food-numb">
-    <view class="remove" catchtap="removeFromTrolley" data-num="{{goods.number}}" hidden="{{goods.number==0}}" data-index="{{index}}">-</view>
+    <view class="remove" catchtap="removeFromTrolley" data-num="{{goods.number}}" hidden="{{goods.number==0}}" data-index="{{index}}">
+      <icon class='iconfont iconjianshao' style='font-size:55rpx;'></icon>
+    </view>
     <text class="text" hidden="{{goods.number==0}}" >{{goods.number}}</text>
     <view class="add" data-num="{{goods.number}}" catchtap="addToTrolley" data-index="{{index}}">
       <icon class='iconfont icongouwuche3 size'></icon>
