@@ -23,7 +23,7 @@ Page({
     time: 30,
     cart: [],
     first: true,
-    height:''
+    height: ''
   },
 
   choseaddress: function() {
@@ -111,15 +111,12 @@ Page({
             'signType': 'MD5',
             'paySign': respre.paySign,
             'success': async function(res) {
-              if (app.globalData.buynow.id == undefined)
-              {
+              if (app.globalData.buynow.id == undefined) {
                 var res = await $request({
                   url: config.url.clearcart
                 });
-              }
-              else
-              {
-                app.globalData.buynow={};
+              } else {
+                app.globalData.buynow = {};
               }
 
               wx.switchTab({
@@ -182,6 +179,30 @@ Page({
 
 
   },
+  getcart: async function() {
+    var res = await $request({
+      url: config.url.getcart
+    });
+    // console.log(res);
+    var cart = res.data;
+    cart = cart.map(value => ({
+      id: value.id,
+      description: value.description,
+      name: value.name,
+      previewPic: value.previewPic,
+      price: value.price,
+      total: value.price * value.num
+    }))
+    var total = 0;
+    for (let i = 0; i < cart.length; i++) {
+      total = total + cart[i].price * cart[i].num
+    }
+    this.setData({
+      cart: cart,
+      price: total
+    })
+
+  },
   getestimatetime: async function() {
     var res = await $request({
       url: config.url.getphone
@@ -196,26 +217,17 @@ Page({
    */
   onLoad: function(options) {
     var height = wx.getSystemInfoSync().windowHeight;
-    height=height*750/wx.getSystemInfoSync().windowWidth;
+    height = height * 750 / wx.getSystemInfoSync().windowWidth;
 
     this.setData({
-      height: height-100,
+      height: height - 100,
     })
     if (app.globalData.buynow.id == undefined) {
-      var cart = JSON.parse(options.cart);
-
-      var total = 0;
-      for (let i = 0; i < cart.length; i++) {
-        total = total + cart[i].total
-      }
-      this.setData({
-        cart: cart,
-        price: total
-      })
+      this.getcart();
     } else {
       this.setData({
-        cart:[app.globalData.buynow],
-        price:app.globalData.buynow.total
+        cart: [app.globalData.buynow],
+        price: app.globalData.buynow.total
       })
     }
 
