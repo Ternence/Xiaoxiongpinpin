@@ -50,7 +50,7 @@ page{
 }
 
 .iconjianshao:before{
-  content:"\e64f";
+  content:"\e64f"
 }
 
 .icongouwuche3:before {
