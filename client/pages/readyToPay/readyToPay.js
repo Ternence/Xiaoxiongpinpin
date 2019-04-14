@@ -191,7 +191,8 @@ Page({
       name: value.name,
       previewPic: value.previewPic,
       price: value.price,
-      total: value.price * value.num
+      total: value.price * value.num,
+      num:value.num
     }))
     var total = 0;
     for (let i = 0; i < cart.length; i++) {
