@@ -36,7 +36,6 @@ Page({
     items: [],
     close: true,
   },
-
   //获取商品类别
   getCatagorys: async function(options) {
     var res = await $request({
@@ -65,6 +64,7 @@ Page({
       goods: goods || []
     })
     wx.hideLoading();
+    // console.log('getgoods');
   },
   // 格式化商品数据
   nomarlizegoods: function(goods) {
@@ -75,7 +75,7 @@ Page({
       stock: value.stock,
       price: value.price,
       status: value.status,
-      number: 0,
+      number: value.num||0,
       options: value.options,
       description: value.description,
       previewPic: value.previewPic,
@@ -114,7 +114,7 @@ Page({
       });
     }
     // console.log(this.data.goods);
-    this.setcart();
+    this.getcart();
     wx.hideLoading();
   },
   // 跳转搜索
@@ -259,12 +259,14 @@ Page({
           goods[i].number = this.data.cart[j].num
         }
       }
-    }
+    };
+    // console.log(goods);
     this.setData({
       goods: goods
     });
     // console.log('1');
     // console.log(this.data.goods);
+    // console.log('setcart');
   },
   cancel: function() {
     this.setData({
@@ -364,7 +366,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: async function() {
     // console.log('onshow');
     app.globalData.buynow={};
     const session = Session.get()
@@ -385,10 +387,10 @@ Page({
       clicknumber: 0
     })
     if (session) {
-      this.getCatagorys();
-      this.getGoods();
-      this.getcart();
-      this.checkclose();
+      await this.getCatagorys();
+      await this.getGoods();
+      await this.getcart();
+      await this.checkclose();
     }
 
   },
