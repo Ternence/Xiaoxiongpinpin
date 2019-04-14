@@ -9,10 +9,9 @@
   <swiper-item wx:for="{{title}}" wx:key="{{index}}">
     <scroll-view scroll-y='true' style="height:{{height}}rpx;margin:30rpx 0rpx;">
       <Ordershow wx:for="{{orders}}" wx:key="{{index}}" order="{{item}}" data-oid="{{index}}" bindtap="linkToOrderDetail"></Ordershow>
-      <view class='message'>
+      <view class='message' wx:if="{{orders.length==0}}">
         <text style='font-size:30rpx;margin:0 auto;'>您还没有此类订单</text>
       </view>
     </scroll-view>
-
   </swiper-item>
 </swiper>
