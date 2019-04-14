@@ -6,8 +6,12 @@
     <view class="price">￥ {{good.price}}</view>
   </view>
   <view class="fruit-numb">
-    <view class="remove" catchtap="removeFromTrolley" hidden="{{good.num==0}}" data-index="{{index}}">-</view>
+    <view class="remove" catchtap="removeFromTrolley" hidden="{{good.num==0}}" data-index="{{index}}">
+      <icon class='iconfont iconjianshao' style='font-size:50rpx;'></icon>
+    </view>
     <text class="text" hidden="{{num==0}}">{{good.num}}</text>
-    <view class="add" catchtap="addToTrolley" data-index="{{index}}">+</view>
+    <view class="add" catchtap="addToTrolley" data-index="{{index}}">
+       <icon class='iconfont iconzengjia-copy' style='font-size:55rpx;'></icon>
+    </view>
   </view>
 </view>

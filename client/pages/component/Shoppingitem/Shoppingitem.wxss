@@ -49,14 +49,14 @@
 .fruit-numb {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .remove {
   height: 45rpx;
   width: 45rpx;
   border-radius: 50%;
-  background: lightgray;
-  color: white;
+  color: lightgray;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -71,8 +71,7 @@
   height: 45rpx;
   width: 45rpx;
   border-radius: 50%;
-  background: red;
-  color: white;
+  color: red;
   display: flex;
   flex-direction: row;
   align-items: center;
