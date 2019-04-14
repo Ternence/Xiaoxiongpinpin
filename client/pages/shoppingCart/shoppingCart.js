@@ -19,8 +19,8 @@ Page({
     price: 0,
     num: 0,
     checkcss: 'iconcheckall',
-    height:'',
-    close:true
+    height: '',
+    close: true
   },
   // 跳转主界面
   LinktoCart: function(options) {
@@ -34,21 +34,9 @@ Page({
       title: '加载中',
       mask: true
     });
-    var goods = this.data.goods;
-    if (goods.length != 0) {
-      goods = goods.map(value => ({
-        id: value.id,
-        num: value.num,
-        name: value.name,
-        price: value.price,
-        total: value.num * value.price,
-        previewPic: value.previewPic
-      }))
-      wx.navigateTo({
-        url: '../readyToPay/readyToPay?cart=' + JSON.stringify(goods),
-      });
-    }
-
+    wx.navigateTo({
+      url: '../readyToPay/readyToPay',
+    });
     wx.hideLoading();
   },
   // 计算商品价格
@@ -124,7 +112,7 @@ Page({
     this.getTotalPrice();
     wx.hideLoading();
   },
-  checkclose: async function () {
+  checkclose: async function() {
     var res = await $request({
       url: config.url.getphone
     });
