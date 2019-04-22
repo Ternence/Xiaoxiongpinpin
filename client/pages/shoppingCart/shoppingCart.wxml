@@ -10,16 +10,17 @@
     <scroll-view scroll-y='true'>
       <Shoppingitem wx:for="{{goods}}" good='{{item}}' data-goodid="{{index}}" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
     </scroll-view>
-    <view class='footer' wx:if="{{goods.length!=0&&close}}">
-      <view class='left'>
-        <view>
-          <text>合计¥</text>
-          <text style='color:red;'>{{price}}</text>
-        </view>
-      </view>
-      <view class='right' bindtap='purchase'>
-        <text>去结算</text>
-      </view>
-    </view>
+
   </view>
 </scroll-view>
+<view class='footer' wx:if="{{goods.length!=0&&close}}">
+  <view class='left'>
+    <view>
+      <text>合计¥</text>
+      <text style='color:red;'>{{price}}</text>
+    </view>
+  </view>
+  <view class='right' bindtap='purchase'>
+    <text>去结算</text>
+  </view>
+</view>

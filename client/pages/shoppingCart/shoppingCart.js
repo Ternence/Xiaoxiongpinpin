@@ -129,7 +129,7 @@ Page({
     height = height * 750 / wx.getSystemInfoSync().windowWidth;
 
     this.setData({
-      height: height - 100,
+      height: height-100,
     })
   },
 
