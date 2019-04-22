@@ -5,7 +5,7 @@
   </view>
 </view>
 
-<swiper style="height:1100rpx" bindchange='changeSwipe' current='{{clickNumber}}'>
+<swiper style="height:95%" bindchange='changeSwipe' current='{{clickNumber}}'>
   <swiper-item wx:for="{{title}}" wx:key="{{index}}">
     <scroll-view scroll-y='true' style="height:{{height}}rpx;margin:30rpx 0rpx;">
       <Ordershow wx:for="{{orders}}" wx:key="{{index}}" order="{{item}}" data-oid="{{index}}" bindtap="linkToOrderDetail"></Ordershow>
