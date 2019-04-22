@@ -64,7 +64,7 @@ Page({
   },
   nomarlizegoods: function (goods) {
     goods = goods.map(value => ({
-      id: value.id,
+      id: value._id,
       name: value.name,
       catagory: value.category,
       stock: value.stock,
@@ -81,10 +81,8 @@ Page({
   },
   linkToDetail: function (event) {
     var index = event.currentTarget.dataset.gid;
-    console.log(index);
-    var goods = this.data.goods[index];
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?goods=' + JSON.stringify(goods),
+      url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(index),
     })
   },
 
