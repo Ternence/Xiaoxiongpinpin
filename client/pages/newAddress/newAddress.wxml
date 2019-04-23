@@ -24,7 +24,7 @@
       <text>省份</text>
     </view>
     <view class='right'>
-      <input value='{{province}}' id='province' bindinput='bindKeyInput'></input>
+      <input value='{{province}}' id='province' bindinput='bindKeyInput' disabled='true'></input>
     </view>
   </view>
 
@@ -33,7 +33,7 @@
       <text>城市</text>
     </view>
     <view class='right'>
-      <input value='{{city}}' id='city' bindinput='bindKeyInput'></input>
+      <input value='{{city}}' id='city' bindinput='bindKeyInput' disabled='true'></input>
     </view>
   </view>
 

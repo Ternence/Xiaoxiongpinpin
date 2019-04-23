@@ -59,6 +59,10 @@ Page({
   },
   Addaddress: async function(event) {
     // TODO add new address
+    wx.showLoading({
+      title: '加载中',
+      mask:true
+    })
     if (this.data.province && this.data.city && this.data.district && this.data.detail && this.data.concat && this.data.phone) {
       var address = {
         id:this.data.id,
@@ -82,6 +86,7 @@ Page({
         icon:'none'
       })
     }
+    wx.hideLoading();
   },
 
 
@@ -98,7 +103,8 @@ Page({
         district: address.district,
         phone: address.phone,
         detail: address.detail,
-        id:address.id
+        id:address.id,
+        concat:address.name
       })
     }
 
