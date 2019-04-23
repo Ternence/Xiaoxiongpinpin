@@ -54,6 +54,7 @@ Page({
   getGoods: async function(options) {
     wx.showLoading({
       title: '加载中',
+      mask:true
     })
     var res = await $request({
       url: config.url.allgoods
@@ -74,6 +75,7 @@ Page({
       catagory: value.category,
       stock: value.stock,
       price: value.price,
+      originPrice:value.originPrice,
       status: value.status,
       number: value.num||0,
       options: value.options,
@@ -89,6 +91,7 @@ Page({
   getGoodsByCategory: async function(event) {
     wx.showLoading({
       title: '加载中',
+      mask:true
     });
     this.setData({
       toView: event.currentTarget.id
@@ -121,6 +124,7 @@ Page({
   linkToSearch: function(options) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     wx.navigateTo({
       url: '../search/search',
@@ -131,6 +135,7 @@ Page({
   linkToAddress: function(options) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     wx.navigateTo({
       url: '../address/address',
@@ -151,6 +156,7 @@ Page({
   addtoCart: async function(event) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     var index = event.currentTarget.dataset.goodid;
     this.setData({
@@ -210,6 +216,7 @@ Page({
   removefromCart: async function(event) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
 
     var index = event.currentTarget.dataset.goodid;
@@ -239,6 +246,7 @@ Page({
   getcart: async function() {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     var res = await $request({
       url: config.url.getcart
@@ -352,6 +360,7 @@ Page({
   onLoad: function(options) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     this.getpictures();
     this.setData({
