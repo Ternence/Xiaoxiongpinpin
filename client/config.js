@@ -7,6 +7,7 @@ module.exports = {
     login: `${host}/userlogin`,
     address:`${host}/api/address`,
     updatead:`${host}/api/updateaddress`,
+    deleteaddress:`${host}/api/deleteaddress`,
     catagory:`${host}/api/catagory`,
     allgoods:`${host}/api/allgoods`,
     goodsbycatagory:`${host}/goods/category`,
