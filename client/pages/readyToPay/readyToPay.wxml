@@ -23,8 +23,10 @@
       <Orderitem wx:for="{{cart}}" wx:key="{{index}}" carts="{{item}}"></Orderitem>
     </view>
   </view>
+  <view class='note' bindtap='shownote'>
+    <text>添加备注</text>
+  </view>
 </scroll-view>
-
 <view class='footer'>
   <view class='left'>
     <text>合计:¥</text>
@@ -33,3 +35,25 @@
   <view class='right' bindtap='pay'>去支付</view>
 </view>
 
+
+<view class='toast-box' hidden='{{!notetoast}}'>
+  <view class='toastbg'></view>
+  <view class='showToast'>
+    <view class='toast-title'>
+      <text>填写备注</text>
+    </view>
+    <view class='toast-main'>
+      <view class='toast-input'>
+        <input placeholder='请输入备注' bindinput='setNote' data-name='stuEidtName'></input>
+      </view>
+    </view>
+    <view class='toast-button'>
+      <view class='button1'>
+        <button catchtap='cancelnote'>取消</button>
+      </view>
+      <view class='button2'>
+        <button catchtap='confirmnote'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

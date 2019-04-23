@@ -23,7 +23,30 @@ Page({
     time: 30,
     cart: [],
     first: true,
-    height: ''
+    height: '',
+    notetoast:false,
+    note:''
+  },
+  // 留言相关
+  shownote:function(){
+    this.setData({
+      notetoast:true
+    })
+  },
+  cancelnote:function(){
+    this.setData({
+      notetoast: false
+    })
+  },
+  confirmnote:function(event){
+    this.setData({
+      notetoast:false
+    })
+  },
+  setNote:function(event){
+    this.setData({
+      note:event.detail.value
+    })
   },
 
   choseaddress: function() {
@@ -86,7 +109,8 @@ Page({
             detail: address.detail,
             phone: address.phone,
             status: '未支付',
-            items: items
+            items: items,
+            note:this.data.note
           }
         }
       });
