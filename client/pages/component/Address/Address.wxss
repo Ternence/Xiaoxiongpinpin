@@ -39,5 +39,6 @@
 
 .size{
   font-size: 50rpx;
+  margin: 0 8rpx;
 }
 

@@ -25,6 +25,10 @@ Component({
     edit:function(event){
       var detail=this.properties.address;
       this.triggerEvent('editEvent',detail,{});
+    },
+    delete:function(event){
+      var detail=this.properties.address;
+      this.triggerEvent('deleteEvent', detail, {});
     }
   }
 })

@@ -14,7 +14,8 @@
       <text>{{address.phone}}</text>
     </view>
   </view>
-  <view class='right' catchtap='edit'>
-    <icon class='iconfont iconbianji size'></icon>
+  <view class='right'>
+    <icon class='iconfont iconbianji size' catchtap='edit'></icon>
+    <icon class='iconfont iconDelete size'  style='color:red' catchtap='delete'></icon>
   </view>
 </view>
