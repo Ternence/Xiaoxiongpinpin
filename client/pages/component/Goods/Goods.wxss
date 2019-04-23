@@ -39,9 +39,24 @@
   color: #acacac;
 }
 
-.food .price {
+
+
+.food .pricegroup{
+  display: flex;
+  flex-direction: row;
+}
+
+.food .pricegroup .price {
   font-size: 30rpx;
   color: red;
+  margin: 0 5rpx;
+}
+
+.food .pricegroup .oPrice {
+  font-size: 25rpx;
+  color: lightgray;
+  text-decoration:line-through;
+   margin: 0 5rpx;
 }
 
 .food-numb {
@@ -84,3 +99,4 @@
 .size{
   font-size: 40rpx;
 }
+
