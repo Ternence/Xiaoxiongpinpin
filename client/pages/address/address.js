@@ -10,6 +10,7 @@ import {
   Session
 } from '../../lib/page.auth';
 import config from '../../config';
+import { showModalPromisified } from '../../utils/async.js';
 Page({
 
   /**
@@ -40,6 +41,30 @@ Page({
       url: '../newAddress/newAddress?oldaddress=' + JSON.stringify(event.detail),
     })
   },
+  deletecurrent:async function(event){
+    var that=this;
+    showModalPromisified({
+      title: '请确认',
+      content: '确认删除该地址？'}).then(function(res){
+        if(res.confirm)
+        {
+         that.dodelte(that.data.address[event.currentTarget.dataset.aid]._id);
+        }
+        else if(res.cancel)
+        {
+          console.log('用户点击取消')
+        }
+      }).then(function(res){
+        console.log(res);
+        that.getUserAddress();
+      }).catch(function(res){
+        console.log(res);
+      })
+  },
+  dodelte:async function(id){
+    var response = await $request({ url: config.url.deleteaddress, method: 'POST', data: { addressid:id}});
+  },
+
   getUserAddress: async function (event) {
     const res = await $request({ url: config.url.address });
     // console.log(res);

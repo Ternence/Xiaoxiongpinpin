@@ -26,7 +26,7 @@
   </view> -->
 
 <view class='content'>
-  <Address wx:for="{{address}}" address="{{item}}" wx:key="{{index}}" bindchoseEvent="chosecurrent" bindeditEvent="editcurrent"></Address>
+  <Address wx:for="{{address}}" address="{{item}}" wx:key="{{index}}" data-aid="{{index}}" bindchoseEvent="chosecurrent" bindeditEvent="editcurrent" binddeleteEvent="deletecurrent"></Address>
   <view class='new' bindtap='linktoNewAddress'>
     <text class='newtext'>新增地址</text>
     <icon class='iconfont iconright-circle' style='font-size:50rpx;'></icon>
