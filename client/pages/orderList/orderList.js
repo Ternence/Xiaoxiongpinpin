@@ -146,7 +146,7 @@ Page({
       }
       for (let i = 0; i < orders.length; i++) {
         orders[i].createTime = new Date(orders[i].createTime).format("yyyy-MM-dd hh:mm:ss");
-        console.log(orders[i].createTime);
+        // console.log(orders[i].createTime);
       }
       this.setData({
         orders: orders
