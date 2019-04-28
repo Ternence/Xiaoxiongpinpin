@@ -16,6 +16,8 @@ Page({
    */
   data: {
     goods: [],
+    pre: [],
+    now: [],
     price: 0,
     num: 0,
     checkcss: 'iconcheckall',
@@ -59,10 +61,13 @@ Page({
     var res = await $request({
       url: config.url.getcart
     });
+    var cart = res.data;
+    // console.log(cart[0].options[0].value);
     this.setData({
-      goods: res.data,
-      num: res.data.length | 0
-    })
+      goods: cart,
+      num: cart.length | 0
+    });
+    this.setPreandNow();
     this.getTotalPrice();
   },
   addtocart: async function(event) {
@@ -71,11 +76,43 @@ Page({
       mask: true
     });
     var index = event.currentTarget.dataset.goodid;
-    var goods = this.data.goods;
-    goods[index].num = goods[index].num + 1;
-    this.setData({
-      goods: goods
-    })
+    var type = event.currentTarget.dataset.type;
+    if (type == 'now') {
+      var now = this.data.now;
+      var pre = this.data.pre;
+      now[index].num = now[index].num + 1;
+      var ans = [];
+      for (let i = 0; i < now.length; i++) {
+        if (now[i].num != 0)
+          ans.push(now[i])
+      }
+      this.setData({
+        now: ans
+      });
+      var good = ans.concat(pre);
+      this.setData({
+        goods: good
+      })
+    } else {
+      var pre = this.data.pre;
+      var now = this.data.now;
+      pre[index].num = pre[index].num + 1;
+      var ans = [];
+      for (let i = 0; i < pre.length; i++) {
+        if (pre[i].num != 0)
+          ans.push(pre[i])
+      }
+      // console.log(ans);
+      this.setData({
+        pre: ans
+      });
+      var good = now.concat(pre);
+      this.setData({
+        goods: good
+      })
+      // console.log(good);
+    }
+
     var res = await $request({
       url: config.url.updatecart,
       method: 'POST',
@@ -92,16 +129,46 @@ Page({
       mask: true
     })
     var index = event.currentTarget.dataset.goodid;
-    var goods = this.data.goods;
-    goods[index].num = goods[index].num - 1;
-    var ans = [];
-    for (let i = 0; i < goods.length; i++) {
-      if (goods[i].num != 0)
-        ans.push(goods[i])
+    var type = event.currentTarget.dataset.type;
+    // console.log(type);
+    if (type == 'now') {
+      var now = this.data.now;
+      var pre = this.data.pre;
+      now[index].num = now[index].num - 1;
+      var ans = [];
+      for (let i = 0; i < now.length; i++) {
+        if (now[i].num != 0)
+          ans.push(now[i])
+      }
+      this.setData({
+        now: ans
+      });
+      var good = ans.concat(pre);
+      this.setData({
+        goods: good
+      })
+    } else {
+      var pre = this.data.pre;
+      var now = this.data.now;
+      pre[index].num = pre[index].num - 1;
+      var ans = [];
+      for (let i = 0; i < pre.length; i++) {
+        if (pre[i].num != 0)
+          ans.push(pre[i])
+      }
+      // console.log(ans);
+      // console.log(now);
+      this.setData({
+        pre: ans
+      });
+      var good = now.concat(ans);
+      // console.log(good);
+      this.setData({
+        goods: good
+      })
+      // console.log(good);
     }
-    this.setData({
-      goods: ans
-    })
+
     var res = await $request({
       url: config.url.updatecart,
       method: 'POST',
@@ -120,6 +187,21 @@ Page({
       close: res.data.settings.isOpen
     })
   },
+  setPreandNow: function() {
+    var cart = this.data.goods;
+    var pre = [];
+    var now = [];
+    pre = cart.filter(function(item) {
+      return item.options.length != 0
+    })
+    now = cart.filter(function(item) {
+      return item.options.length == 0
+    });
+    this.setData({
+      pre: pre,
+      now: now
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -127,9 +209,8 @@ Page({
   onLoad: function(options) {
     var height = wx.getSystemInfoSync().windowHeight;
     height = height * 750 / wx.getSystemInfoSync().windowWidth;
-
     this.setData({
-      height: height-100,
+      height: height - 100,
     })
   },
 

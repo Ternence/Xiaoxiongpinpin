@@ -8,9 +8,13 @@
   </view>
   <view wx:if="{{num>0}}">
     <scroll-view scroll-y='true'>
-      <Shoppingitem wx:for="{{goods}}" good='{{item}}' data-goodid="{{index}}" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
+      <Shoppingitem wx:for="{{now}}" good='{{item}}' data-goodid="{{index}}" data-type="now" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
     </scroll-view>
-
+    <view class='divLine' wx:if="{{pre.length!=0}}"></view>
+    <view class='pretext' wx:if="{{pre.length!=0}}">预售</view>
+    <scroll-view scroll-y='true'>
+      <Shoppingitem wx:for="{{pre}}" good='{{item}}' data-goodid="{{index}}" data-type="pre" wx:key="{{index}}" bindaddEvent="addtocart" bindremoveEvent="removefromcart"></Shoppingitem>
+    </scroll-view>
   </view>
 </scroll-view>
 <view class='footer' wx:if="{{goods.length!=0&&close}}">
