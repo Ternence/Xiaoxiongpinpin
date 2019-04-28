@@ -42,7 +42,7 @@
       <text>街道</text>
     </view>
     <view class='right'>
-      <input value='{{district}}' id='district' bindinput='bindKeyInput'></input>
+      <input value='{{district}}' id='district' bindinput='bindKeyInput' disabled='true'></input>
     </view>
   </view>
 
@@ -52,9 +52,10 @@
       <text>详细地址</text>
     </view>
     <view class='right'>
-      <input id='detail' value='{{detail}}' bindinput='bindKeyInput'></input>
+      <input id='detail' value='{{detail}}' bindinput='bindKeyInput' disabled="{{self}}"></input>
     </view>
   </view>
 
-  <button bindtap='Addaddress'>确认</button>
+  <button bindtap='Addaddress' wx:if="{{!self}}">确认</button>
+  <button bindtap='selfaddress' wx:if="{{self}}">确认</button>
 </view>

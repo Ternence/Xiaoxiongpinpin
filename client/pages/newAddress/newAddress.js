@@ -2,6 +2,7 @@
 const {
   regeneratorRuntime
 } = global
+var app = getApp();
 import {
   $login,
   $request,
@@ -20,7 +21,8 @@ Page({
     province: '江苏省',
     city: '镇江市',
     district: '象山街道',
-    detail: ''
+    detail: '',
+    self:false
   },
   bindKeyInput: function(event) {
     var that = this;
@@ -88,6 +90,13 @@ Page({
     }
     wx.hideLoading();
   },
+  selfaddress:function(){
+    app.globalData.currentaddress.name = this.data.concat;
+    app.globalData.currentaddress.phonenumber=this.data.phone;
+    wx.navigateBack({
+      delta:1
+    })
+  },
 
 
   /**
@@ -105,6 +114,14 @@ Page({
         detail: address.detail,
         id:address.id,
         concat:address.name
+      })
+    }
+    if(options.selfservice)
+    {
+      var selfdetail=JSON.parse(options.selfservice);
+      this.setData({
+        detail:selfdetail,
+        self:true
       })
     }
 
