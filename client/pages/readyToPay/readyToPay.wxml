@@ -5,8 +5,13 @@
       <text class='helptext'>订单配送至</text>
     </view>
     <view class='address'>
-      <text class='adtext'>{{address}}</text>
-      <icon class='iconfont iconright'></icon>
+      <view>
+        <text class='adtext'>{{address}}</text>
+        <icon class='iconfont iconright'></icon>
+      </view>
+      <icon wx:if="{{isself}}" class='iconfont iconbianji size' catchtap='editpinfo'>
+        <text style='font-size:25rpx'>编辑联系方式</text>
+      </icon>
     </view>
     <view class='user'>
       <text>{{user}}   </text>
@@ -14,8 +19,15 @@
     </view>
   </view>
   <view class='content'>
-    <view style='margin:5rpx 10rpx;'>预计送达
+    <!-- <view style='margin:5rpx 10rpx;'>预计送达
       <text style='font-size:30rpx;'>{{time}}分钟内</text>
+    </view> -->
+    <view style='margin:5rpx 10rpx;'>
+      <picker wx:if="{{!ispre}}" mode="time" value="{{time}}" start="{{begintime}}" end="{{endtime}}" bindchange="bindTimeChange">
+        <view class="picker">
+          配送时间: {{time}}
+        </view>
+      </picker>
     </view>
     <view class='divLine'></view>
     <view class=''></view>
@@ -24,7 +36,8 @@
     </view>
   </view>
   <view class='note' bindtap='shownote'>
-    <text>添加备注</text>
+    <text wx:if="{{note==''}}">添加备注</text>
+    <text wx:if="{{note!=''}}">修改备注</text>
   </view>
 </scroll-view>
 <view class='footer'>
