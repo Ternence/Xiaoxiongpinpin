@@ -26,6 +26,12 @@
   </view> -->
 
 <view class='content'>
+  <view class='selfservice' catchtap='choseselfpick'>
+    <view class='left'>
+      <text class='loc'>自提</text>
+      <text class='loc'>{{selfserviceaddress}}</text>
+    </view>
+  </view>
   <Address wx:for="{{address}}" address="{{item}}" wx:key="{{index}}" data-aid="{{index}}" bindchoseEvent="chosecurrent" bindeditEvent="editcurrent" binddeleteEvent="deletecurrent"></Address>
   <view class='new' bindtap='linktoNewAddress'>
     <text class='newtext'>新增地址</text>
