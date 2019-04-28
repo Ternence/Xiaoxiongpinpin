@@ -20,6 +20,7 @@
   margin: 30rpx;
   width: 200rpx;
   height: 60rpx;
+  font-size: 20rpx;
 }
 
 .option-active {

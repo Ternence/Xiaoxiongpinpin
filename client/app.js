@@ -7,12 +7,18 @@ var qcloud = require('./vendor/wafer2-client-sdk/index')
 var config = require('./config')
 App({
   globalData: {
+    begintime:'',
+    endtime:'',
     islogin: false,
     userInfo: {},
     currentaddress: {
       district: '请选择收货地址',
-      detail: ''
+      detail: '',
+      name:'',
+      phonenumber:''
     },
+    selfserviceaddress:'',
+    isSelfService:false,
     buynow: {}
   },
   onLaunch: function() {

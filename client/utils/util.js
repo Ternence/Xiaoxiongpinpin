@@ -17,26 +17,60 @@ const formatNumber = n => {
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
-    title: text,
-    icon: 'loading',
-    duration: 10000
+  title: text,
+  icon: 'loading',
+  duration: 10000
 })
 
 // 显示成功提示
 var showSuccess = text => wx.showToast({
-    title: text,
-    icon: 'success'
+  title: text,
+  icon: 'success'
 })
 
 // 显示失败提示
 var showModel = (title, content) => {
-    wx.hideToast();
+  wx.hideToast();
 
-    wx.showModal({
-        title,
-        content: JSON.stringify(content),
-        showCancel: false
-    })
+  wx.showModal({
+    title,
+    content: JSON.stringify(content),
+    showCancel: false
+  })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+var getDates = function(now,days, todate = getCurrentMonthFirst()) {
+  var dateArry = [];
+  for (var i = now; i <=days; i++) {
+    var dateObj = dateLater(todate, i);
+    dateArry.push(dateObj)
+  }
+  return dateArry;
+}
+
+var dateLater = function(dates, later) {
+  let dateObj = {};
+  let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+  let date = new Date(dates);
+  date.setDate(date.getDate() + later);
+  let day = date.getDay();
+  dateObj.year = date.getFullYear();
+  dateObj.month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
+  dateObj.day = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  dateObj.week = show_day[day];
+  return dateObj;
+}
+
+var getCurrentMonthFirst = function() {
+  var date = new Date();
+  var todate = date.getFullYear() + "-" + ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  return todate;
+}
+
+module.exports = {
+  formatTime,
+  showBusy,
+  showSuccess,
+  showModel,
+  getDates
+}

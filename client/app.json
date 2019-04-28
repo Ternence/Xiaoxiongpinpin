@@ -48,5 +48,6 @@
         "selectedIconPath": "pages/icons/useractive.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
