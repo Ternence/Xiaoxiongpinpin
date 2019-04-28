@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+<view style="height:{{height}}px">
   <view class='head'>
     <view class='location' bindtap='linkToAddress'>
       <icon class='iconfont iconlocation size'></icon>
@@ -29,32 +29,25 @@
       <text>本店已打烊</text>
     </view>
   </view>
-  <!-- <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
-<view class='optionselect' hidden='{{groundhidden}}'>
-  <view class='top'>
-    <view class='image'>
-      <image></image>
+  <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
+  <view class='optionselect' hidden='{{groundhidden}}'>
+    <scroll-view scroll-y='true' class='scroll'>
+      <option wx:for="{{options}}" option="{{item}}" data-op="{{index}}" wx:key="index" bindselectevent="setSelect"></option>
+    </scroll-view>
+    <view>
+      <picker mode="time" value="{{time}}" start="{{begintime}}" end="{{endtime}}" bindchange="bindTimeChange">
+        <view class="picker">
+          当前选择: {{time}}
+        </view>
+      </picker>
     </view>
-    <view class='description'>
-      <text class='title'>{{selectname}}</text>
-      <view class='type'>
-        <text wx:for="{{selected}}" wx:key="index"> {{item.title}}</text>
-      </view>
-      <view class='price'>
-        <text style="color:red">¥{{price}}</text>
-      </view>
+    <view class='footer' catchtap='addpregood'>
+      <text>选好了</text>
     </view>
   </view>
-  <scroll-view scroll-y='true' class='scroll'>
-    <option wx:for="{{options}}" option="{{item}}" data-op="{{index}}" wx:key="index" bindselectevent="setSelect"></option>
-  </scroll-view>
-  <view class='footer' catchtap='addtoCart'>
-    <text>选好了</text>
-  </view>
-</view> -->
 
   <modal hidden="{{islogin}}" title="小熊拼拼" confirm-text="拒绝授权" bindcancel="cancel" bindconfirm="confirm" no-cancel='true' style="text-align:center">
     请求获取您的微信头像及昵称
     <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   </modal>
-</scroll-view>
+</view>

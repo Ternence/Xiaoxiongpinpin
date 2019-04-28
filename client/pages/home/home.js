@@ -1,5 +1,6 @@
 // pages/home/home.js
-var API = require('../../utils/api.js')
+var API = require('../../utils/api.js');
+var util = require('../../utils/util.js')
 var app = getApp();
 import {
   $login,
@@ -22,19 +23,27 @@ Page({
     goods: [],
     catagory: [],
     clicknumber: 0,
-    options: [],
+    options: [{
+      key: '送达时间',
+      selectindex: 0,
+      values: []
+    }],
     selected: [],
     groundhidden: true,
-    price: 12,
-    selectname: 'Test',
+    // price: 12,
+    // selectname: '配送时间',
     index: 0,
     hidden: false,
     islogin: getApp().globalData.islogin,
     currentad: '',
     height: 555,
     cart: [],
+    precart: [],
     items: [],
     close: true,
+    time: '请选择具体时间',
+    begintime: '',
+    endtime: ''
   },
   //获取商品类别
   getCatagorys: async function(options) {
@@ -54,7 +63,7 @@ Page({
   getGoods: async function(options) {
     wx.showLoading({
       title: '加载中',
-      mask:true
+      mask: true
     })
     var res = await $request({
       url: config.url.allgoods
@@ -75,15 +84,17 @@ Page({
       catagory: value.category,
       stock: value.stock,
       price: value.price,
-      originPrice:value.originPrice,
+      originPrice: value.originPrice,
       status: value.status,
-      number: value.num||0,
+      number: value.num || 0,
       options: value.options,
       description: value.description,
       previewPic: value.previewPic,
       pictures: value.pictures,
       sale: value.sale,
-      toView: ''
+      toView: '',
+      earliestDeliverTime: value.earliestDeliverTime || 0,
+      finalDeliverTime: value.finalDeliverTime
     }));
     return goods;
   },
@@ -91,7 +102,7 @@ Page({
   getGoodsByCategory: async function(event) {
     wx.showLoading({
       title: '加载中',
-      mask:true
+      mask: true
     });
     this.setData({
       toView: event.currentTarget.id
@@ -152,7 +163,7 @@ Page({
       url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(id),
     })
   },
-  // 提交购物车
+  // 加入购物车
   addtoCart: async function(event) {
     wx.showLoading({
       title: '加载中',
@@ -162,22 +173,84 @@ Page({
     this.setData({
       index: index
     })
-    var num = this.data.goods[this.data.index].number;
-    var param = {};
-    num = num + 1;
-    var string = "goods[" + this.data.index + "].number";
-    param[string] = num;
-    this.setData(param);
-    this.changethecart();
-    var req = await $request({
-      url: config.url.updatecart,
-      method: 'POST',
-      data: {
-        goods: this.data.cart
+    var good = this.data.goods[this.data.index];
+    // console.log(good);
+    if (good.number > 0)
+    {
+      var num = good.number;
+      var param = {};
+      num = num + 1;
+      var string = "goods[" + this.data.index + "].number";
+      param[string] = num;
+      this.setData(param);
+      this.changethecart();
+      var req = await $request({
+        url: config.url.updatecart,
+        method: 'POST',
+        data: {
+          goods: this.data.cart
+        }
+      });
+    }
+    else if (good.finalDeliverTime <= 0 ) {
+      if(this.data.cart.length==0||this.data.cart[0].options[0].length==0)
+      {
+        var num = good.number;
+        var param = {};
+        num = num + 1;
+        var string = "goods[" + this.data.index + "].number";
+        param[string] = num;
+        this.setData(param);
+        this.changethecart();
+        var req = await $request({
+          url: config.url.updatecart,
+          method: 'POST',
+          data: {
+            goods: this.data.cart
+          }
+        });
       }
-    });
+      else
+      {
+        wx.showToast({
+          title: '在售商品不能和预售商品同时购买',
+          icon:'none',
+          mask:true
+        })
+      }
+
+    } else {
+      console.log(this.data.cart);
+      if (this.data.cart.length == 0 ||this.data.cart[0].options.length != 0)
+      {
+        var day = util.getDates(good.earliestDeliverTime, good.finalDeliverTime);
+        // var day=util.getDates(2,5);
+        var options = this.data.options;
+        var values = [];
+        for (let time of day) {
+          values.push(time.month + '月' + time.day + '日');
+        }
+        // console.log(values);
+        options[0].values = values;
+        // console.log(options);
+        this.setData({
+          options: options,
+          groundhidden: false
+        })
+      }
+      else
+      {
+        wx.showToast({
+          title: '预售商品不能和在售商品同时购买',
+          icon:'none',
+          mask:true
+        })
+      }
+
+    }
     wx.hideLoading();
   },
+  // 更新购物车
   changethecart: function() {
     var goods = this.data.goods[this.data.index];
     var cart = this.data.cart;
@@ -197,7 +270,7 @@ Page({
         num: goods.number,
         name: goods.name,
         description: goods.description,
-        options: [],
+        options: goods.options || [],
         previewPic: goods.previewPic,
         price: goods.price
       };
@@ -212,7 +285,7 @@ Page({
       cart: remove0
     })
   },
-  //  
+  // 从购物车移除1件商品 
   removefromCart: async function(event) {
     wx.showLoading({
       title: '加载中',
@@ -243,6 +316,7 @@ Page({
 
     wx.hideLoading();
   },
+  //  获取购物册
   getcart: async function() {
     wx.showLoading({
       title: '加载中',
@@ -259,6 +333,7 @@ Page({
     this.setcart();
     wx.hideLoading();
   },
+  // 同步购物车
   setcart: function() {
     var goods = this.data.goods;
     for (let i = 0; i < this.data.goods.length; i++) {
@@ -276,6 +351,7 @@ Page({
     // console.log(this.data.goods);
     // console.log('setcart');
   },
+  // 授权相关
   cancel: function() {
     this.setData({
       hidden: true
@@ -313,6 +389,7 @@ Page({
       console.log("+++1+++ error:", err)
     }
   },
+  // 滑动到底检测
   lower: function(event) {
     // console.log('到底了')
   },
@@ -329,19 +406,20 @@ Page({
       console.log('获取错误');
     }
   },
+  // 首页图片导航
   linktogoodsby: function(event) {
-    if(this.data.close)
-    wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(this.data.items[event.currentTarget.dataset.pid].id),
-    })
-    else
-    {
+    if (this.data.close)
+      wx.navigateTo({
+        url: '../goodsDetail/goodsDetail?gid=' + JSON.stringify(this.data.items[event.currentTarget.dataset.pid].id),
+      })
+    else {
       wx.showToast({
         title: '本店暂时休息了',
-        icon:'none'
+        icon: 'none'
       })
     }
   },
+  // 检查打烊
   checkclose: async function() {
     var res = await $request({
       url: config.url.getphone
@@ -350,7 +428,79 @@ Page({
       close: res.data.settings.isOpen
     })
   },
-
+  // 预售商品处理逻辑
+  // 预售商品确认
+  addpregood: async function() {
+    // console.log(day);
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
+    var index = this.data.index;
+    var good = this.data.goods[this.data.index];
+    var num = good.number;
+    var param = {};
+    num = 1;
+    var string = "goods[" + this.data.index + "].number";
+    var string1 = "goods[" + this.data.index + "].options";
+    param[string] = num;
+    var value = [];
+    value.push(this.data.options[0].values[this.data.options[0].selectindex]);
+    value.push(this.data.time);
+    param[string1] = {
+      key: this.data.options[0].key,
+      value: value
+    }
+    this.setData(param);
+    this.changethecart();
+    // console.log(this.data.cart);
+    var req = await $request({
+      url: config.url.updatecart,
+      method: 'POST',
+      data: {
+        goods: this.data.cart
+      }
+    });
+    this.setData({
+      groundhidden: true
+    })
+    wx.hideLoading();
+  },
+  cancelOption: function() {
+    this.setData({
+      groundhidden: true,
+      time: '请选择具体时间'
+    })
+  },
+  // 选择时间段
+  setSelect: function(event) {
+    var options = this.data.options;
+    options[0].selectindex = event.detail.selectindex;
+    // console.log(event.detail);
+    this.setData({
+      options: options
+    })
+  },
+  // 选择具体时间
+  bindTimeChange: function(event) {
+    // console.log(event.detail);
+    this.setData({
+      time: event.detail.value
+    })
+  },
+  getSettings: async function() {
+    var res = await $request({
+      url: config.url.getphone
+    });
+    // console.log(res);
+    app.globalData.begintime = res.data.settings.startDeliverTime;
+    app.globalData.endtime = res.data.settings.endDeliverTime;
+    app.globalData.selfserviceaddress = res.data.settings.selfPickUpAddress;
+    this.setData({
+      begintime: app.globalData.begintime,
+      endtime: app.globalData.endtime
+    })
+  },
 
 
 
@@ -361,7 +511,8 @@ Page({
     wx.showLoading({
       title: '加载中',
       mask: true
-    })
+    });
+    this.getSettings();
     this.getpictures();
     this.setData({
       height: wx.getSystemInfoSync().windowHeight,
@@ -381,7 +532,7 @@ Page({
    */
   onShow: async function() {
     // console.log('onshow');
-    app.globalData.buynow={};
+    app.globalData.buynow = {};
     const session = Session.get()
     if (session) {
       app.globalData.islogin = true;
@@ -425,7 +576,16 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: async function() {
+    console.log('hi');
+    wx.showLoading({
+      title: '加载中',
+    });
+    this.setData({
+      clicknumber:0
+    })
+    await this.getGoods();
+    wx.hideLoading();
 
   },
 

@@ -1,11 +1,12 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "Goods": "../component/Goods/Goods",
-    "option":"../component/option/option"
+    "option": "../component/option/option"
   },
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "小熊缤果",
-    "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light"
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "小熊缤果",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "dark"
 }
