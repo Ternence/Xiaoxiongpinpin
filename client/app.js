@@ -10,6 +10,7 @@ App({
     begintime:'',
     endtime:'',
     islogin: false,
+    ispre:false,
     userInfo: {},
     currentaddress: {
       district: '请选择收货地址',

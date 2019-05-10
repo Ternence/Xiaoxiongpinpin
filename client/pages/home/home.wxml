@@ -31,9 +31,10 @@
   </view>
   <view class='groundfloor' hidden='{{groundhidden}}' bindtap='cancelOption'></view>
   <view class='optionselect' hidden='{{groundhidden}}'>
-    <scroll-view scroll-y='true' class='scroll'>
+    <view class='scroll'>
       <option wx:for="{{options}}" option="{{item}}" data-op="{{index}}" wx:key="index" bindselectevent="setSelect"></option>
-    </scroll-view>
+    </view>
+
     <view>
       <picker mode="time" value="{{time}}" start="{{begintime}}" end="{{endtime}}" bindchange="bindTimeChange">
         <view class="picker">

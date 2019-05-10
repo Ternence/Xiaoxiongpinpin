@@ -106,9 +106,6 @@ Page({
             previewPic: value.previewPic
           }));
           var time = this.data.time;
-          this.setData({
-            ispre: items[0].options.length == 0 ? false : true
-          })
           time = time == '请选择时间' ? '' : time;
           var res = await $request({
             url: config.url.addorder,
@@ -346,7 +343,8 @@ Page({
   onShow: function() {
     console.log(app.globalData.isSelfPickUp)
     this.setData({
-      isself:app.globalData.isSelfPickUp||false
+      isself:app.globalData.isSelfPickUp||false,
+      ispre:app.globalData.ispre
     })
     this.setaddress();
     this.getestimatetime();

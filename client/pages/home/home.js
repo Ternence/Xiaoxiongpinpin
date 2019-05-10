@@ -168,15 +168,15 @@ Page({
     wx.showLoading({
       title: '加载中',
       mask: true
-    })
+    });
+    wx.hideLoading();
     var index = event.currentTarget.dataset.goodid;
     this.setData({
       index: index
     })
     var good = this.data.goods[this.data.index];
     // console.log(good);
-    if (good.number > 0)
-    {
+    if (good.number > 0) {
       var num = good.number;
       var param = {};
       num = num + 1;
@@ -191,10 +191,9 @@ Page({
           goods: this.data.cart
         }
       });
-    }
-    else if (good.finalDeliverTime <= 0 ) {
-      if(this.data.cart.length==0||this.data.cart[0].options[0].length==0)
-      {
+    } else if (good.finalDeliverTime <= 0) {
+      if (this.data.cart.length == 0 || this.data.cart[0].options[0].length == 0) {
+        app.globalData.ispre = false;
         var num = good.number;
         var param = {};
         num = num + 1;
@@ -209,20 +208,18 @@ Page({
             goods: this.data.cart
           }
         });
-      }
-      else
-      {
+      } else {
         wx.showToast({
           title: '在售商品不能和预售商品同时购买',
-          icon:'none',
-          mask:true
+          icon: 'none',
+          mask: true
         })
       }
 
     } else {
       console.log(this.data.cart);
-      if (this.data.cart.length == 0 ||this.data.cart[0].options.length != 0)
-      {
+      if (this.data.cart.length == 0 || this.data.cart[0].options.length != 0) {
+        app.globalData.ispre=true;
         var day = util.getDates(good.earliestDeliverTime, good.finalDeliverTime);
         // var day=util.getDates(2,5);
         var options = this.data.options;
@@ -237,18 +234,18 @@ Page({
           options: options,
           groundhidden: false
         })
-      }
-      else
-      {
+      } else {
         wx.showToast({
           title: '预售商品不能和在售商品同时购买',
-          icon:'none',
-          mask:true
-        })
+          icon: 'none',
+          mask: true,
+          duration: 3000
+        });
+
       }
 
     }
-    wx.hideLoading();
+
   },
   // 更新购物车
   changethecart: function() {
@@ -432,39 +429,48 @@ Page({
   // 预售商品确认
   addpregood: async function() {
     // console.log(day);
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    });
-    var index = this.data.index;
-    var good = this.data.goods[this.data.index];
-    var num = good.number;
-    var param = {};
-    num = 1;
-    var string = "goods[" + this.data.index + "].number";
-    var string1 = "goods[" + this.data.index + "].options";
-    param[string] = num;
-    var value = [];
-    value.push(this.data.options[0].values[this.data.options[0].selectindex]);
-    value.push(this.data.time);
-    param[string1] = {
-      key: this.data.options[0].key,
-      value: value
-    }
-    this.setData(param);
-    this.changethecart();
-    // console.log(this.data.cart);
-    var req = await $request({
-      url: config.url.updatecart,
-      method: 'POST',
-      data: {
-        goods: this.data.cart
+    if (this.data.time == '请选择具体时间') {
+      wx.showToast({
+        title: '您还未选择配送时间',
+        icon: 'none',
+        mask: true
+      })
+    } else {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      });
+      var index = this.data.index;
+      var good = this.data.goods[this.data.index];
+      var num = good.number;
+      var param = {};
+      num = 1;
+      var string = "goods[" + this.data.index + "].number";
+      var string1 = "goods[" + this.data.index + "].options";
+      param[string] = num;
+      var value = [];
+      value.push(this.data.options[0].values[this.data.options[0].selectindex]);
+      value.push(this.data.time);
+      param[string1] = {
+        key: this.data.options[0].key,
+        value: value
       }
-    });
-    this.setData({
-      groundhidden: true
-    })
-    wx.hideLoading();
+      this.setData(param);
+      this.changethecart();
+      // console.log(this.data.cart);
+      var req = await $request({
+        url: config.url.updatecart,
+        method: 'POST',
+        data: {
+          goods: this.data.cart
+        }
+      });
+      this.setData({
+        groundhidden: true
+      })
+      wx.hideLoading();
+    }
+
   },
   cancelOption: function() {
     this.setData({
@@ -493,8 +499,8 @@ Page({
       url: config.url.getphone
     });
     // console.log(res);
-    app.globalData.begintime = res.data.settings.startDeliverTime;
-    app.globalData.endtime = res.data.settings.endDeliverTime;
+    app.globalData.begintime = res.data.settings.startDeliverTime || '';
+    app.globalData.endtime = res.data.settings.endDeliverTime || '';
     app.globalData.selfserviceaddress = res.data.settings.selfPickUpAddress;
     this.setData({
       begintime: app.globalData.begintime,
@@ -582,11 +588,11 @@ Page({
       title: '加载中',
     });
     this.setData({
-      clicknumber:0
+      clicknumber: 0
     })
     await this.getGoods();
     wx.hideLoading();
-
+    wx.stopPullDownRefresh();
   },
 
   /**

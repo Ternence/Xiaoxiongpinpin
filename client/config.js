@@ -1,6 +1,6 @@
-const host = 'http://127.0.0.1:3000'
+// const host = 'http://127.0.0.1:3000'
 // const host = 'http://47.102.144.176:3000'
-// const host = 'https://api.leobob.cn'
+const host = 'https://api.leobob.cn'
 
 module.exports = {
   url: {
